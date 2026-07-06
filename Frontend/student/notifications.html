@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Notifications</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#EEF2FF;
+}
+
+/* Sidebar */
+
+.sidebar{
+
+position:fixed;
+left:0;
+top:0;
+width:250px;
+height:100vh;
+background:linear-gradient(180deg,#4338CA,#2563EB);
+padding-top:25px;
+
+}
+
+.logo{
+
+text-align:center;
+color:white;
+margin-bottom:35px;
+
+}
+
+.logo i{
+
+font-size:50px;
+
+}
+
+.logo h3{
+
+margin-top:10px;
+font-weight:700;
+
+}
+
+.sidebar ul{
+
+list-style:none;
+padding-left:0;
+
+}
+
+.sidebar ul li{
+
+margin:10px 15px;
+
+}
+
+.sidebar ul li a{
+
+display:block;
+text-decoration:none;
+padding:14px;
+color:white;
+border-radius:10px;
+transition:.3s;
+
+}
+
+.sidebar ul li a:hover{
+
+background:rgba(255,255,255,.2);
+padding-left:22px;
+
+}
+
+.active{
+
+background:white;
+color:#4338CA!important;
+font-weight:600;
+
+}
+
+/* Main */
+
+.main{
+
+margin-left:250px;
+padding:30px;
+
+}
+
+.topbar{
+
+background:white;
+padding:20px 30px;
+border-radius:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 10px 20px rgba(0,0,0,.08);
+
+}
+
+.profile{
+
+font-size:18px;
+font-weight:600;
+color:#4338CA;
+
+}
+
+.profile i{
+
+font-size:40px;
+
+}
+
+.banner{
+
+margin-top:30px;
+background:linear-gradient(135deg,#4338CA,#2563EB);
+padding:35px;
+border-radius:18px;
+color:white;
+
+}
+
+.banner h2{
+
+font-weight:700;
+
+}
+
+.banner p{
+
+margin-top:10px;
+font-size:17px;
+
+}
+
+/* Statistics */
+
+.stats{
+
+margin-top:30px;
+
+}
+
+.stat-card{
+
+background:white;
+padding:25px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 10px 20px rgba(0,0,0,.08);
+
+}
+
+.stat-card i{
+
+font-size:45px;
+color:#4338CA;
+margin-bottom:15px;
+
+}
+
+.stat-card h3{
+
+font-weight:700;
+
+}
+
+/* Notification Box */
+
+.notification-box{
+
+margin-top:35px;
+background:white;
+padding:30px;
+border-radius:18px;
+box-shadow:0 10px 20px rgba(0,0,0,.08);
+
+}
+
+.notification-box h3{
+
+color:#4338CA;
+font-weight:700;
+margin-bottom:25px;
+
+}
+
+.notification-card{
+
+display:flex;
+align-items:flex-start;
+background:#f8f9ff;
+padding:18px;
+border-left:5px solid #4338CA;
+border-radius:12px;
+margin-bottom:20px;
+transition:.3s;
+
+}
+
+.notification-card:hover{
+
+transform:translateX(5px);
+
+}
+
+.notification-icon{
+
+font-size:28px;
+color:#4338CA;
+margin-right:18px;
+
+}
+
+.notification-content h5{
+
+font-weight:600;
+
+}
+
+.notification-content p{
+
+margin-bottom:5px;
+
+color:#555;
+
+}
+
+.notification-content small{
+
+color:gray;
+
+}
+
+@media(max-width:992px){
+
+.sidebar{
+
+position:relative;
+width:100%;
+height:auto;
+
+}
+
+.main{
+
+margin-left:0;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+<div class="logo">
+
+<i class="fa-solid fa-graduation-cap"></i>
+
+<h3>SCMS</h3>
+
+</div>
+
+<ul>
+
+<li><a href="student-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+
+<li><a href="browse-courses.html"><i class="fa-solid fa-book-open"></i> Browse Courses</a></li>
+
+<li><a href="my-courses.html"><i class="fa-solid fa-book"></i> My Courses</a></li>
+
+<li><a href="progress.html"><i class="fa-solid fa-chart-line"></i> Progress</a></li>
+
+<li><a href="certificate.html"><i class="fa-solid fa-award"></i> Certificate</a></li>
+
+<li><a class="active" href="notifications.html"><i class="fa-solid fa-bell"></i> Notifications</a></li>
+
+<li><a href="../home.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+
+</ul>
+
+</div>
+
+<!-- Main -->
+
+<div class="main">
+
+<div class="topbar">
+
+<div>
+
+<h2>Notifications</h2>
+
+<p>Stay updated with announcements, reminders and academic activities.</p>
+
+</div>
+
+<div class="profile">
+
+<i class="fa-solid fa-circle-user"></i>
+
+Student
+
+</div>
+
+</div>
+
+<div class="banner">
+
+<h2>
+
+<i class="fa-solid fa-bell"></i>
+
+Student Notification Center
+
+</h2>
+
+<p>
+
+Receive important updates about courses, exams, assignments and certificates.
+
+</p>
+
+</div>
+
+<!-- Statistics -->
+
+<div class="row stats">
+
+<div class="col-md-4 mb-4">
+
+<div class="stat-card">
+
+<i class="fa-solid fa-bell"></i>
+
+<h3>15</h3>
+
+<p>Total Notifications</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4 mb-4">
+
+<div class="stat-card">
+
+<i class="fa-solid fa-envelope-open-text"></i>
+
+<h3>10</h3>
+
+<p>Read</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4 mb-4">
+
+<div class="stat-card">
+
+<i class="fa-solid fa-envelope"></i>
+
+<h3>5</h3>
+
+<p>Unread</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="notification-box">
+
+<h3>
+
+<i class="fa-solid fa-list"></i>
+
+Recent Notifications
+
+</h3>
+
+<!-- Notification 1 -->
+
+<div class="notification-card">
+
+<div class="notification-icon">
+
+<i class="fa-solid fa-handshake"></i>
+
+</div>
+
+<div class="notification-content">
+
+<h5>Welcome to Student Course Management System</h5>
+
+<p>Your account has been successfully created. Start exploring available courses.</p>
+
+<small>01 July 2026 | 09:00 AM</small>
+
+</div>
+
+</div>
+
+<!-- Notification 2 -->
+
+<div class="notification-card">
+
+<div class="notification-icon">
+
+<i class="fa-solid fa-book-open"></i>
+
+</div>
+
+<div class="notification-content">
+
+<h5>New Course Available</h5>
+
+<p>Artificial Intelligence course has been added. You can enroll now.</p>
+
+<small>02 July 2026 | 10:30 AM</small>
+
+</div>
+
+</div>
+
+<!-- Notification 3 -->
+
+<div class="notification-card">
+
+<div class="notification-icon">
+
+<i class="fa-solid fa-file-circle-check"></i>
+
+</div>
+
+<div class="notification-content">
+
+<h5>Assignment Submission Reminder</h5>
+
+<p>Submit your Python Programming Assignment before 05 July 2026.</p>
+
+<small>03 July 2026 | 08:45 AM</small>
+
+</div>
+
+</div>
+
+<!-- Notification 4 -->
+
+<div class="notification-card">
+
+<div class="notification-icon">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+</div>
+
+<div class="notification-content">
+
+<h5>Mid Semester Examination</h5>
+
+<p>The Mid Semester Examination starts on 10 July 2026. Check the exam timetable.</p>
+
+<small>03 July 2026 | 11:15 AM</small>
+
+</div>
+
+</div>
+
+<!-- Notification 5 -->
+
+<div class="notification-card">
+
+<div class="notification-icon">
+
+<i class="fa-solid fa-award"></i>
+
+</div>
+
+<div class="notification-content">
+
+<h5>Certificate Available</h5>
+
+<p>Your Web Development course certificate is ready for download.</p>
+
+<small>04 July 2026 | 02:00 PM</small>
+
+</div>
+
+</div>
+
+<!-- Notification 6 -->
+
+<div class="notification-card">
+
+<div class="notification-icon">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+</div>
+
+<div class="notification-content">
+
+<h5>Admin Announcement</h5>
+
+<p>The college will remain closed on Monday due to maintenance work.</p>
+
+<small>04 July 2026 | 04:30 PM</small>
+
+</div>
+
+</div>
+
+<!-- Notification 7 -->
+
+<div class="notification-card">
+
+<div class="notification-icon">
+
+<i class="fa-solid fa-laptop-code"></i>
+
+</div>
+
+<div class="notification-content">
+
+<h5>Lab Session Reminder</h5>
+
+<p>Attend the Web Development Lab tomorrow at 10:00 AM in Lab 3.</p>
+
+<small>05 July 2026 | 09:30 AM</small>
+
+</div>
+
+</div>
+
+<!-- Notification 8 -->
+
+<div class="notification-card">
+
+<div class="notification-icon">
+
+<i class="fa-solid fa-upload"></i>
+
+</div>
+
+<div class="notification-content">
+
+<h5>Course Materials Uploaded</h5>
+
+<p>Study materials for Data Structures have been uploaded to your course.</p>
+
+<small>05 July 2026 | 01:15 PM</small>
+
+</div>
+
+</div>
+
+<!-- Notification 9 -->
+
+<div class="notification-card">
+
+<div class="notification-icon">
+
+<i class="fa-solid fa-user-check"></i>
+
+</div>
+
+<div class="notification-content">
+
+<h5>Attendance Updated</h5>
+
+<p>Your attendance has been updated successfully for this week.</p>
+
+<small>06 July 2026 | 09:00 AM</small>
+
+</div>
+
+</div>
+
+<!-- Notification 10 -->
+
+<div class="notification-card">
+
+<div class="notification-icon">
+
+<i class="fa-solid fa-chart-line"></i>
+
+</div>
+
+<div class="notification-content">
+
+<h5>Progress Updated</h5>
+
+<p>Your learning progress has increased to 72%. Keep learning!</p>
+
+<small>06 July 2026 | 11:30 AM</small>
+
+</div>
+
+</div>
+
+<!-- Notification 11 -->
+
+<div class="notification-card">
+
+<div class="notification-icon">
+
+<i class="fa-solid fa-clock"></i>
+
+</div>
+
+<div class="notification-content">
+
+<h5>Quiz Reminder</h5>
+
+<p>Complete your Database Management quiz before 08 July 2026.</p>
+
+<small>06 July 2026 | 03:15 PM</small>
+
+</div>
+
+</div>
+
+<!-- Notification 12 -->
+
+<div class="notification-card">
+
+<div class="notification-icon">
+
+<i class="fa-solid fa-circle-info"></i>
+
+</div>
+
+<div class="notification-content">
+
+<h5>System Maintenance</h5>
+
+<p>The Student Course Management System will undergo maintenance on Sunday from 10:00 PM to 11:00 PM.</p>
+
+<small>07 July 2026 | 08:00 AM</small>
+
+</div>
+
+</div>
+
+<!-- Notification Buttons -->
+
+<div class="text-center mt-4">
+
+<button class="btn btn-success me-3" id="readBtn">
+
+<i class="fa-solid fa-check"></i>
+
+Mark All as Read
+
+</button>
+
+<button class="btn btn-danger" id="clearBtn">
+
+<i class="fa-solid fa-trash"></i>
+
+Clear All Notifications
+
+</button>
+
+</div>
+
+</div>
+
+<!-- Footer -->
+
+<footer class="text-center mt-5 mb-4">
+
+<hr>
+
+<p>
+
+© 2026 Student Course Management and Learning Progress Tracking System
+
+</p>
+
+</footer>
+
+</div>
+
+<!-- JavaScript -->
+
+<script>
+
+// Mark All as Read
+
+document.getElementById("readBtn").onclick=function(){
+
+alert("All notifications have been marked as read.");
+
+};
+
+// Clear Notifications
+
+document.getElementById("clearBtn").onclick=function(){
+
+if(confirm("Do you want to clear all notifications?")){
+
+var notifications=document.querySelectorAll(".notification-card");
+
+notifications.forEach(function(card){
+
+card.style.display="none";
+
+});
+
+alert("All notifications cleared successfully.");
+
+}
+
+};
+
+// Logout Confirmation
+
+var logout=document.querySelector("a[href='../home.html']");
+
+logout.onclick=function(e){
+
+if(!confirm("Are you sure you want to logout?")){
+
+e.preventDefault();
+
+}
+
+};
+
+</script>
+
+</body>
+
+</html>

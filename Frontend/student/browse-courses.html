@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Browse Courses</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+font-family:'Poppins',sans-serif;
+
+background:#EEF2FF;
+
+}
+
+/* Sidebar */
+
+.sidebar{
+
+position:fixed;
+
+left:0;
+
+top:0;
+
+width:250px;
+
+height:100vh;
+
+background:linear-gradient(180deg,#4338CA,#2563EB);
+
+padding-top:25px;
+
+}
+
+.logo{
+
+text-align:center;
+
+color:white;
+
+margin-bottom:35px;
+
+}
+
+.logo i{
+
+font-size:50px;
+
+}
+
+.logo h3{
+
+margin-top:10px;
+
+font-weight:700;
+
+}
+
+.sidebar ul{
+
+list-style:none;
+
+padding-left:0;
+
+}
+
+.sidebar ul li{
+
+margin:10px 15px;
+
+}
+
+.sidebar ul li a{
+
+display:block;
+
+text-decoration:none;
+
+padding:14px;
+
+color:white;
+
+border-radius:10px;
+
+transition:.3s;
+
+}
+
+.sidebar ul li a:hover{
+
+background:rgba(255,255,255,.2);
+
+padding-left:22px;
+
+}
+
+.active{
+
+background:white;
+
+color:#4338CA !important;
+
+font-weight:600;
+
+}
+
+/* Main */
+
+.main{
+
+margin-left:250px;
+
+padding:30px;
+
+}
+
+.topbar{
+
+background:white;
+
+padding:20px 30px;
+
+border-radius:15px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+box-shadow:0 10px 20px rgba(0,0,0,.08);
+
+}
+
+.profile{
+
+font-size:18px;
+
+font-weight:600;
+
+color:#4338CA;
+
+}
+
+.profile i{
+
+font-size:40px;
+
+}
+
+.banner{
+
+margin-top:30px;
+
+background:linear-gradient(135deg,#4338CA,#2563EB);
+
+padding:35px;
+
+border-radius:18px;
+
+color:white;
+
+}
+
+.banner h2{
+
+font-weight:700;
+
+}
+
+.banner p{
+
+margin-top:10px;
+
+font-size:17px;
+
+}
+
+.search-box{
+
+background:white;
+
+margin-top:25px;
+
+padding:25px;
+
+border-radius:15px;
+
+box-shadow:0 10px 20px rgba(0,0,0,.08);
+
+}
+
+.course-card{
+
+background:white;
+
+border-radius:18px;
+
+overflow:hidden;
+
+margin-top:25px;
+
+transition:.3s;
+
+box-shadow:0 10px 20px rgba(0,0,0,.08);
+
+}
+
+.course-card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.course-header{
+
+background:linear-gradient(135deg,#4338CA,#2563EB);
+
+padding:30px;
+
+text-align:center;
+
+color:white;
+
+}
+
+.course-header i{
+
+font-size:55px;
+
+margin-bottom:15px;
+
+}
+
+.course-body{
+
+padding:25px;
+
+}
+
+.course-body h4{
+
+font-weight:700;
+
+}
+
+.course-info p{
+
+margin-bottom:8px;
+
+}
+
+.btn-course{
+
+width:100%;
+
+margin-top:15px;
+
+}
+
+@media(max-width:992px){
+
+.sidebar{
+
+position:relative;
+
+width:100%;
+
+height:auto;
+
+}
+
+.main{
+
+margin-left:0;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<div class="logo">
+
+<i class="fa-solid fa-graduation-cap"></i>
+
+<h3>SCMS</h3>
+
+</div>
+
+<ul>
+
+<li><a href="student-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+
+<li><a class="active" href="browse-courses.html"><i class="fa-solid fa-book-open"></i> Browse Courses</a></li>
+
+<li><a href="my-courses.html"><i class="fa-solid fa-book"></i> My Courses</a></li>
+
+<li><a href="progress.html"><i class="fa-solid fa-chart-line"></i> Progress</a></li>
+
+<li><a href="certificate.html"><i class="fa-solid fa-award"></i> Certificate</a></li>
+
+<li><a href="notifications.html"><i class="fa-solid fa-bell"></i> Notifications</a></li>
+
+<li><a href="../home.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<div class="topbar">
+
+<div>
+
+<h2>Browse Courses</h2>
+
+<p>Choose your favourite course and start learning.</p>
+
+</div>
+
+<div class="profile">
+
+<i class="fa-solid fa-circle-user"></i>
+
+Student
+
+</div>
+
+</div>
+
+<div class="banner">
+
+<h2>📚 12 Professional Courses Available</h2>
+
+<p>
+
+Enhance your skills by enrolling in web development, programming, database, cloud computing, artificial intelligence and many more.
+
+</p>
+
+</div>
+
+<div class="search-box">
+
+<div class="row">
+
+<div class="col-md-8">
+
+<input type="text"
+
+class="form-control"
+
+placeholder="Search Course..."
+
+id="search">
+
+</div>
+
+<div class="col-md-4">
+
+<button class="btn btn-primary w-100">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+Search
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="row">
+
+<!-- Programming in C -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="course-card">
+
+<div class="course-header">
+
+<i class="fa-solid fa-code"></i>
+
+<h3>Programming in C</h3>
+
+</div>
+
+<div class="course-body">
+
+<h4>CSE Department</h4>
+
+<p>Learn programming fundamentals, problem-solving, functions, pointers and arrays using C.</p>
+
+<div class="course-info">
+
+<p><b>Course Code :</b> CS101</p>
+
+<p><b>Instructor :</b> Dr. Kumar</p>
+
+<p><b>Duration :</b> 16 Weeks</p>
+
+<p><b>Level :</b> Beginner</p>
+
+</div>
+
+<button class="btn btn-success btn-course">
+
+Enroll Now
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Python Programming -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="course-card">
+
+<div class="course-header">
+
+<i class="fa-brands fa-python"></i>
+
+<h3>Python Programming</h3>
+
+</div>
+
+<div class="course-body">
+
+<h4>CSE Department</h4>
+
+<p>Develop applications using Python programming, OOP concepts and libraries.</p>
+
+<div class="course-info">
+
+<p><b>Course Code :</b> CS205</p>
+
+<p><b>Instructor :</b> Dr. Priya</p>
+
+<p><b>Duration :</b> 12 Weeks</p>
+
+<p><b>Level :</b> Beginner</p>
+
+</div>
+
+<button class="btn btn-success btn-course">
+
+Enroll Now
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Data Structures -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="course-card">
+
+<div class="course-header">
+
+<i class="fa-solid fa-sitemap"></i>
+
+<h3>Data Structures</h3>
+
+</div>
+
+<div class="course-body">
+
+<h4>CSE Department</h4>
+
+<p>Master arrays, linked lists, stacks, queues, trees and graph algorithms.</p>
+
+<div class="course-info">
+
+<p><b>Course Code :</b> CS310</p>
+
+<p><b>Instructor :</b> Dr. Arun</p>
+
+<p><b>Duration :</b> 16 Weeks</p>
+
+<p><b>Level :</b> Intermediate</p>
+
+</div>
+
+<button class="btn btn-success btn-course">
+
+Enroll Now
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Web Development -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="course-card">
+
+<div class="course-header">
+
+<i class="fa-solid fa-globe"></i>
+
+<h3>Web Development</h3>
+
+</div>
+
+<div class="course-body">
+
+<h4>IT Department</h4>
+
+<p>Build responsive websites using HTML, CSS, JavaScript and Bootstrap.</p>
+
+<div class="course-info">
+
+<p><b>Course Code :</b> IT220</p>
+
+<p><b>Instructor :</b> Dr. Divya</p>
+
+<p><b>Duration :</b> 12 Weeks</p>
+
+<p><b>Level :</b> Intermediate</p>
+
+</div>
+
+<button class="btn btn-success btn-course">
+
+Enroll Now
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- Database Management System -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="course-card">
+
+<div class="course-header">
+
+<i class="fa-solid fa-database"></i>
+
+<h3>Database Management System</h3>
+
+</div>
+
+<div class="course-body">
+
+<h4>CSE Department</h4>
+
+<p>Learn SQL, normalization, transactions, indexing and database design.</p>
+
+<div class="course-info">
+
+<p><b>Course Code :</b> CS330</p>
+
+<p><b>Instructor :</b> Dr. Meena</p>
+
+<p><b>Duration :</b> 16 Weeks</p>
+
+<p><b>Level :</b> Intermediate</p>
+
+</div>
+
+<button class="btn btn-success btn-course">
+
+Enroll Now
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Operating Systems -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="course-card">
+
+<div class="course-header">
+
+<i class="fa-solid fa-desktop"></i>
+
+<h3>Operating Systems</h3>
+
+</div>
+
+<div class="course-body">
+
+<h4>CSE Department</h4>
+
+<p>Learn process management, memory management, scheduling and file systems.</p>
+
+<div class="course-info">
+
+<p><b>Course Code :</b> CS340</p>
+
+<p><b>Instructor :</b> Dr. Ravi</p>
+
+<p><b>Duration :</b> 16 Weeks</p>
+
+<p><b>Level :</b> Intermediate</p>
+
+</div>
+
+<button class="btn btn-success btn-course">
+
+Enroll Now
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+<!-- Computer Networks -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="course-card">
+
+<div class="course-header">
+
+<i class="fa-solid fa-network-wired"></i>
+
+<h3>Computer Networks</h3>
+
+</div>
+
+<div class="course-body">
+
+<h4>CSE Department</h4>
+
+<p>Understand networking, routing, switching and communication protocols.</p>
+
+<div class="course-info">
+
+<p><b>Course Code :</b> CS350</p>
+
+<p><b>Instructor :</b> Dr. Shalini</p>
+
+<p><b>Duration :</b> 16 Weeks</p>
+
+<p><b>Level :</b> Intermediate</p>
+
+</div>
+
+<button class="btn btn-success btn-course">
+
+Enroll Now
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Machine Learning -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="course-card">
+
+<div class="course-header">
+
+<i class="fa-solid fa-robot"></i>
+
+<h3>Machine Learning</h3>
+
+</div>
+
+<div class="course-body">
+
+<h4>AI & DS Department</h4>
+
+<p>Build intelligent prediction models using machine learning algorithms.</p>
+
+<div class="course-info">
+
+<p><b>Course Code :</b> AI201</p>
+
+<p><b>Instructor :</b> Dr. Arjun</p>
+
+<p><b>Duration :</b> 16 Weeks</p>
+
+<p><b>Level :</b> Advanced</p>
+
+</div>
+
+<button class="btn btn-success btn-course">
+
+Enroll Now
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Deep Learning -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="course-card">
+
+<div class="course-header">
+
+<i class="fa-solid fa-microchip"></i>
+
+<h3>Deep Learning</h3>
+
+</div>
+
+<div class="course-body">
+
+<h4>AI & ML Department</h4>
+
+<p>Master neural networks, CNN, RNN and deep learning models.</p>
+
+<div class="course-info">
+
+<p><b>Course Code :</b> AM401</p>
+
+<p><b>Instructor :</b> Dr. Karthik</p>
+
+<p><b>Duration :</b> 16 Weeks</p>
+
+<p><b>Level :</b> Advanced</p>
+
+</div>
+
+<button class="btn btn-success btn-course">
+
+Enroll Now
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+<!-- Cloud Computing -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="course-card">
+
+<div class="course-header">
+
+<i class="fa-solid fa-cloud"></i>
+
+<h3>Cloud Computing</h3>
+
+</div>
+
+<div class="course-body">
+
+<h4>IT Department</h4>
+
+<p>Learn cloud platforms, virtualization and cloud deployment models.</p>
+
+<div class="course-info">
+
+<p><b>Course Code :</b> IT310</p>
+
+<p><b>Instructor :</b> Dr. Lakshmi</p>
+
+<p><b>Duration :</b> 14 Weeks</p>
+
+<p><b>Level :</b> Intermediate</p>
+
+</div>
+
+<button class="btn btn-success btn-course">
+
+Enroll Now
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+<!-- Mobile Application Development -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="course-card">
+
+<div class="course-header">
+
+<i class="fa-solid fa-mobile-screen"></i>
+
+<h3>Mobile Application Development</h3>
+
+</div>
+
+<div class="course-body">
+
+<h4>IT Department</h4>
+
+<p>Develop Android mobile applications using modern development tools.</p>
+
+<div class="course-info">
+
+<p><b>Course Code :</b> IT420</p>
+
+<p><b>Instructor :</b> Dr. Joseph</p>
+
+<p><b>Duration :</b> 12 Weeks</p>
+
+<p><b>Level :</b> Intermediate</p>
+
+</div>
+
+<button class="btn btn-success btn-course">
+
+Enroll Now
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+<!-- Cyber Security -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="course-card">
+
+<div class="course-header">
+
+<i class="fa-solid fa-shield-halved"></i>
+
+<h3>Cyber Security</h3>
+
+</div>
+
+<div class="course-body">
+
+<h4>Cyber Security Department</h4>
+
+<p>Protect systems from cyber attacks using modern security practices.</p>
+
+<div class="course-info">
+
+<p><b>Course Code :</b> CY301</p>
+
+<p><b>Instructor :</b> Dr. Siva</p>
+
+<p><b>Duration :</b> 16 Weeks</p>
+
+<p><b>Level :</b> Advanced</p>
+
+</div>
+
+<button class="btn btn-success btn-course">
+
+Enroll Now
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+<!-- Network Security -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="course-card">
+
+<div class="course-header">
+
+<i class="fa-solid fa-lock"></i>
+
+<h3>Network Security</h3>
+
+</div>
+
+<div class="course-body">
+
+<h4>Cyber Security Department</h4>
+
+<p>Secure networks using firewalls, encryption and intrusion detection.</p>
+
+<div class="course-info">
+
+<p><b>Course Code :</b> CY401</p>
+
+<p><b>Instructor :</b> Dr. Vinoth</p>
+
+<p><b>Duration :</b> 16 Weeks</p>
+
+<p><b>Level :</b> Advanced</p>
+
+</div>
+
+<button class="btn btn-success btn-course">
+
+Enroll Now
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Digital Electronics -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="course-card">
+
+<div class="course-header">
+
+<i class="fa-solid fa-microchip"></i>
+
+<h3>Digital Electronics</h3>
+
+</div>
+
+<div class="course-body">
+
+<h4>ECE Department</h4>
+
+<p>Study logic gates, flip-flops, counters and digital circuit design.</p>
+
+<div class="course-info">
+
+<p><b>Course Code :</b> EC220</p>
+
+<p><b>Instructor :</b> Dr. Suresh</p>
+
+<p><b>Duration :</b> 16 Weeks</p>
+
+<p><b>Level :</b> Intermediate</p>
+
+</div>
+
+<button class="btn btn-success btn-course">
+
+Enroll Now
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- VLSI Design -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="course-card">
+
+<div class="course-header">
+
+<i class="fa-solid fa-microchip"></i>
+
+<h3>VLSI Design</h3>
+
+</div>
+
+<div class="course-body">
+
+<h4>ECE Department</h4>
+
+<p>Learn CMOS technology, integrated circuit design and semiconductor fabrication.</p>
+
+<div class="course-info">
+
+<p><b>Course Code :</b> EC410</p>
+
+<p><b>Instructor :</b> Dr. Helen</p>
+
+<p><b>Duration :</b> 16 Weeks</p>
+
+<p><b>Level :</b> Advanced</p>
+
+</div>
+
+<button class="btn btn-success btn-course">
+
+Enroll Now
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Power Systems -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="course-card">
+
+<div class="course-header">
+
+<i class="fa-solid fa-bolt"></i>
+
+<h3>Power Systems</h3>
+
+</div>
+
+<div class="course-body">
+
+<h4>EEE Department</h4>
+
+<p>Learn power generation, transmission, distribution and electrical protection systems.</p>
+
+<div class="course-info">
+
+<p><b>Course Code :</b> EE310</p>
+
+<p><b>Instructor :</b> Dr. Prakash</p>
+
+<p><b>Duration :</b> 16 Weeks</p>
+
+<p><b>Level :</b> Intermediate</p>
+
+</div>
+
+<button class="btn btn-success btn-course">
+
+Enroll Now
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Renewable Energy Systems -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="course-card">
+
+<div class="course-header">
+
+<i class="fa-solid fa-solar-panel"></i>
+
+<h3>Renewable Energy Systems</h3>
+
+</div>
+
+<div class="course-body">
+
+<h4>EEE Department</h4>
+
+<p>Study solar, wind and renewable energy technologies for sustainable power generation.</p>
+
+<div class="course-info">
+
+<p><b>Course Code :</b> EE420</p>
+
+<p><b>Instructor :</b> Dr. Anitha</p>
+
+<p><b>Duration :</b> 16 Weeks</p>
+
+<p><b>Level :</b> Advanced</p>
+
+</div>
+
+<button class="btn btn-success btn-course">
+
+Enroll Now
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+<!-- Thermodynamics -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="course-card">
+
+<div class="course-header">
+
+<i class="fa-solid fa-fire"></i>
+
+<h3>Thermodynamics</h3>
+
+</div>
+
+<div class="course-body">
+
+<h4>Mechanical Department</h4>
+
+<p>Understand heat transfer, energy conversion and thermodynamic laws.</p>
+
+<div class="course-info">
+
+<p><b>Course Code :</b> ME210</p>
+
+<p><b>Instructor :</b> Dr. Anand</p>
+
+<p><b>Duration :</b> 14 Weeks</p>
+
+<p><b>Level :</b> Intermediate</p>
+
+</div>
+
+<button class="btn btn-success btn-course">
+
+Enroll Now
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Robotics Engineering -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="course-card">
+
+<div class="course-header">
+
+<i class="fa-solid fa-robot"></i>
+
+<h3>Robotics Engineering</h3>
+
+</div>
+
+<div class="course-body">
+
+<h4>Mechanical Department</h4>
+
+<p>Design and develop robotic systems using sensors, actuators and automation technologies.</p>
+
+<div class="course-info">
+
+<p><b>Course Code :</b> ME420</p>
+
+<p><b>Instructor :</b> Dr. Bharath</p>
+
+<p><b>Duration :</b> 16 Weeks</p>
+
+<p><b>Level :</b> Advanced</p>
+
+</div>
+
+<button class="btn btn-success btn-course">
+
+Enroll Now
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<footer class="text-center mt-5 mb-4">
+
+<p>
+
+© 2026 Student Course Management and Learning Progress Tracking System
+
+</p>
+
+</footer>
+
+</div>
+
+<script>
+
+function searchCourse(){
+
+var input=document.getElementById("search").value.toUpperCase();
+
+var cards=document.getElementsByClassName("course-card");
+
+for(var i=0;i<cards.length;i++){
+
+var title=cards[i].getElementsByTagName("h3")[0];
+
+if(title.innerHTML.toUpperCase().indexOf(input)>-1){
+
+cards[i].parentElement.style.display="block";
+
+}
+
+else{
+
+cards[i].parentElement.style.display="none";
+
+}
+
+}
+
+}
+
+var search=document.getElementById("search");
+
+search.addEventListener("keyup",searchCourse);
+
+
+// Enroll Button
+
+var buttons=document.getElementsByClassName("btn-course");
+
+for(var i=0;i<buttons.length;i++){
+
+buttons[i].onclick=function(){
+
+alert("Course Enrolled Successfully!");
+
+};
+
+}
+
+
+// Logout
+
+var logout=document.querySelector("a[href='../home.html']");
+
+logout.onclick=function(e){
+
+if(!confirm("Are you sure you want to logout?")){
+
+e.preventDefault();
+
+}
+
+};
+
+</script>
+
+</body>
+
+</html>
