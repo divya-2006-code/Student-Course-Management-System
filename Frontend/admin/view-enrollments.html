@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>View Enrollments</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#eef2ff;
+}
+
+/* Sidebar */
+
+.sidebar{
+position:fixed;
+left:0;
+top:0;
+width:260px;
+height:100vh;
+background:linear-gradient(180deg,#0F172A,#1E40AF);
+overflow:auto;
+}
+
+.logo{
+text-align:center;
+padding:25px;
+color:white;
+border-bottom:1px solid rgba(255,255,255,.2);
+}
+
+.logo i{
+font-size:55px;
+margin-bottom:10px;
+}
+
+.logo h3{
+font-weight:700;
+}
+
+.sidebar ul{
+list-style:none;
+padding-left:0;
+margin-top:20px;
+}
+
+.sidebar ul li{
+margin:10px 15px;
+}
+
+.sidebar ul li a{
+display:block;
+padding:14px;
+color:white;
+text-decoration:none;
+border-radius:10px;
+transition:.3s;
+}
+
+.sidebar ul li a:hover{
+background:rgba(255,255,255,.15);
+padding-left:20px;
+}
+
+.active{
+background:white;
+color:#1E40AF!important;
+font-weight:600;
+}
+
+/* Main */
+
+.main{
+margin-left:260px;
+padding:30px;
+}
+
+.topbar{
+background:white;
+padding:20px 30px;
+border-radius:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 10px 20px rgba(0,0,0,.08);
+}
+
+.profile{
+font-size:18px;
+font-weight:600;
+color:#1E40AF;
+}
+
+.banner{
+margin-top:25px;
+background:linear-gradient(135deg,#2563EB,#1E40AF);
+padding:30px;
+border-radius:18px;
+color:white;
+}
+
+.banner h2{
+font-weight:700;
+}
+
+.table-card{
+margin-top:30px;
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 10px 20px rgba(0,0,0,.08);
+}
+
+.table th{
+background:#1E40AF;
+color:white;
+}
+
+.badge-completed{
+background:#198754;
+}
+
+.badge-progress{
+background:#ffc107;
+color:black;
+}
+
+.badge-pending{
+background:#dc3545;
+}
+
+@media(max-width:992px){
+
+.sidebar{
+position:relative;
+width:100%;
+height:auto;
+}
+
+.main{
+margin-left:0;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+<div class="logo">
+
+<i class="fa-solid fa-user-shield"></i>
+
+<h3>ADMIN</h3>
+
+</div>
+
+<ul>
+
+<li>
+
+<a href="admin-dashboard.html">
+
+<i class="fa-solid fa-house"></i>
+
+Dashboard
+
+</a>
+
+</li>
+
+<li>
+
+<a href="manage-students.html">
+
+<i class="fa-solid fa-users"></i>
+
+Manage Students
+
+</a>
+
+</li>
+
+<li>
+
+<a href="manage-courses.html">
+
+<i class="fa-solid fa-book"></i>
+
+Manage Courses
+
+</a>
+
+</li>
+
+<li>
+
+<a class="active" href="view-enrollments.html">
+
+<i class="fa-solid fa-user-check"></i>
+
+View Enrollments
+
+</a>
+
+</li>
+
+<li>
+
+<a href="notifications.html">
+
+<i class="fa-solid fa-bell"></i>
+
+Notifications
+
+</a>
+
+</li>
+
+<li>
+
+<a href="home.html">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</a>
+
+</li>
+
+</ul>
+
+</div>
+
+<!-- Main -->
+
+<div class="main">
+
+<div class="topbar">
+
+<div>
+
+<h2>View Enrollments</h2>
+
+<p class="text-muted">
+
+Manage student course enrollments.
+
+</p>
+
+</div>
+
+<div class="profile">
+
+<i class="fa-solid fa-user-tie"></i>
+
+Admin
+
+</div>
+
+</div>
+
+<div class="banner">
+
+<h2>
+
+<i class="fa-solid fa-user-graduate"></i>
+
+Student Course Enrollments
+
+</h2>
+
+<p>
+
+View all enrolled students, enrolled courses and current progress.
+
+</p>
+
+</div>
+
+<div class="table-card">
+
+<div class="row mb-4">
+
+<div class="col-md-8">
+
+<input
+type="text"
+class="form-control"
+id="searchEnrollment"
+placeholder="Search by Student Name or Course">
+
+</div>
+
+<div class="col-md-4">
+
+<button
+class="btn btn-primary w-100"
+onclick="searchEnrollment()">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+Search
+
+</button>
+
+</div>
+
+</div>
+
+<div class="table-responsive">
+
+<table
+class="table table-bordered table-hover align-middle"
+id="enrollmentTable">
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>Student Name</th>
+
+<th>Register No</th>
+
+<th>Course</th>
+
+<th>Instructor</th>
+
+<th>Progress</th>
+
+<th>Status</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>1</td>
+
+<td>Aakash Kumar</td>
+
+<td>23CS001</td>
+
+<td>Python Programming</td>
+
+<td>Dr. Arun Kumar</td>
+
+<td>95%</td>
+
+<td><span class="badge badge-completed">Completed</span></td>
+
+<td>
+
+<button class="btn btn-primary btn-sm" onclick="viewEnrollment('Aakash Kumar','Python Programming')">
+
+<i class="fa-solid fa-eye"></i>
+
+View
+
+</button>
+
+<button class="btn btn-danger btn-sm" onclick="removeEnrollment(this)">
+
+<i class="fa-solid fa-trash"></i>
+
+Remove
+
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>2</td>
+
+<td>Priya Sharma</td>
+
+<td>23CS002</td>
+
+<td>Java Programming</td>
+
+<td>Prof. Kavitha</td>
+
+<td>80%</td>
+
+<td><span class="badge badge-progress">In Progress</span></td>
+
+<td>
+
+<button class="btn btn-primary btn-sm" onclick="viewEnrollment('Priya Sharma','Java Programming')">
+
+<i class="fa-solid fa-eye"></i>
+
+View
+
+</button>
+
+<button class="btn btn-danger btn-sm" onclick="removeEnrollment(this)">
+
+<i class="fa-solid fa-trash"></i>
+
+Remove
+
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>3</td>
+
+<td>Rahul Verma</td>
+
+<td>23CS003</td>
+
+<td>Web Development</td>
+
+<td>Mr. Rahul</td>
+
+<td>70%</td>
+
+<td><span class="badge badge-progress">In Progress</span></td>
+
+<td>
+
+<button class="btn btn-primary btn-sm" onclick="viewEnrollment('Rahul Verma','Web Development')">
+
+<i class="fa-solid fa-eye"></i>
+
+View</button>
+
+<button class="btn btn-danger btn-sm" onclick="removeEnrollment(this)">
+
+<i class="fa-solid fa-trash"></i>
+
+Remove</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>4</td>
+
+<td>Sneha Reddy</td>
+
+<td>23CS004</td>
+
+<td>Data Structures</td>
+
+<td>Dr. Suresh</td>
+
+<td>100%</td>
+
+<td><span class="badge badge-completed">Completed</span></td>
+
+<td>
+
+<button class="btn btn-primary btn-sm" onclick="viewEnrollment('Sneha Reddy','Data Structures')">
+
+<i class="fa-solid fa-eye"></i>
+
+View</button>
+
+<button class="btn btn-danger btn-sm" onclick="removeEnrollment(this)">
+
+<i class="fa-solid fa-trash"></i>
+
+Remove</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>5</td>
+
+<td>Ananya R</td>
+
+<td>23CS005</td>
+
+<td>Database Management</td>
+
+<td>Dr. Ravi</td>
+
+<td>65%</td>
+
+<td><span class="badge badge-progress">In Progress</span></td>
+
+<td>
+
+<button class="btn btn-primary btn-sm" onclick="viewEnrollment('Ananya R','Database Management')">
+
+<i class="fa-solid fa-eye"></i>
+
+View</button>
+
+<button class="btn btn-danger btn-sm" onclick="removeEnrollment(this)">
+
+<i class="fa-solid fa-trash"></i>
+
+Remove</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>6</td>
+
+<td>Arjun M</td>
+
+<td>23CS006</td>
+
+<td>Cloud Computing</td>
+
+<td>Mr. Naveen</td>
+
+<td>45%</td>
+
+<td><span class="badge badge-progress">In Progress</span></td>
+
+<td>
+
+<button class="btn btn-primary btn-sm" onclick="viewEnrollment('Arjun M','Cloud Computing')">
+
+<i class="fa-solid fa-eye"></i>
+
+View</button>
+
+<button class="btn btn-danger btn-sm" onclick="removeEnrollment(this)">
+
+<i class="fa-solid fa-trash"></i>
+
+Remove</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>7</td>
+
+<td>Kavya S</td>
+
+<td>23CS007</td>
+
+<td>Cyber Security</td>
+
+<td>Prof. Meena</td>
+
+<td>100%</td>
+
+<td><span class="badge badge-completed">Completed</span></td>
+
+<td>
+
+<button class="btn btn-primary btn-sm" onclick="viewEnrollment('Kavya S','Cyber Security')">
+
+<i class="fa-solid fa-eye"></i>
+
+View</button>
+
+<button class="btn btn-danger btn-sm" onclick="removeEnrollment(this)">
+
+<i class="fa-solid fa-trash"></i>
+
+Remove</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>8</td>
+
+<td>Harish K</td>
+
+<td>23CS008</td>
+
+<td>Machine Learning</td>
+
+<td>Dr. Priya</td>
+
+<td>75%</td>
+
+<td><span class="badge badge-progress">In Progress</span></td>
+
+<td>
+
+<button class="btn btn-primary btn-sm" onclick="viewEnrollment('Harish K','Machine Learning')">
+
+<i class="fa-solid fa-eye"></i>
+
+View</button>
+
+<button class="btn btn-danger btn-sm" onclick="removeEnrollment(this)">
+
+<i class="fa-solid fa-trash"></i>
+
+Remove</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>9</td>
+
+<td>Divya P</td>
+
+<td>23CS009</td>
+
+<td>Artificial Intelligence</td>
+
+<td>Dr. Lakshmi</td>
+
+<td>55%</td>
+
+<td><span class="badge badge-progress">In Progress</span></td>
+
+<td>
+
+<button class="btn btn-primary btn-sm" onclick="viewEnrollment('Divya P','Artificial Intelligence')">
+
+<i class="fa-solid fa-eye"></i>
+
+View</button>
+
+<button class="btn btn-danger btn-sm" onclick="removeEnrollment(this)">
+
+<i class="fa-solid fa-trash"></i>
+
+Remove</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>10</td>
+
+<td>Vignesh R</td>
+
+<td>23CS010</td>
+
+<td>React JS</td>
+
+<td>Mr. Vignesh</td>
+
+<td>90%</td>
+
+<td><span class="badge badge-progress">In Progress</span></td>
+
+<td>
+
+<button class="btn btn-primary btn-sm" onclick="viewEnrollment('Vignesh R','React JS')">
+
+<i class="fa-solid fa-eye"></i>
+
+View</button>
+
+<button class="btn btn-danger btn-sm" onclick="removeEnrollment(this)">
+
+<i class="fa-solid fa-trash"></i>
+
+Remove</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>11</td>
+
+<td>Meena S</td>
+
+<td>23CS011</td>
+
+<td>Angular</td>
+
+<td>Ms. Anitha</td>
+
+<td>35%</td>
+
+<td><span class="badge badge-pending">Pending</span></td>
+
+<td>
+
+<button class="btn btn-primary btn-sm" onclick="viewEnrollment('Meena S','Angular')">
+
+<i class="fa-solid fa-eye"></i>
+
+View</button>
+
+<button class="btn btn-danger btn-sm" onclick="removeEnrollment(this)">
+
+<i class="fa-solid fa-trash"></i>
+
+Remove</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>12</td>
+
+<td>Rohit K</td>
+
+<td>23CS012</td>
+
+<td>Node.js</td>
+
+<td>Mr. Dinesh</td>
+
+<td>60%</td>
+
+<td><span class="badge badge-progress">In Progress</span></td>
+
+<td>
+
+<button class="btn btn-primary btn-sm" onclick="viewEnrollment('Rohit K','Node.js')">
+
+<i class="fa-solid fa-eye"></i>
+
+View</button>
+
+<button class="btn btn-danger btn-sm" onclick="removeEnrollment(this)">
+
+<i class="fa-solid fa-trash"></i>
+
+Remove</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>13</td>
+
+<td>Nandhini P</td>
+
+<td>23CS013</td>
+
+<td>UI / UX Design</td>
+
+<td>Mrs. Divya</td>
+
+<td>85%</td>
+
+<td><span class="badge badge-progress">In Progress</span></td>
+
+<td>
+
+<button class="btn btn-primary btn-sm" onclick="viewEnrollment('Nandhini P','UI / UX Design')">
+
+<i class="fa-solid fa-eye"></i>
+
+View</button>
+
+<button class="btn btn-danger btn-sm" onclick="removeEnrollment(this)">
+
+<i class="fa-solid fa-trash"></i>
+
+Remove</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>14</td>
+
+<td>Karthik M</td>
+
+<td>23CS014</td>
+
+<td>Android App Development</td>
+
+<td>Mr. Karthik</td>
+
+<td>50%</td>
+
+<td><span class="badge badge-progress">In Progress</span></td>
+
+<td>
+
+<button class="btn btn-primary btn-sm" onclick="viewEnrollment('Karthik M','Android App Development')">
+
+<i class="fa-solid fa-eye"></i>
+
+View</button>
+
+<button class="btn btn-danger btn-sm" onclick="removeEnrollment(this)">
+
+<i class="fa-solid fa-trash"></i>
+
+Remove</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>15</td>
+
+<td>Lavanya R</td>
+
+<td>23CS015</td>
+
+<td>Data Science</td>
+
+<td>Dr. Nandhini</td>
+
+<td>100%</td>
+
+<td><span class="badge badge-completed">Completed</span></td>
+
+<td>
+
+<button class="btn btn-primary btn-sm" onclick="viewEnrollment('Lavanya R','Data Science')">
+
+<i class="fa-solid fa-eye"></i>
+
+View</button>
+
+<button class="btn btn-danger btn-sm" onclick="removeEnrollment(this)">
+
+<i class="fa-solid fa-trash"></i>
+
+Remove</button>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- Footer -->
+
+<footer class="text-center mt-5 mb-3">
+
+<hr>
+
+<p class="text-muted">
+
+© 2026 Student Course Management System | Admin Module
+
+</p>
+
+</footer>
+
+</div>
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+// =========================================
+// SEARCH ENROLLMENT
+// =========================================
+
+function searchEnrollment(){
+
+let input=document.getElementById("searchEnrollment").value.toUpperCase();
+
+let table=document.getElementById("enrollmentTable");
+
+let tr=table.getElementsByTagName("tr");
+
+for(let i=1;i<tr.length;i++){
+
+let student=tr[i].getElementsByTagName("td")[1];
+
+let course=tr[i].getElementsByTagName("td")[3];
+
+if(student && course){
+
+let studentText=student.textContent || student.innerText;
+
+let courseText=course.textContent || course.innerText;
+
+if(studentText.toUpperCase().indexOf(input)>-1 ||
+
+courseText.toUpperCase().indexOf(input)>-1){
+
+tr[i].style.display="";
+
+}
+
+else{
+
+tr[i].style.display="none";
+
+}
+
+}
+
+}
+
+}
+
+// =========================================
+// SEARCH ON TYPING
+// =========================================
+
+document.getElementById("searchEnrollment").addEventListener("keyup",searchEnrollment);
+
+
+// =========================================
+// VIEW ENROLLMENT
+// =========================================
+
+function viewEnrollment(student,course){
+
+alert(
+
+"Enrollment Details\n\n"+
+
+"Student : "+student+
+
+"\nCourse : "+course+
+
+"\nStatus : Active"+
+
+"\nEnrollment : Confirmed"
+
+);
+
+}
+
+
+// =========================================
+// REMOVE ENROLLMENT
+// =========================================
+
+function removeEnrollment(btn){
+
+if(confirm("Are you sure you want to remove this enrollment?")){
+
+let row=btn.parentNode.parentNode;
+
+row.remove();
+
+alert("Enrollment Removed Successfully.");
+
+}
+
+}
+
+
+// =========================================
+// LOGOUT CONFIRMATION
+// =========================================
+
+let logout=document.querySelector("a[href='home.html']");
+
+if(logout){
+
+logout.onclick=function(e){
+
+if(!confirm("Do you want to logout?")){
+
+e.preventDefault();
+
+}
+
+};
+
+}
+
+
+// =========================================
+// PAGE LOAD
+// =========================================
+
+window.onload=function(){
+
+console.log("View Enrollments Page Loaded Successfully.");
+
+}
+
+</script>
+
+</body>
+
+</html>

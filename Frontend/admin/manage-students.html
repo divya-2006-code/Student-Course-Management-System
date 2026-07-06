@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Manage Students</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+background:#eef2ff;
+
+}
+
+/* Sidebar */
+
+.sidebar{
+
+position:fixed;
+
+left:0;
+
+top:0;
+
+width:260px;
+
+height:100vh;
+
+background:linear-gradient(180deg,#0F172A,#1E40AF);
+
+overflow:auto;
+
+}
+
+.logo{
+
+text-align:center;
+
+padding:25px;
+
+color:white;
+
+border-bottom:1px solid rgba(255,255,255,.2);
+
+}
+
+.logo i{
+
+font-size:55px;
+
+margin-bottom:10px;
+
+}
+
+.logo h3{
+
+font-weight:700;
+
+}
+
+.sidebar ul{
+
+list-style:none;
+
+padding-left:0;
+
+margin-top:20px;
+
+}
+
+.sidebar ul li{
+
+margin:10px 15px;
+
+}
+
+.sidebar ul li a{
+
+display:block;
+
+padding:14px;
+
+color:white;
+
+text-decoration:none;
+
+border-radius:10px;
+
+transition:.3s;
+
+font-size:16px;
+
+}
+
+.sidebar ul li a:hover{
+
+background:rgba(255,255,255,.15);
+
+padding-left:22px;
+
+}
+
+.active{
+
+background:white;
+
+color:#1E40AF!important;
+
+font-weight:600;
+
+}
+
+/* Main */
+
+.main{
+
+margin-left:260px;
+
+padding:30px;
+
+}
+
+/* Topbar */
+
+.topbar{
+
+background:white;
+
+padding:20px 30px;
+
+border-radius:15px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+box-shadow:0 10px 20px rgba(0,0,0,.08);
+
+}
+
+.profile{
+
+font-size:18px;
+
+font-weight:600;
+
+color:#1E40AF;
+
+}
+
+.profile i{
+
+font-size:40px;
+
+}
+
+/* Banner */
+
+.banner{
+
+margin-top:25px;
+
+background:linear-gradient(135deg,#2563EB,#1E40AF);
+
+color:white;
+
+padding:30px;
+
+border-radius:18px;
+
+}
+
+.banner h2{
+
+font-weight:700;
+
+}
+
+/* Statistics */
+
+.stat-card{
+
+background:white;
+
+border-radius:15px;
+
+padding:25px;
+
+margin-top:25px;
+
+text-align:center;
+
+box-shadow:0 10px 20px rgba(0,0,0,.08);
+
+transition:.3s;
+
+}
+
+.stat-card:hover{
+
+transform:translateY(-5px);
+
+}
+
+.stat-card i{
+
+font-size:40px;
+
+margin-bottom:15px;
+
+color:#2563EB;
+
+}
+
+.stat-card h3{
+
+font-weight:700;
+
+}
+
+/* Search */
+
+.search-box{
+
+background:white;
+
+padding:25px;
+
+border-radius:15px;
+
+margin-top:30px;
+
+box-shadow:0 10px 20px rgba(0,0,0,.08);
+
+}
+
+/* Table */
+
+.table-card{
+
+background:white;
+
+padding:25px;
+
+border-radius:15px;
+
+margin-top:30px;
+
+box-shadow:0 10px 20px rgba(0,0,0,.08);
+
+}
+
+.table th{
+
+background:#1E40AF;
+
+color:white;
+
+vertical-align:middle;
+
+}
+
+.table td{
+
+vertical-align:middle;
+
+}
+
+.btn-action{
+
+margin-right:5px;
+
+}
+
+@media(max-width:992px){
+
+.sidebar{
+
+position:relative;
+
+width:100%;
+
+height:auto;
+
+}
+
+.main{
+
+margin-left:0;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+<div class="logo">
+
+<i class="fa-solid fa-user-shield"></i>
+
+<h3>SCMS Admin</h3>
+
+</div>
+
+<ul>
+
+<li>
+
+<a href="admin-dashboard.html">
+
+<i class="fa-solid fa-gauge"></i>
+
+Dashboard
+
+</a>
+
+</li>
+
+<li>
+
+<a class="active" href="manage-students.html">
+
+<i class="fa-solid fa-users"></i>
+
+Manage Students
+
+</a>
+
+</li>
+
+<li>
+
+<a href="manage-courses.html">
+
+<i class="fa-solid fa-book-open"></i>
+
+Manage Courses
+
+</a>
+
+</li>
+
+<li>
+
+<a href="reports.html">
+
+<i class="fa-solid fa-chart-column"></i>
+
+Reports
+
+</a>
+
+</li>
+
+<li>
+
+<a href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+Settings
+
+</a>
+
+</li>
+
+<li>
+
+<a href="../home.html">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</a>
+
+</li>
+
+</ul>
+
+</div>
+
+<!-- Main -->
+
+<div class="main">
+
+<div class="topbar">
+
+<div>
+
+<h2>Manage Students</h2>
+
+<p class="text-muted">
+
+Manage all registered students from one place.
+
+</p>
+
+</div>
+
+<div class="profile">
+
+<i class="fa-solid fa-circle-user"></i>
+
+Admin
+
+</div>
+
+</div>
+
+<div class="banner">
+
+<h2>
+
+👨‍🎓 Student Management System
+
+</h2>
+
+<p>
+
+Search, add, edit, delete and manage all student records efficiently.
+
+</p>
+
+</div>
+
+<!-- Statistics -->
+
+<div class="row">
+
+<div class="col-lg-3 col-md-6">
+
+<div class="stat-card">
+
+<i class="fa-solid fa-users"></i>
+
+<h3>120</h3>
+
+<p>Total Students</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6">
+
+<div class="stat-card">
+
+<i class="fa-solid fa-user-check"></i>
+
+<h3>108</h3>
+
+<p>Active</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6">
+
+<div class="stat-card">
+
+<i class="fa-solid fa-user-xmark"></i>
+
+<h3>12</h3>
+
+<p>Inactive</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6">
+
+<div class="stat-card">
+
+<i class="fa-solid fa-building-columns"></i>
+
+<h3>8</h3>
+
+<p>Departments</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Search -->
+
+<div class="search-box">
+
+<div class="row">
+
+<div class="col-md-9">
+
+<input
+
+type="text"
+
+id="search"
+
+class="form-control"
+
+placeholder="Search by Student Name or Register Number">
+
+</div>
+
+<div class="col-md-3">
+
+<button
+
+class="btn btn-primary w-100"
+
+onclick="searchStudent()">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+Search Student
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Student Table -->
+
+<div class="table-card">
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+<h3>
+
+<i class="fa-solid fa-users"></i>
+
+Registered Students
+
+</h3>
+
+<button
+
+class="btn btn-success"
+
+data-bs-toggle="modal"
+
+data-bs-target="#studentModal">
+
+<i class="fa-solid fa-user-plus"></i>
+
+Add Student
+
+</button>
+
+</div>
+
+<div class="table-responsive">
+
+<table class="table table-bordered table-hover text-center">
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>Name</th>
+
+<th>Register No</th>
+
+<th>Department</th>
+
+<th>Year</th>
+
+<th>Email</th>
+
+<th>Status</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="studentTable">
+
+<tr>
+<td>101</td>
+<td>Divya S</td>
+<td>23CS001</td>
+<td>CSE</td>
+<td>III</td>
+<td>divya.s@scms.edu.in</td>
+<td><span class="badge bg-success">Active</span></td>
+<td>
+<button class="btn btn-primary btn-sm btn-action" onclick="viewStudent('Divya S')">
+<i class="fa-solid fa-eye"></i>
+</button>
+
+<button class="btn btn-warning btn-sm btn-action" onclick="editStudent('Divya S')">
+<i class="fa-solid fa-pen"></i>
+</button>
+
+<button class="btn btn-danger btn-sm" onclick="deleteStudent(this)">
+<i class="fa-solid fa-trash"></i>
+</button>
+</td>
+</tr>
+
+<tr>
+<td>102</td>
+<td>Rahul Kumar</td>
+<td>23CS002</td>
+<td>CSE</td>
+<td>III</td>
+<td>rahul.kumar@scms.edu.in</td>
+<td><span class="badge bg-success">Active</span></td>
+<td>
+<button class="btn btn-primary btn-sm btn-action" onclick="viewStudent('Rahul Kumar')">
+<i class="fa-solid fa-eye"></i>
+</button>
+
+<button class="btn btn-warning btn-sm btn-action" onclick="editStudent('Rahul Kumar')">
+<i class="fa-solid fa-pen"></i>
+</button>
+
+<button class="btn btn-danger btn-sm" onclick="deleteStudent(this)">
+<i class="fa-solid fa-trash"></i>
+</button>
+</td>
+</tr>
+
+<tr>
+<td>103</td>
+<td>Priya Sharma</td>
+<td>23CS003</td>
+<td>IT</td>
+<td>II</td>
+<td>priya.sharma@scms.edu.in</td>
+<td><span class="badge bg-warning text-dark">Inactive</span></td>
+<td>
+<button class="btn btn-primary btn-sm btn-action" onclick="viewStudent('Priya Sharma')">
+<i class="fa-solid fa-eye"></i>
+</button>
+
+<button class="btn btn-warning btn-sm btn-action" onclick="editStudent('Priya Sharma')">
+<i class="fa-solid fa-pen"></i>
+</button>
+
+<button class="btn btn-danger btn-sm" onclick="deleteStudent(this)">
+<i class="fa-solid fa-trash"></i>
+</button>
+</td>
+</tr>
+
+<tr>
+<td>104</td>
+<td>Arun Kumar</td>
+<td>23CS004</td>
+<td>CSE</td>
+<td>II</td>
+<td>arun.kumar@scms.edu.in</td>
+<td><span class="badge bg-success">Active</span></td>
+<td>
+<button class="btn btn-primary btn-sm btn-action" onclick="viewStudent('Arun Kumar')">
+<i class="fa-solid fa-eye"></i>
+</button>
+
+<button class="btn btn-warning btn-sm btn-action" onclick="editStudent('Arun Kumar')">
+<i class="fa-solid fa-pen"></i>
+</button>
+
+<button class="btn btn-danger btn-sm" onclick="deleteStudent(this)">
+<i class="fa-solid fa-trash"></i>
+</button>
+</td>
+</tr>
+
+<tr>
+<td>105</td>
+<td>Ananya R</td>
+<td>23CS005</td>
+<td>ECE</td>
+<td>III</td>
+<td>ananya.r@scms.edu.in</td>
+<td><span class="badge bg-success">Active</span></td>
+<td>
+<button class="btn btn-primary btn-sm btn-action" onclick="viewStudent('Ananya R')">
+<i class="fa-solid fa-eye"></i>
+</button>
+
+<button class="btn btn-warning btn-sm btn-action" onclick="editStudent('Ananya R')">
+<i class="fa-solid fa-pen"></i>
+</button>
+
+<button class="btn btn-danger btn-sm" onclick="deleteStudent(this)">
+<i class="fa-solid fa-trash"></i>
+</button>
+</td>
+</tr>
+
+<tr>
+<td>106</td>
+<td>Vignesh R</td>
+<td>23CS006</td>
+<td>CSE</td>
+<td>III</td>
+<td>vignesh.r@scms.edu.in</td>
+<td><span class="badge bg-success">Active</span></td>
+<td>
+<button class="btn btn-primary btn-sm btn-action" onclick="viewStudent('Vignesh R')">
+<i class="fa-solid fa-eye"></i>
+</button>
+
+<button class="btn btn-warning btn-sm btn-action" onclick="editStudent('Vignesh R')">
+<i class="fa-solid fa-pen"></i>
+</button>
+
+<button class="btn btn-danger btn-sm" onclick="deleteStudent(this)">
+<i class="fa-solid fa-trash"></i>
+</button>
+</td>
+</tr>
+
+<tr>
+<td>107</td>
+<td>Karthik S</td>
+<td>23CS007</td>
+<td>CSE</td>
+<td>III</td>
+<td>karthik.s@scms.edu.in</td>
+<td><span class="badge bg-success">Active</span></td>
+<td>
+<button class="btn btn-primary btn-sm btn-action" onclick="viewStudent('Karthik S')">
+<i class="fa-solid fa-eye"></i>
+</button>
+
+<button class="btn btn-warning btn-sm btn-action" onclick="editStudent('Karthik S')">
+<i class="fa-solid fa-pen"></i>
+</button>
+
+<button class="btn btn-danger btn-sm" onclick="deleteStudent(this)">
+<i class="fa-solid fa-trash"></i>
+</button>
+</td>
+</tr>
+
+<tr>
+<td>108</td>
+<td>Keerthana M</td>
+<td>23CS008</td>
+<td>IT</td>
+<td>II</td>
+<td>keerthana.m@scms.edu.in</td>
+<td><span class="badge bg-success">Active</span></td>
+<td>
+<button class="btn btn-primary btn-sm btn-action" onclick="viewStudent('Keerthana M')">
+<i class="fa-solid fa-eye"></i>
+</button>
+
+<button class="btn btn-warning btn-sm btn-action" onclick="editStudent('Keerthana M')">
+<i class="fa-solid fa-pen"></i>
+</button>
+
+<button class="btn btn-danger btn-sm" onclick="deleteStudent(this)">
+<i class="fa-solid fa-trash"></i>
+</button>
+</td>
+</tr>
+
+<tr>
+<td>109</td>
+<td>Harish Kumar</td>
+<td>23CS009</td>
+<td>ECE</td>
+<td>III</td>
+<td>harish.kumar@scms.edu.in</td>
+<td><span class="badge bg-success">Active</span></td>
+<td>
+<button class="btn btn-primary btn-sm btn-action" onclick="viewStudent('Harish Kumar')">
+<i class="fa-solid fa-eye"></i>
+</button>
+
+<button class="btn btn-warning btn-sm btn-action" onclick="editStudent('Harish Kumar')">
+<i class="fa-solid fa-pen"></i>
+</button>
+
+<button class="btn btn-danger btn-sm" onclick="deleteStudent(this)">
+<i class="fa-solid fa-trash"></i>
+</button>
+</td>
+</tr>
+
+<tr>
+<td>110</td>
+<td>Nandhini P</td>
+<td>23CS010</td>
+<td>AI & DS</td>
+<td>II</td>
+<td>nandhini.p@scms.edu.in</td>
+<td><span class="badge bg-success">Active</span></td>
+<td>
+<button class="btn btn-primary btn-sm btn-action" onclick="viewStudent('Nandhini P')">
+<i class="fa-solid fa-eye"></i>
+</button>
+
+<button class="btn btn-warning btn-sm btn-action" onclick="editStudent('Nandhini P')">
+<i class="fa-solid fa-pen"></i>
+</button>
+
+<button class="btn btn-danger btn-sm" onclick="deleteStudent(this)">
+<i class="fa-solid fa-trash"></i>
+</button>
+</td>
+</tr>
+<tr>
+<td>111</td>
+<td>Praveen K</td>
+<td>23CS011</td>
+<td>CSE</td>
+<td>IV</td>
+<td>praveen.k@scms.edu.in</td>
+<td><span class="badge bg-success">Active</span></td>
+<td>
+<button class="btn btn-primary btn-sm btn-action" onclick="viewStudent('Praveen K')">
+<i class="fa-solid fa-eye"></i>
+</button>
+<button class="btn btn-warning btn-sm btn-action" onclick="editStudent('Praveen K')">
+<i class="fa-solid fa-pen"></i>
+</button>
+<button class="btn btn-danger btn-sm" onclick="deleteStudent(this)">
+<i class="fa-solid fa-trash"></i>
+</button>
+</td>
+</tr>
+
+<tr>
+<td>112</td>
+<td>Sneha R</td>
+<td>23CS012</td>
+<td>IT</td>
+<td>I</td>
+<td>sneha.r@scms.edu.in</td>
+<td><span class="badge bg-warning text-dark">Inactive</span></td>
+<td>
+<button class="btn btn-primary btn-sm btn-action" onclick="viewStudent('Sneha R')">
+<i class="fa-solid fa-eye"></i>
+</button>
+<button class="btn btn-warning btn-sm btn-action" onclick="editStudent('Sneha R')">
+<i class="fa-solid fa-pen"></i>
+</button>
+<button class="btn btn-danger btn-sm" onclick="deleteStudent(this)">
+<i class="fa-solid fa-trash"></i>
+</button>
+</td>
+</tr>
+
+<tr>
+<td>113</td>
+<td>Ajay M</td>
+<td>23CS013</td>
+<td>Mechanical</td>
+<td>III</td>
+<td>ajay.m@scms.edu.in</td>
+<td><span class="badge bg-success">Active</span></td>
+<td>
+<button class="btn btn-primary btn-sm btn-action" onclick="viewStudent('Ajay M')">
+<i class="fa-solid fa-eye"></i>
+</button>
+<button class="btn btn-warning btn-sm btn-action" onclick="editStudent('Ajay M')">
+<i class="fa-solid fa-pen"></i>
+</button>
+<button class="btn btn-danger btn-sm" onclick="deleteStudent(this)">
+<i class="fa-solid fa-trash"></i>
+</button>
+</td>
+</tr>
+
+<tr>
+<td>114</td>
+<td>Deepika S</td>
+<td>23CS014</td>
+<td>CSE</td>
+<td>II</td>
+<td>deepika.s@scms.edu.in</td>
+<td><span class="badge bg-success">Active</span></td>
+<td>
+<button class="btn btn-primary btn-sm btn-action" onclick="viewStudent('Deepika S')">
+<i class="fa-solid fa-eye"></i>
+</button>
+<button class="btn btn-warning btn-sm btn-action" onclick="editStudent('Deepika S')">
+<i class="fa-solid fa-pen"></i>
+</button>
+<button class="btn btn-danger btn-sm" onclick="deleteStudent(this)">
+<i class="fa-solid fa-trash"></i>
+</button>
+</td>
+</tr>
+
+<tr>
+<td>115</td>
+<td>Mohamed Asif</td>
+<td>23CS015</td>
+<td>Cyber Security</td>
+<td>III</td>
+<td>asif@scms.edu.in</td>
+<td><span class="badge bg-success">Active</span></td>
+<td>
+<button class="btn btn-primary btn-sm btn-action" onclick="viewStudent('Mohamed Asif')">
+<i class="fa-solid fa-eye"></i>
+</button>
+<button class="btn btn-warning btn-sm btn-action" onclick="editStudent('Mohamed Asif')">
+<i class="fa-solid fa-pen"></i>
+</button>
+<button class="btn btn-danger btn-sm" onclick="deleteStudent(this)">
+<i class="fa-solid fa-trash"></i>
+</button>
+</td>
+</tr>
+
+<tr>
+<td>116</td>
+<td>Pooja N</td>
+<td>23CS016</td>
+<td>AI & ML</td>
+<td>II</td>
+<td>pooja.n@scms.edu.in</td>
+<td><span class="badge bg-success">Active</span></td>
+<td>
+<button class="btn btn-primary btn-sm btn-action" onclick="viewStudent('Pooja N')">
+<i class="fa-solid fa-eye"></i>
+</button>
+<button class="btn btn-warning btn-sm btn-action" onclick="editStudent('Pooja N')">
+<i class="fa-solid fa-pen"></i>
+</button>
+<button class="btn btn-danger btn-sm" onclick="deleteStudent(this)">
+<i class="fa-solid fa-trash"></i>
+</button>
+</td>
+</tr>
+
+<tr>
+<td>117</td>
+<td>Rakesh V</td>
+<td>23CS017</td>
+<td>EEE</td>
+<td>III</td>
+<td>rakesh.v@scms.edu.in</td>
+<td><span class="badge bg-success">Active</span></td>
+<td>
+<button class="btn btn-primary btn-sm btn-action" onclick="viewStudent('Rakesh V')">
+<i class="fa-solid fa-eye"></i>
+</button>
+<button class="btn btn-warning btn-sm btn-action" onclick="editStudent('Rakesh V')">
+<i class="fa-solid fa-pen"></i>
+</button>
+<button class="btn btn-danger btn-sm" onclick="deleteStudent(this)">
+<i class="fa-solid fa-trash"></i>
+</button>
+</td>
+</tr>
+
+<tr>
+<td>118</td>
+<td>Lavanya T</td>
+<td>23CS018</td>
+<td>IT</td>
+<td>IV</td>
+<td>lavanya.t@scms.edu.in</td>
+<td><span class="badge bg-success">Active</span></td>
+<td>
+<button class="btn btn-primary btn-sm btn-action" onclick="viewStudent('Lavanya T')">
+<i class="fa-solid fa-eye"></i>
+</button>
+<button class="btn btn-warning btn-sm btn-action" onclick="editStudent('Lavanya T')">
+<i class="fa-solid fa-pen"></i>
+</button>
+<button class="btn btn-danger btn-sm" onclick="deleteStudent(this)">
+<i class="fa-solid fa-trash"></i>
+</button>
+</td>
+</tr>
+
+<tr>
+<td>119</td>
+<td>Santhosh B</td>
+<td>23CS019</td>
+<td>CSE</td>
+<td>I</td>
+<td>santhosh.b@scms.edu.in</td>
+<td><span class="badge bg-warning text-dark">Inactive</span></td>
+<td>
+<button class="btn btn-primary btn-sm btn-action" onclick="viewStudent('Santhosh B')">
+<i class="fa-solid fa-eye"></i>
+</button>
+<button class="btn btn-warning btn-sm btn-action" onclick="editStudent('Santhosh B')">
+<i class="fa-solid fa-pen"></i>
+</button>
+<button class="btn btn-danger btn-sm" onclick="deleteStudent(this)">
+<i class="fa-solid fa-trash"></i>
+</button>
+</td>
+</tr>
+
+<tr>
+<td>120</td>
+<td>Meena Priya</td>
+<td>23CS020</td>
+<td>CSE</td>
+<td>IV</td>
+<td>meena.priya@scms.edu.in</td>
+<td><span class="badge bg-success">Active</span></td>
+<td>
+<button class="btn btn-primary btn-sm btn-action" onclick="viewStudent('Meena Priya')">
+<i class="fa-solid fa-eye"></i>
+</button>
+<button class="btn btn-warning btn-sm btn-action" onclick="editStudent('Meena Priya')">
+<i class="fa-solid fa-pen"></i>
+</button>
+<button class="btn btn-danger btn-sm" onclick="deleteStudent(this)">
+<i class="fa-solid fa-trash"></i>
+</button>
+</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+<!-- Student Summary -->
+
+<div class="row mt-4">
+
+<div class="col-lg-4">
+
+<div class="card shadow border-0">
+
+<div class="card-body text-center">
+
+<i class="fa-solid fa-user-graduate fa-3x text-primary mb-3"></i>
+
+<h3>120</h3>
+
+<p class="text-muted mb-0">Registered Students</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-4">
+
+<div class="card shadow border-0">
+
+<div class="card-body text-center">
+
+<i class="fa-solid fa-user-check fa-3x text-success mb-3"></i>
+
+<h3>108</h3>
+
+<p class="text-muted mb-0">Active Students</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-4">
+
+<div class="card shadow border-0">
+
+<div class="card-body text-center">
+
+<i class="fa-solid fa-user-xmark fa-3x text-danger mb-3"></i>
+
+<h3>12</h3>
+
+<p class="text-muted mb-0">Inactive Students</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Add Student Modal -->
+
+<div class="modal fade"
+
+id="studentModal"
+
+tabindex="-1">
+
+<div class="modal-dialog modal-lg">
+
+<div class="modal-content">
+
+<div class="modal-header bg-primary text-white">
+
+<h4>
+
+<i class="fa-solid fa-user-plus"></i>
+
+Add New Student
+
+</h4>
+
+<button
+
+type="button"
+
+class="btn-close btn-close-white"
+
+data-bs-dismiss="modal">
+
+</button>
+
+</div>
+
+<div class="modal-body">
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Student Name
+
+</label>
+
+<input
+
+type="text"
+
+class="form-control"
+
+id="studentName"
+
+placeholder="Enter Student Name">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Register Number
+
+</label>
+
+<input
+
+type="text"
+
+class="form-control"
+
+id="registerNo"
+
+placeholder="23CS021">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Department
+
+</label>
+
+<select
+
+class="form-select"
+
+id="department">
+
+<option>CSE</option>
+
+<option>IT</option>
+
+<option>ECE</option>
+
+<option>EEE</option>
+
+<option>Mechanical</option>
+
+<option>AI & DS</option>
+
+<option>AI & ML</option>
+
+<option>Cyber Security</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Year
+
+</label>
+
+<select
+
+class="form-select"
+
+id="year">
+
+<option>I</option>
+
+<option>II</option>
+
+<option>III</option>
+
+<option>IV</option>
+
+</select>
+
+</div>
+
+<div class="col-md-12 mb-3">
+
+<label class="form-label">
+
+Email Address
+
+</label>
+
+<input
+
+type="email"
+
+class="form-control"
+
+id="email"
+
+placeholder="student@scms.edu.in">
+
+</div>
+
+</div>
+
+</div>
+
+<div class="modal-footer">
+
+<button
+
+class="btn btn-secondary"
+
+data-bs-dismiss="modal">
+
+Cancel
+
+</button>
+
+<button
+
+class="btn btn-success"
+
+onclick="addStudent()">
+
+Add Student
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Footer -->
+
+<footer class="text-center mt-5 mb-3">
+
+<hr>
+
+<p class="text-muted">
+
+© 2026 Student Course Management System |
+
+Admin Dashboard
+
+</p>
+
+</footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+
+// ================================
+// SEARCH STUDENT
+// ================================
+
+function searchStudent() {
+
+    let input = document.getElementById("search").value.toLowerCase();
+
+    let table = document.getElementById("studentTable");
+
+    let rows = table.getElementsByTagName("tr");
+
+    for (let i = 0; i < rows.length; i++) {
+
+        let name = rows[i].cells[1].textContent.toLowerCase();
+        let reg = rows[i].cells[2].textContent.toLowerCase();
+
+        if (name.includes(input) || reg.includes(input)) {
+
+            rows[i].style.display = "";
+
+        } else {
+
+            rows[i].style.display = "none";
+
+        }
+
+    }
+
+}
+
+// ================================
+// VIEW STUDENT
+// ================================
+
+function viewStudent(name){
+
+    alert(
+        "Student Details\n\n" +
+        "Name : " + name +
+        "\nStatus : Active\nDepartment : Refer Table"
+    );
+
+}
+
+// ================================
+// EDIT STUDENT
+// ================================
+
+function editStudent(name){
+
+    let newName = prompt("Edit Student Name",name);
+
+    if(newName!=null && newName!=""){
+
+        alert("Student name changed to : " + newName);
+
+    }
+
+}
+
+// ================================
+// DELETE STUDENT
+// ================================
+
+function deleteStudent(button){
+
+    if(confirm("Delete this student?")){
+
+        let row = button.parentNode.parentNode;
+
+        row.remove();
+
+        alert("Student Deleted Successfully.");
+
+    }
+
+}
+// ================================
+// ADD STUDENT
+// ================================
+
+function addStudent(){
+
+    let name = document.getElementById("studentName").value.trim();
+    let reg = document.getElementById("registerNo").value.trim();
+    let dept = document.getElementById("department").value;
+    let year = document.getElementById("year").value;
+    let email = document.getElementById("email").value.trim();
+
+    if(name=="" || reg=="" || email==""){
+
+        alert("Please fill all the required fields.");
+
+        return;
+
+    }
+
+    let table = document.getElementById("studentTable");
+
+    let row = table.insertRow();
+
+    row.innerHTML =
+
+    `<td>${table.rows.length + 100}</td>
+
+    <td>${name}</td>
+
+    <td>${reg}</td>
+
+    <td>${dept}</td>
+
+    <td>${year}</td>
+
+    <td>${email}</td>
+
+    <td><span class="badge bg-success">Active</span></td>
+
+    <td>
+
+    <button class="btn btn-primary btn-sm btn-action"
+
+    onclick="viewStudent('${name}')">
+
+    <i class="fa-solid fa-eye"></i>
+
+    </button>
+
+    <button class="btn btn-warning btn-sm btn-action"
+
+    onclick="editStudent('${name}')">
+
+    <i class="fa-solid fa-pen"></i>
+
+    </button>
+
+    <button class="btn btn-danger btn-sm"
+
+    onclick="deleteStudent(this)">
+
+    <i class="fa-solid fa-trash"></i>
+
+    </button>
+
+    </td>`;
+
+    // Clear Form
+
+    document.getElementById("studentName").value="";
+
+    document.getElementById("registerNo").value="";
+
+    document.getElementById("department").selectedIndex=0;
+
+    document.getElementById("year").selectedIndex=0;
+
+    document.getElementById("email").value="";
+
+    // Close Modal
+
+    let modal=document.getElementById("studentModal");
+
+    let bsModal=bootstrap.Modal.getInstance(modal);
+
+    if(bsModal){
+
+        bsModal.hide();
+
+    }
+
+    alert("Student Added Successfully!");
+
+}
+
+// ================================
+// PRESS ENTER TO SEARCH
+// ================================
+
+document.getElementById("search").addEventListener("keyup",function(event){
+
+    if(event.key==="Enter"){
+
+        searchStudent();
+
+    }
+
+});
+
+// ================================
+// LOGOUT CONFIRMATION
+// ================================
+
+let logout=document.querySelector("a[href='../home.html']");
+
+if(logout){
+
+logout.addEventListener("click",function(e){
+
+    if(!confirm("Are you sure you want to logout?")){
+
+        e.preventDefault();
+
+    }
+
+});
+
+}
+
+// ================================
+// WELCOME MESSAGE
+// ================================
+
+window.onload=function(){
+
+console.log("Manage Students Page Loaded Successfully.");
+
+};
+
+</script>
+
+
+</body>
+
+</html>
