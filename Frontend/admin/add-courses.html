@@ -4,189 +4,30 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Add Course</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
-
-body{
-background:#eef2ff;
-}
-
-/* Sidebar */
-
-.sidebar{
-position:fixed;
-left:0;
-top:0;
-width:260px;
-height:100vh;
-background:linear-gradient(180deg,#0F172A,#1E40AF);
-overflow:auto;
-}
-
-.logo{
-text-align:center;
-padding:25px;
-color:white;
-border-bottom:1px solid rgba(255,255,255,.2);
-}
-
-.logo i{
-font-size:55px;
-margin-bottom:10px;
-}
-
-.logo h3{
-font-weight:700;
-}
-
-.sidebar ul{
-list-style:none;
-padding-left:0;
-margin-top:20px;
-}
-
-.sidebar ul li{
-margin:10px 15px;
-}
-
-.sidebar ul li a{
-display:block;
-padding:14px;
-color:white;
-text-decoration:none;
-border-radius:10px;
-transition:.3s;
-}
-
-.sidebar ul li a:hover{
-background:rgba(255,255,255,.15);
-padding-left:20px;
-}
-
-.active{
-background:white;
-color:#1E40AF !important;
-font-weight:600;
-}
-
-/* Main */
-
-.main{
-margin-left:260px;
-padding:30px;
-}
-
-/* Topbar */
-
-.topbar{
-background:white;
-padding:20px 30px;
-border-radius:15px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-box-shadow:0 10px 20px rgba(0,0,0,.08);
-margin-bottom:30px;
-}
-
-.profile{
-font-size:18px;
-font-weight:600;
-color:#1E40AF;
-}
-
-/* Form Card */
-
-.form-card{
-background:white;
-padding:35px;
-border-radius:18px;
-box-shadow:0 10px 20px rgba(0,0,0,.08);
-}
-
-.form-card h3{
-color:#1E40AF;
-font-weight:700;
-margin-bottom:25px;
-}
-
-.form-label{
-font-weight:600;
-}
-
-.form-control,
-.form-select{
-height:48px;
-border-radius:10px;
-}
-
-textarea{
-border-radius:10px !important;
-}
-
-.btn-save{
-background:#1E40AF;
-color:white;
-padding:12px 35px;
-border:none;
-border-radius:10px;
-font-weight:600;
-}
-
-.btn-save:hover{
-background:#16359d;
-}
-
-.btn-reset{
-padding:12px 35px;
-border-radius:10px;
-font-weight:600;
-}
-
-@media(max-width:992px){
-
-.sidebar{
-position:relative;
-width:100%;
-height:auto;
-}
-
-.main{
-margin-left:0;
-}
-
-}
-
-</style>
+<link rel="stylesheet" href="../css/style.css">
 
 </head>
 
 <body>
 
-<!-- Sidebar -->
+<!-- ================= Sidebar ================= -->
 
 <div class="sidebar">
 
 <div class="logo">
 
-<i class="fa-solid fa-book"></i>
+<i class="fa-solid fa-user-shield"></i>
 
 <h3>SCMS Admin</h3>
 
@@ -194,32 +35,138 @@ margin-left:0;
 
 <ul>
 
-<li><a href="admin-dashboard.html"><i class="fa-solid fa-gauge"></i> Dashboard</a></li>
+<li>
 
-<li><a href="manage-students.html"><i class="fa-solid fa-users"></i> Manage Students</a></li>
+<a href="admin-dashboard.html">
 
-<li><a href="manage-courses.html"><i class="fa-solid fa-book-open"></i> Manage Courses</a></li>
+<i class="fa-solid fa-gauge"></i>
 
-<li><a class="active" href="add-course.html"><i class="fa-solid fa-circle-plus"></i> Add Course</a></li>
+Dashboard
 
-<li><a href="../home.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+</a>
+
+</li>
+
+<li>
+
+<a href="manage-students.html">
+
+<i class="fa-solid fa-users"></i>
+
+Manage Students
+
+</a>
+
+</li>
+
+<li>
+
+<a href="manage-courses.html">
+
+<i class="fa-solid fa-book-open"></i>
+
+Manage Courses
+
+</a>
+
+</li>
+
+<li>
+
+<a class="active" href="add-course.html">
+
+<i class="fa-solid fa-square-plus"></i>
+
+Add Course
+
+</a>
+
+</li>
+
+<li>
+
+<a href="enrollments.html">
+
+<i class="fa-solid fa-user-plus"></i>
+
+Enrollments
+
+</a>
+
+</li>
+
+<li>
+
+<a href="reports.html">
+
+<i class="fa-solid fa-chart-column"></i>
+
+Reports
+
+</a>
+
+</li>
+
+<li>
+
+<a href="notifications-admin.html">
+
+<i class="fa-solid fa-bell"></i>
+
+Notifications
+
+</a>
+
+</li>
+
+<li>
+
+<a href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+Settings
+
+</a>
+
+</li>
+
+<li>
+
+<a href="home.html">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</a>
+
+</li>
 
 </ul>
 
 </div>
 
-<!-- Main -->
+<!-- ================= Main Content ================= -->
 
 <div class="main">
+
+<!-- ================= Topbar ================= -->
 
 <div class="topbar">
 
 <div>
 
-<h2>Add New Course</h2>
+<h2>
 
-<p class="text-muted">
-Create a new course for students.
+Add New Course
+
+</h2>
+
+<p>
+
+Create a new course by entering the required academic information.
+
 </p>
 
 </div>
@@ -228,23 +175,45 @@ Create a new course for students.
 
 <i class="fa-solid fa-circle-user"></i>
 
-Admin
+<span>
+
+Administrator
+
+</span>
 
 </div>
 
 </div>
 
-<div class="form-card">
+<!-- ================= Banner ================= -->
 
-<h3>
+<div class="banner">
 
-<i class="fa-solid fa-book-medical"></i>
+<h2>
+
+📚 Add Course
+
+</h2>
+
+<p>
+
+Fill in the course information below. After saving, the course will be available for student enrollment and will appear in the Manage Courses page.
+
+</p>
+
+</div>
+
+<!-- ================= Add Course Form ================= -->
+
+<div class="table-section mt-4">
+
+<h3 class="mb-4">
 
 Course Information
 
 </h3>
 
-<form id="courseForm">
+<form>
 
 <div class="row">
 
@@ -252,15 +221,14 @@ Course Information
 
 <label class="form-label">
 
-Course ID
+Course Code
 
 </label>
 
 <input
 type="text"
 class="form-control"
-id="courseId"
-placeholder="Example: C116"
+placeholder="Enter Course Code"
 required>
 
 </div>
@@ -276,7 +244,6 @@ Course Name
 <input
 type="text"
 class="form-control"
-id="courseName"
 placeholder="Enter Course Name"
 required>
 
@@ -286,79 +253,103 @@ required>
 
 <label class="form-label">
 
-Course Name
+Department
 
 </label>
 
-<select
+<select class="form-select" required>
 
-class="form-select"
+<option value="">Select Department</option>
 
-id="courseName">
+<option>Computer Science & Engineering</option>
 
-<option value="">Select Course</option>
+<option>Information Technology</option>
 
-<option>Programming in C</option>
+<option>Electronics & Communication</option>
 
-<option>Python Programming</option>
+<option>Electrical & Electronics</option>
 
-<option>Data Structures</option>
+<option>Mechanical Engineering</option>
 
-<option>Web Development</option>
-
-<option>Database Management System</option>
-
-<option>Operating Systems</option>
-
-<option>Computer Networks</option>
-
-<option>Machine Learning</option>
-
-<option>Artificial Intelligence</option>
-
-<option>Deep Learning</option>
-
-<option>Cloud Computing</option>
-
-<option>Mobile Application Development</option>
-
-<option>Cyber Security</option>
-
-<option>Network Security</option>
-
-<option>Digital Electronics</option>
-
-<option>VLSI Design</option>
-
-<option>Power Systems</option>
-
-<option>Renewable Energy Systems</option>
-
-<option>Thermodynamics</option>
-
-<option>Robotics Engineering</option>
+<option>Civil Engineering</option>
 
 </select>
 
 </div>
+
 <div class="col-md-6 mb-3">
 
 <label class="form-label">
 
-Instructor
+Instructor Name
 
 </label>
 
 <input
 type="text"
 class="form-control"
-id="instructor"
-placeholder="Instructor Name"
+placeholder="Enter Instructor Name"
 required>
 
 </div>
 
-<div class="col-md-6 mb-3">
+<div class="col-md-4 mb-3">
+
+<label class="form-label">
+
+Credits
+
+</label>
+
+<select class="form-select">
+
+<option>1</option>
+
+<option>2</option>
+
+<option>3</option>
+
+<option selected>4</option>
+
+<option>5</option>
+
+</select>
+
+</div>
+
+<div class="col-md-4 mb-3">
+
+<label class="form-label">
+
+Semester
+
+</label>
+
+<select class="form-select">
+
+<option>Select Semester</option>
+
+<option>I</option>
+
+<option>II</option>
+
+<option>III</option>
+
+<option>IV</option>
+
+<option>V</option>
+
+<option>VI</option>
+
+<option>VII</option>
+
+<option>VIII</option>
+
+</select>
+
+</div>
+
+<div class="col-md-4 mb-3">
 
 <label class="form-label">
 
@@ -366,47 +357,19 @@ Duration
 
 </label>
 
-<input
-type="text"
-class="form-control"
-id="duration"
-placeholder="Example: 8 Weeks"
-required>
+<select class="form-select">
 
-</div>
+<option>4 Weeks</option>
 
-<div class="col-md-6 mb-3">
+<option>6 Weeks</option>
 
-<label class="form-label">
+<option>8 Weeks</option>
 
-Course Fee
+<option>10 Weeks</option>
 
-</label>
+<option>12 Weeks</option>
 
-<input
-type="text"
-class="form-control"
-id="fee"
-placeholder="Example: ₹5,000"
-required>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">
-
-Status
-
-</label>
-
-<select
-class="form-select"
-id="status">
-
-<option>Active</option>
-
-<option>Inactive</option>
+<option>16 Weeks</option>
 
 </select>
 
@@ -416,21 +379,53 @@ id="status">
 
 <label class="form-label">
 
-Course Level
+Course Type
 
 </label>
 
-<select
-class="form-select"
-id="level">
+<select class="form-select">
 
-<option>Beginner</option>
+<option>Theory</option>
 
-<option>Intermediate</option>
+<option>Laboratory</option>
 
-<option>Advanced</option>
+<option>Core</option>
+
+<option>Elective</option>
+
+<option>Project</option>
 
 </select>
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<label class="form-label">
+
+Seats Available
+
+</label>
+
+<input
+type="number"
+class="form-control"
+placeholder="60">
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<label class="form-label">
+
+Course Fee (₹)
+
+</label>
+
+<input
+type="number"
+class="form-control"
+placeholder="5000">
 
 </div>
 
@@ -444,18 +439,138 @@ Course Description
 
 <textarea
 class="form-control"
-id="description"
 rows="5"
-placeholder="Enter course description..."></textarea>
+placeholder="Enter course description"></textarea>
 
 </div>
 
-<div class="col-12 text-center mt-3">
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Course Status
+
+</label>
+
+<select class="form-select">
+
+<option>Active</option>
+
+<option>Inactive</option>
+
+<option>Upcoming</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Course Image URL
+
+</label>
+
+<input
+type="url"
+class="form-control"
+placeholder="https://example.com/course-image.jpg">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Course Start Date
+
+</label>
+
+<input
+type="date"
+class="form-control">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Course End Date
+
+</label>
+
+<input
+type="date"
+class="form-control">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Course Material
+
+</label>
+
+<input
+type="file"
+class="form-control">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Course Video URL
+
+</label>
+
+<input
+type="url"
+class="form-control"
+placeholder="https://youtube.com/...">
+
+</div>
+
+<div class="col-12 mb-3">
+
+<label class="form-label">
+
+Prerequisites
+
+</label>
+
+<textarea
+class="form-control"
+rows="3"
+placeholder="Enter prerequisites for this course"></textarea>
+
+</div>
+
+<div class="col-12 mb-4">
+
+<label class="form-label">
+
+Learning Outcomes
+
+</label>
+
+<textarea
+class="form-control"
+rows="4"
+placeholder="Enter the learning outcomes of this course"></textarea>
+
+</div>
+
+<div class="col-md-4 d-grid mb-3">
 
 <button
-type="button"
-class="btn btn-save me-3"
-onclick="saveCourse()">
+type="submit"
+class="btn btn-primary">
 
 <i class="fa-solid fa-floppy-disk"></i>
 
@@ -463,23 +578,31 @@ Save Course
 
 </button>
 
+</div>
+
+<div class="col-md-4 d-grid mb-3">
+
 <button
 type="reset"
-class="btn btn-outline-secondary btn-reset">
+class="btn btn-secondary">
 
-<i class="fa-solid fa-rotate"></i>
+<i class="fa-solid fa-rotate-left"></i>
 
 Reset
 
 </button>
 
+</div>
+
+<div class="col-md-4 d-grid mb-3">
+
 <a
 href="manage-courses.html"
-class="btn btn-danger ms-3">
+class="btn btn-outline-primary">
 
 <i class="fa-solid fa-arrow-left"></i>
 
-Back
+Back to Manage Courses
 
 </a>
 
@@ -491,15 +614,13 @@ Back
 
 </div>
 
-<!-- Footer -->
+<!-- ================= Footer ================= -->
 
-<footer class="text-center mt-5 mb-3">
+<footer class="footer mt-5">
 
-<hr>
+<p>
 
-<p class="text-muted">
-
-© 2026 Student Course Management System | Admin Module
+© 2026 Student Course Management and Learning Progress Tracking System
 
 </p>
 
@@ -511,95 +632,9 @@ Back
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
+<!-- External JavaScript -->
 
-// ===============================
-// SAVE COURSE
-// ===============================
-
-function saveCourse(){
-
-    let courseId = document.getElementById("courseId").value.trim();
-    let courseName = document.getElementById("courseName").value.trim();
-    let category = document.getElementById("category").value;
-    let instructor = document.getElementById("instructor").value.trim();
-    let duration = document.getElementById("duration").value.trim();
-    let fee = document.getElementById("fee").value.trim();
-    let status = document.getElementById("status").value;
-    let level = document.getElementById("level").value;
-    let description = document.getElementById("description").value.trim();
-
-    if(courseId=="" ||
-       courseName=="" ||
-       category=="" ||
-       instructor=="" ||
-       duration=="" ||
-       fee=="" ||
-       description==""){
-
-        alert("Please fill all required fields.");
-
-        return;
-
-    }
-
-    alert(
-
-"Course Added Successfully!\n\n" +
-
-"Course ID : " + courseId +
-
-"\nCourse : " + courseName +
-
-"\nCategory : " + category +
-
-"\nInstructor : " + instructor +
-
-"\nDuration : " + duration +
-
-"\nFee : " + fee +
-
-"\nStatus : " + status +
-
-"\nLevel : " + level
-
-);
-
-    document.getElementById("courseForm").reset();
-
-}
-
-// ===============================
-// LOGOUT CONFIRMATION
-// ===============================
-
-let logout=document.querySelector("a[href='../home.html']");
-
-if(logout){
-
-logout.onclick=function(e){
-
-if(!confirm("Are you sure you want to logout?")){
-
-e.preventDefault();
-
-}
-
-};
-
-}
-
-// ===============================
-// PAGE LOADED
-// ===============================
-
-window.onload=function(){
-
-console.log("Add Course Page Loaded Successfully.");
-
-}
-
-</script>
+<script src="../js/script.js"></script>
 
 </body>
 
