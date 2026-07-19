@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Notifications</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+<!-- ================= Sidebar ================= -->
+
+<div class="sidebar">
+
+<div class="logo">
+
+<i class="fa-solid fa-user-shield"></i>
+
+<h3>SCMS Admin</h3>
+
+</div>
+
+<ul>
+
+<li>
+
+<a href="admin-dashboard.html">
+
+<i class="fa-solid fa-gauge"></i>
+
+Dashboard
+
+</a>
+
+</li>
+
+<li>
+
+<a href="manage-students.html">
+
+<i class="fa-solid fa-users"></i>
+
+Manage Students
+
+</a>
+
+</li>
+
+<li>
+
+<a href="manage-courses.html">
+
+<i class="fa-solid fa-book-open"></i>
+
+Manage Courses
+
+</a>
+
+</li>
+
+<li>
+
+<a href="enrollments.html">
+
+<i class="fa-solid fa-user-plus"></i>
+
+Enrollments
+
+</a>
+
+</li>
+
+<li>
+
+<a href="reports.html">
+
+<i class="fa-solid fa-chart-column"></i>
+
+Reports
+
+</a>
+
+</li>
+
+<li>
+
+<a class="active" href="notifications.html">
+
+<i class="fa-solid fa-bell"></i>
+
+Notifications
+
+</a>
+
+</li>
+
+<li>
+
+<a href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+Settings
+
+</a>
+
+</li>
+
+<li>
+
+<a href="home.html">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</a>
+
+</li>
+
+</ul>
+
+</div>
+
+<!-- ================= Main Content ================= -->
+
+<div class="main">
+
+<!-- ================= Topbar ================= -->
+
+<div class="topbar">
+
+<div>
+
+<h2>
+
+Notifications
+
+</h2>
+
+<p>
+
+Manage and monitor all system notifications, announcements and important alerts.
+
+</p>
+
+</div>
+
+<div class="profile">
+
+<i class="fa-solid fa-circle-user"></i>
+
+<span>
+
+Administrator
+
+</span>
+
+</div>
+
+</div>
+
+<!-- ================= Banner ================= -->
+
+<div class="banner">
+
+<h2>
+
+🔔 Notification Center
+
+</h2>
+
+<p>
+
+View recent notifications, publish announcements and keep students and faculty informed about important academic updates.
+
+</p>
+
+</div>
+
+<!-- ================= Statistics ================= -->
+
+<div class="row mt-4">
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="dashboard-card">
+
+<i class="fa-solid fa-bell"></i>
+
+<h2>58</h2>
+
+<p>Total Notifications</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="dashboard-card">
+
+<i class="fa-solid fa-envelope-open-text"></i>
+
+<h2>42</h2>
+
+<p>Read</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="dashboard-card">
+
+<i class="fa-solid fa-envelope"></i>
+
+<h2>16</h2>
+
+<p>Unread</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="dashboard-card">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+<h2>12</h2>
+
+<p>Announcements</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= Send Notification ================= -->
+
+<div class="table-section mt-4">
+
+<h3 class="mb-4">
+
+Send New Notification
+
+</h3>
+
+<form>
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Notification Title
+
+</label>
+
+<input
+type="text"
+class="form-control"
+placeholder="Enter notification title"
+required>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Recipient
+
+</label>
+
+<select class="form-select">
+
+<option>All Students</option>
+
+<option>All Faculty</option>
+
+<option>All Users</option>
+
+<option>Computer Science Students</option>
+
+<option>Information Technology Students</option>
+
+<option>Selected Students</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Priority
+
+</label>
+
+<select class="form-select">
+
+<option>High</option>
+
+<option selected>Medium</option>
+
+<option>Low</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Notification Type
+
+</label>
+
+<select class="form-select">
+
+<option>Announcement</option>
+
+<option>Reminder</option>
+
+<option>Exam Notice</option>
+
+<option>Course Update</option>
+
+<option>Holiday Notice</option>
+
+<option>General Information</option>
+
+</select>
+
+</div>
+
+<div class="col-12 mb-3">
+
+<label class="form-label">
+
+Subject
+
+</label>
+
+<input
+type="text"
+class="form-control"
+placeholder="Enter notification subject">
+
+</div>
+
+<div class="col-12 mb-3">
+
+<label class="form-label">
+
+Message
+
+</label>
+
+<textarea
+class="form-control"
+rows="6"
+placeholder="Type your notification message here..."></textarea>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Schedule Date
+
+</label>
+
+<input
+type="date"
+class="form-control">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Schedule Time
+
+</label>
+
+<input
+type="time"
+class="form-control">
+
+</div>
+
+<div class="col-md-12 mb-4">
+
+<div class="form-check">
+
+<input
+class="form-check-input"
+type="checkbox"
+id="sendNow">
+
+<label
+class="form-check-label"
+for="sendNow">
+
+Send Immediately
+
+</label>
+
+</div>
+
+</div>
+
+<div class="col-md-6 d-grid mb-3">
+
+<button
+type="submit"
+class="btn btn-primary">
+
+<i class="fa-solid fa-paper-plane"></i>
+
+Send Notification
+
+</button>
+
+</div>
+
+<div class="col-md-6 d-grid mb-3">
+
+<button
+type="reset"
+class="btn btn-secondary">
+
+<i class="fa-solid fa-rotate-left"></i>
+
+Reset
+
+</button>
+
+</div>
+
+</div>
+
+</form>
+
+</div>
+
+<!-- ================= Recent Notifications ================= -->
+
+<div class="table-section mt-5">
+
+<h3 class="mb-4">
+
+Recent Notifications
+
+</h3>
+
+<table class="table table-bordered table-hover">
+
+<thead class="table-primary">
+
+<tr>
+
+<th>ID</th>
+
+<th>Title</th>
+
+<th>Recipient</th>
+
+<th>Date</th>
+
+<th>Priority</th>
+
+<th>Status</th>
+
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>NOT001</td>
+
+<td>Mid Semester Examination Schedule</td>
+
+<td>All Students</td>
+
+<td>18-07-2026</td>
+
+<td><span class="badge bg-danger">High</span></td>
+
+<td><span class="badge bg-success">Sent</span></td>
+
+<td>
+
+<button class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></button>
+
+<button class="btn btn-warning btn-sm"><i class="fa-solid fa-pen"></i></button>
+
+<button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>NOT002</td>
+
+<td>Python Assignment Submission</td>
+
+<td>CSE Students</td>
+
+<td>17-07-2026</td>
+
+<td><span class="badge bg-warning text-dark">Medium</span></td>
+
+<td><span class="badge bg-success">Sent</span></td>
+
+<td>
+
+<button class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></button>
+
+<button class="btn btn-warning btn-sm"><i class="fa-solid fa-pen"></i></button>
+
+<button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>NOT003</td>
+
+<td>Holiday Announcement</td>
+
+<td>All Users</td>
+
+<td>16-07-2026</td>
+
+<td><span class="badge bg-primary">Low</span></td>
+
+<td><span class="badge bg-success">Sent</span></td>
+
+<td>
+
+<button class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></button>
+
+<button class="btn btn-warning btn-sm"><i class="fa-solid fa-pen"></i></button>
+
+<button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>NOT004</td>
+
+<td>Course Registration Opens</td>
+
+<td>All Students</td>
+
+<td>15-07-2026</td>
+
+<td><span class="badge bg-danger">High</span></td>
+
+<td><span class="badge bg-secondary">Scheduled</span></td>
+
+<td>
+
+<button class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></button>
+
+<button class="btn btn-warning btn-sm"><i class="fa-solid fa-pen"></i></button>
+
+<button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>NOT005</td>
+
+<td>Database Workshop</td>
+
+<td>IT Students</td>
+
+<td>14-07-2026</td>
+
+<td><span class="badge bg-warning text-dark">Medium</span></td>
+
+<td><span class="badge bg-success">Sent</span></td>
+
+<td>
+
+<button class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></button>
+
+<button class="btn btn-warning btn-sm"><i class="fa-solid fa-pen"></i></button>
+
+<button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>NOT006</td>
+
+<td>Project Review Meeting</td>
+
+<td>Final Year Students</td>
+
+<td>13-07-2026</td>
+
+<td><span class="badge bg-danger">High</span></td>
+
+<td><span class="badge bg-success">Sent</span></td>
+
+<td>
+
+<button class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></button>
+
+<button class="btn btn-warning btn-sm"><i class="fa-solid fa-pen"></i></button>
+
+<button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>NOT007</td>
+
+<td>Faculty Meeting Reminder</td>
+
+<td>Faculty</td>
+
+<td>12-07-2026</td>
+
+<td><span class="badge bg-warning text-dark">Medium</span></td>
+
+<td><span class="badge bg-secondary">Scheduled</span></td>
+
+<td>
+
+<button class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></button>
+
+<button class="btn btn-warning btn-sm"><i class="fa-solid fa-pen"></i></button>
+
+<button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>NOT008</td>
+
+<td>Library Maintenance</td>
+
+<td>All Users</td>
+
+<td>11-07-2026</td>
+
+<td><span class="badge bg-primary">Low</span></td>
+
+<td><span class="badge bg-success">Sent</span></td>
+
+<td>
+
+<button class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></button>
+
+<button class="btn btn-warning btn-sm"><i class="fa-solid fa-pen"></i></button>
+
+<button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>NOT009</td>
+
+<td>Internal Assessment Results</td>
+
+<td>All Students</td>
+
+<td>10-07-2026</td>
+
+<td><span class="badge bg-danger">High</span></td>
+
+<td><span class="badge bg-success">Sent</span></td>
+
+<td>
+
+<button class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></button>
+
+<button class="btn btn-warning btn-sm"><i class="fa-solid fa-pen"></i></button>
+
+<button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>NOT010</td>
+
+<td>New Course Available</td>
+
+<td>Computer Science Students</td>
+
+<td>09-07-2026</td>
+
+<td><span class="badge bg-primary">Low</span></td>
+
+<td><span class="badge bg-secondary">Draft</span></td>
+
+<td>
+
+<button class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></button>
+
+<button class="btn btn-warning btn-sm"><i class="fa-solid fa-pen"></i></button>
+
+<button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<!-- ================= Notification Summary ================= -->
+
+<div class="row mt-5">
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="dashboard-card">
+
+<i class="fa-solid fa-paper-plane"></i>
+
+<h2>58</h2>
+
+<p>Total Notifications</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="dashboard-card">
+
+<i class="fa-solid fa-circle-check"></i>
+
+<h2>46</h2>
+
+<p>Sent Successfully</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="dashboard-card">
+
+<i class="fa-solid fa-clock"></i>
+
+<h2>8</h2>
+
+<p>Scheduled</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="dashboard-card">
+
+<i class="fa-solid fa-file"></i>
+
+<h2>4</h2>
+
+<p>Drafts</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= Footer ================= -->
+
+<footer class="footer mt-5">
+
+<p>
+
+© 2026 Student Course Management and Learning Progress Tracking System
+
+</p>
+
+</footer>
+
+</div>
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- External JavaScript -->
+
+<script src="../js/script.js"></script>
+
+</body>
+
+</html>

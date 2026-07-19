@@ -11,285 +11,23 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
-
-body{
-background:#eef2ff;
-}
-
-/* Sidebar */
-
-.sidebar{
-
-position:fixed;
-
-left:0;
-
-top:0;
-
-width:260px;
-
-height:100vh;
-
-background:linear-gradient(180deg,#0F172A,#1E40AF);
-
-overflow:auto;
-
-}
-
-.logo{
-
-text-align:center;
-
-padding:25px;
-
-color:white;
-
-border-bottom:1px solid rgba(255,255,255,.2);
-
-}
-
-.logo i{
-
-font-size:55px;
-
-margin-bottom:10px;
-
-}
-
-.logo h3{
-
-font-weight:700;
-
-}
-
-.sidebar ul{
-
-list-style:none;
-
-padding-left:0;
-
-margin-top:20px;
-
-}
-
-.sidebar ul li{
-
-margin:10px 15px;
-
-}
-
-.sidebar ul li a{
-
-display:block;
-
-padding:14px;
-
-color:white;
-
-text-decoration:none;
-
-border-radius:10px;
-
-transition:.3s;
-
-}
-
-.sidebar ul li a:hover{
-
-background:rgba(255,255,255,.15);
-
-padding-left:20px;
-
-}
-
-.active{
-
-background:white;
-
-color:#1E40AF!important;
-
-font-weight:600;
-
-}
-
-/* Main */
-
-.main{
-
-margin-left:260px;
-
-padding:30px;
-
-}
-
-/* Topbar */
-
-.topbar{
-
-background:white;
-
-padding:20px 30px;
-
-border-radius:15px;
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-box-shadow:0 10px 20px rgba(0,0,0,.08);
-
-}
-
-.profile{
-
-font-size:18px;
-
-font-weight:600;
-
-color:#1E40AF;
-
-}
-
-.banner{
-
-margin-top:25px;
-
-background:linear-gradient(135deg,#2563EB,#1E40AF);
-
-padding:30px;
-
-border-radius:18px;
-
-color:white;
-
-}
-
-.banner h2{
-
-font-weight:700;
-
-}
-
-.card-report{
-
-background:white;
-
-padding:25px;
-
-border-radius:15px;
-
-box-shadow:0 10px 20px rgba(0,0,0,.08);
-
-text-align:center;
-
-transition:.3s;
-
-height:100%;
-
-}
-
-.card-report:hover{
-
-transform:translateY(-5px);
-
-}
-
-.card-report i{
-
-font-size:45px;
-
-color:#1E40AF;
-
-margin-bottom:15px;
-
-}
-
-.card-report h4{
-
-font-weight:700;
-
-margin-bottom:10px;
-
-}
-
-.card-report p{
-
-color:#666;
-
-font-size:15px;
-
-}
-
-.report-table{
-
-background:white;
-
-padding:25px;
-
-border-radius:15px;
-
-margin-top:30px;
-
-box-shadow:0 10px 20px rgba(0,0,0,.08);
-
-}
-
-.table th{
-
-background:#1E40AF;
-
-color:white;
-
-}
-
-@media(max-width:992px){
-
-.sidebar{
-
-position:relative;
-
-width:100%;
-
-height:auto;
-
-}
-
-.main{
-
-margin-left:0;
-
-}
-
-}
-
-</style>
+<link rel="stylesheet" href="../css/style.css">
 
 </head>
 
 <body>
 
-<!-- Sidebar -->
+<!-- ================= Sidebar ================= -->
 
 <div class="sidebar">
 
 <div class="logo">
 
-<i class="fa-solid fa-chart-column"></i>
+<i class="fa-solid fa-user-shield"></i>
 
 <h3>SCMS Admin</h3>
 
@@ -301,7 +39,7 @@ margin-left:0;
 
 <a href="admin-dashboard.html">
 
-<i class="fa-solid fa-house"></i>
+<i class="fa-solid fa-gauge"></i>
 
 Dashboard
 
@@ -325,7 +63,7 @@ Manage Students
 
 <a href="manage-courses.html">
 
-<i class="fa-solid fa-book"></i>
+<i class="fa-solid fa-book-open"></i>
 
 Manage Courses
 
@@ -335,9 +73,9 @@ Manage Courses
 
 <li>
 
-<a href="view-enrollments.html">
+<a href="enrollments.html">
 
-<i class="fa-solid fa-user-check"></i>
+<i class="fa-solid fa-user-plus"></i>
 
 Enrollments
 
@@ -349,9 +87,33 @@ Enrollments
 
 <a class="active" href="reports.html">
 
-<i class="fa-solid fa-chart-line"></i>
+<i class="fa-solid fa-chart-column"></i>
 
 Reports
+
+</a>
+
+</li>
+
+<li>
+
+<a href="notifications-admin.html">
+
+<i class="fa-solid fa-bell"></i>
+
+Notifications
+
+</a>
+
+</li>
+
+<li>
+
+<a href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+Settings
 
 </a>
 
@@ -373,19 +135,25 @@ Logout
 
 </div>
 
-<!-- Main -->
+<!-- ================= Main Content ================= -->
 
 <div class="main">
+
+<!-- ================= Topbar ================= -->
 
 <div class="topbar">
 
 <div>
 
-<h2>Reports Dashboard</h2>
+<h2>
 
-<p class="text-muted">
+Reports Dashboard
 
-View overall statistics and reports.
+</h2>
+
+<p>
+
+View academic reports, enrollment statistics and student performance summaries.
 
 </p>
 
@@ -393,41 +161,47 @@ View overall statistics and reports.
 
 <div class="profile">
 
-<i class="fa-solid fa-user-shield"></i>
+<i class="fa-solid fa-circle-user"></i>
+
+<span>
 
 Administrator
 
+</span>
+
 </div>
 
 </div>
+
+<!-- ================= Banner ================= -->
 
 <div class="banner">
 
 <h2>
 
-<i class="fa-solid fa-chart-pie"></i>
-
-Student Course Management Reports
+📊 Reports & Analytics
 
 </h2>
 
 <p>
 
-Analyze students, courses, enrollments and completion reports.
+Generate and review reports related to students, courses, enrollments, academic progress and overall system performance.
 
 </p>
 
 </div>
 
+<!-- ================= Report Statistics ================= -->
+
 <div class="row mt-4">
 
 <div class="col-lg-3 col-md-6 mb-4">
 
-<div class="card-report">
+<div class="dashboard-card">
 
 <i class="fa-solid fa-users"></i>
 
-<h4 id="studentsCount">150</h4>
+<h2>520</h2>
 
 <p>Total Students</p>
 
@@ -437,11 +211,11 @@ Analyze students, courses, enrollments and completion reports.
 
 <div class="col-lg-3 col-md-6 mb-4">
 
-<div class="card-report">
+<div class="dashboard-card">
 
 <i class="fa-solid fa-book-open"></i>
 
-<h4 id="coursesCount">15</h4>
+<h2>20</h2>
 
 <p>Total Courses</p>
 
@@ -451,11 +225,11 @@ Analyze students, courses, enrollments and completion reports.
 
 <div class="col-lg-3 col-md-6 mb-4">
 
-<div class="card-report">
+<div class="dashboard-card">
 
-<i class="fa-solid fa-user-check"></i>
+<i class="fa-solid fa-user-plus"></i>
 
-<h4 id="enrollmentsCount">125</h4>
+<h2>465</h2>
 
 <p>Total Enrollments</p>
 
@@ -465,11 +239,11 @@ Analyze students, courses, enrollments and completion reports.
 
 <div class="col-lg-3 col-md-6 mb-4">
 
-<div class="card-report">
+<div class="dashboard-card">
 
-<i class="fa-solid fa-certificate"></i>
+<i class="fa-solid fa-award"></i>
 
-<h4 id="certificateCount">82</h4>
+<h2>188</h2>
 
 <p>Certificates Issued</p>
 
@@ -479,35 +253,259 @@ Analyze students, courses, enrollments and completion reports.
 
 </div>
 
-<div class="report-table">
+<!-- ================= Report Filters ================= -->
 
-<h4>
+<div class="table-section mt-4">
 
-<i class="fa-solid fa-table"></i>
+<h3 class="mb-4">
 
-Course Report Summary
+Generate Report
 
-</h4>
+</h3>
 
-<br>
+<form>
 
-<div class="table-responsive">
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Report Type
+
+</label>
+
+<select class="form-select">
+
+<option>Select Report Type</option>
+
+<option>Student Report</option>
+
+<option>Course Report</option>
+
+<option>Enrollment Report</option>
+
+<option>Progress Report</option>
+
+<option>Certificate Report</option>
+
+<option>Faculty Report</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Department
+
+</label>
+
+<select class="form-select">
+
+<option>All Departments</option>
+
+<option>Computer Science & Engineering</option>
+
+<option>Information Technology</option>
+
+<option>Electronics & Communication</option>
+
+<option>Electrical & Electronics</option>
+
+<option>Mechanical Engineering</option>
+
+<option>Civil Engineering</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Semester
+
+</label>
+
+<select class="form-select">
+
+<option>All Semesters</option>
+
+<option>I</option>
+
+<option>II</option>
+
+<option>III</option>
+
+<option>IV</option>
+
+<option>V</option>
+
+<option>VI</option>
+
+<option>VII</option>
+
+<option>VIII</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Academic Year
+
+</label>
+
+<select class="form-select">
+
+<option>2025 - 2026</option>
+
+<option>2024 - 2025</option>
+
+<option>2023 - 2024</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+From Date
+
+</label>
+
+<input
+type="date"
+class="form-control">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+To Date
+
+</label>
+
+<input
+type="date"
+class="form-control">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Report Format
+
+</label>
+
+<select class="form-select">
+
+<option>PDF</option>
+
+<option>Excel (.xlsx)</option>
+
+<option>CSV</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Report Status
+
+</label>
+
+<select class="form-select">
+
+<option>All</option>
+
+<option>Completed</option>
+
+<option>Ongoing</option>
+
+<option>Pending</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6 d-grid mb-3">
+
+<button
+type="submit"
+class="btn btn-primary">
+
+<i class="fa-solid fa-file-lines"></i>
+
+Generate Report
+
+</button>
+
+</div>
+
+<div class="col-md-6 d-grid mb-3">
+
+<button
+type="reset"
+class="btn btn-secondary">
+
+<i class="fa-solid fa-rotate-left"></i>
+
+Reset
+
+</button>
+
+</div>
+
+</div>
+
+</form>
+
+</div>
+
+<!-- ================= Generated Reports ================= -->
+
+<div class="table-section mt-5">
+
+<h3 class="mb-4">
+
+Generated Reports
+
+</h3>
 
 <table class="table table-bordered table-hover">
 
-<thead>
+<thead class="table-primary">
 
 <tr>
 
-<th>Course</th>
+<th>Report ID</th>
 
-<th>Students</th>
+<th>Report Name</th>
 
-<th>Completed</th>
+<th>Generated Date</th>
 
-<th>In Progress</th>
+<th>Format</th>
 
-<th>Pending</th>
+<th>Status</th>
+
+<th>Download</th>
 
 </tr>
 
@@ -517,211 +515,253 @@ Course Report Summary
 
 <tr>
 
-<td>Python Programming</td>
+<td>REP001</td>
 
-<td>30</td>
+<td>Student Performance Report</td>
 
-<td>22</td>
+<td>15-07-2026</td>
 
-<td>6</td>
+<td>PDF</td>
 
-<td>2</td>
+<td><span class="badge bg-success">Generated</span></td>
 
-</tr>
+<td>
 
-<tr>
+<button class="btn btn-success btn-sm">
 
-<td>Java Programming</td>
+<i class="fa-solid fa-download"></i>
 
-<td>28</td>
+</button>
 
-<td>18</td>
+<button class="btn btn-info btn-sm">
 
-<td>8</td>
+<i class="fa-solid fa-eye"></i>
 
-<td>2</td>
+</button>
 
-</tr>
+<button class="btn btn-danger btn-sm">
 
-<tr>
+<i class="fa-solid fa-trash"></i>
 
-<td>Web Development</td>
+</button>
 
-<td>35</td>
-
-<td>25</td>
-
-<td>8</td>
-
-<td>2</td>
+</td>
 
 </tr>
 
 <tr>
 
-<td>Data Structures</td>
+<td>REP002</td>
 
-<td>26</td>
+<td>Course Enrollment Report</td>
 
-<td>16</td>
+<td>14-07-2026</td>
 
-<td>8</td>
+<td>Excel</td>
 
-<td>2</td>
+<td><span class="badge bg-success">Generated</span></td>
 
-</tr>
+<td>
 
-<tr>
+<button class="btn btn-success btn-sm"><i class="fa-solid fa-download"></i></button>
 
-<td>Database Management</td>
+<button class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></button>
 
-<td>24</td>
+<button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
 
-<td>15</td>
-
-<td>7</td>
-
-<td>2</td>
+</td>
 
 </tr>
 
 <tr>
 
-<td>Cloud Computing</td>
+<td>REP003</td>
 
-<td>20</td>
+<td>Course Completion Report</td>
 
-<td>12</td>
+<td>13-07-2026</td>
 
-<td>6</td>
+<td>PDF</td>
 
-<td>2</td>
+<td><span class="badge bg-warning text-dark">Pending</span></td>
 
-</tr>
+<td>
 
-<tr>
+<button class="btn btn-success btn-sm"><i class="fa-solid fa-download"></i></button>
 
-<td>Cyber Security</td>
+<button class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></button>
 
-<td>22</td>
+<button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
 
-<td>14</td>
-
-<td>6</td>
-
-<td>2</td>
+</td>
 
 </tr>
 
 <tr>
 
-<td>Machine Learning</td>
+<td>REP004</td>
 
-<td>18</td>
+<td>Department-wise Student Report</td>
 
-<td>10</td>
+<td>12-07-2026</td>
 
-<td>6</td>
+<td>CSV</td>
 
-<td>2</td>
+<td><span class="badge bg-success">Generated</span></td>
 
-</tr>
+<td>
 
-<tr>
+<button class="btn btn-success btn-sm"><i class="fa-solid fa-download"></i></button>
 
-<td>Artificial Intelligence</td>
+<button class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></button>
 
-<td>21</td>
+<button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
 
-<td>12</td>
-
-<td>7</td>
-
-<td>2</td>
+</td>
 
 </tr>
 
 <tr>
 
-<td>React JS</td>
+<td>REP005</td>
 
-<td>19</td>
+<td>Faculty Workload Report</td>
 
-<td>11</td>
+<td>11-07-2026</td>
 
-<td>6</td>
+<td>Excel</td>
 
-<td>2</td>
+<td><span class="badge bg-success">Generated</span></td>
 
-</tr>
+<td>
 
-<tr>
+<button class="btn btn-success btn-sm"><i class="fa-solid fa-download"></i></button>
 
-<td>Angular</td>
+<button class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></button>
 
-<td>17</td>
+<button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
 
-<td>9</td>
-
-<td>6</td>
-
-<td>2</td>
+</td>
 
 </tr>
 
 <tr>
 
-<td>Node.js</td>
+<td>REP006</td>
 
-<td>16</td>
+<td>Attendance Report</td>
 
-<td>9</td>
+<td>10-07-2026</td>
 
-<td>5</td>
+<td>PDF</td>
 
-<td>2</td>
+<td><span class="badge bg-success">Generated</span></td>
 
-</tr>
+<td>
 
-<tr>
+<button class="btn btn-success btn-sm"><i class="fa-solid fa-download"></i></button>
 
-<td>UI / UX Design</td>
+<button class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></button>
 
-<td>14</td>
+<button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
 
-<td>8</td>
-
-<td>4</td>
-
-<td>2</td>
+</td>
 
 </tr>
 
 <tr>
 
-<td>Android App Development</td>
+<td>REP007</td>
 
-<td>18</td>
+<td>Examination Report</td>
 
-<td>11</td>
+<td>09-07-2026</td>
 
-<td>5</td>
+<td>PDF</td>
 
-<td>2</td>
+<td><span class="badge bg-secondary">Draft</span></td>
+
+<td>
+
+<button class="btn btn-success btn-sm"><i class="fa-solid fa-download"></i></button>
+
+<button class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></button>
+
+<button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+
+</td>
 
 </tr>
 
 <tr>
 
-<td>Data Science</td>
+<td>REP008</td>
 
-<td>20</td>
+<td>Certificate Report</td>
 
-<td>13</td>
+<td>08-07-2026</td>
 
-<td>5</td>
+<td>Excel</td>
 
-<td>2</td>
+<td><span class="badge bg-success">Generated</span></td>
+
+<td>
+
+<button class="btn btn-success btn-sm"><i class="fa-solid fa-download"></i></button>
+
+<button class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></button>
+
+<button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>REP009</td>
+
+<td>Monthly Activity Report</td>
+
+<td>07-07-2026</td>
+
+<td>CSV</td>
+
+<td><span class="badge bg-success">Generated</span></td>
+
+<td>
+
+<button class="btn btn-success btn-sm"><i class="fa-solid fa-download"></i></button>
+
+<button class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></button>
+
+<button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>REP010</td>
+
+<td>Annual Academic Report</td>
+
+<td>05-07-2026</td>
+
+<td>PDF</td>
+
+<td><span class="badge bg-success">Generated</span></td>
+
+<td>
+
+<button class="btn btn-success btn-sm"><i class="fa-solid fa-download"></i></button>
+
+<button class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></button>
+
+<button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+
+</td>
 
 </tr>
 
@@ -731,53 +771,185 @@ Course Report Summary
 
 </div>
 
-<br>
+<!-- ================= Report Summary ================= -->
 
-<div class="text-center">
+<div class="row mt-5">
 
-<button
-class="btn btn-success me-3"
-onclick="exportReport()">
+<div class="col-lg-3 col-md-6 mb-4">
 
-<i class="fa-solid fa-file-excel"></i>
+<div class="dashboard-card">
 
-Export Report
+<i class="fa-solid fa-file-lines"></i>
 
-</button>
+<h2>152</h2>
 
-<button
-class="btn btn-primary me-3"
-onclick="printReport()">
+<p>Total Reports</p>
 
-<i class="fa-solid fa-print"></i>
+</div>
 
-Print Report
+</div>
 
-</button>
+<div class="col-lg-3 col-md-6 mb-4">
 
-<button
-class="btn btn-danger"
-onclick="downloadPDF()">
+<div class="dashboard-card">
 
 <i class="fa-solid fa-file-pdf"></i>
 
-Download PDF
+<h2>78</h2>
 
-</button>
+<p>PDF Reports</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="dashboard-card">
+
+<i class="fa-solid fa-file-excel"></i>
+
+<h2>49</h2>
+
+<p>Excel Reports</p>
 
 </div>
 
 </div>
 
-<!-- Footer -->
+<div class="col-lg-3 col-md-6 mb-4">
 
-<footer class="text-center mt-5 mb-3">
+<div class="dashboard-card">
 
-<hr>
+<i class="fa-solid fa-download"></i>
 
-<p class="text-muted">
+<h2>1,245</h2>
 
-© 2026 Student Course Management System | Reports Module
+<p>Total Downloads</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= Administrator Notes ================= -->
+
+<div class="table-section mt-5">
+
+<h3 class="mb-4">
+
+Administrator Notes
+
+</h3>
+
+<ul class="list-group">
+
+<li class="list-group-item">
+
+Generate reports regularly to monitor student academic performance.
+
+</li>
+
+<li class="list-group-item">
+
+Review enrollment reports before each semester begins.
+
+</li>
+
+<li class="list-group-item">
+
+Export reports in PDF or Excel format for meetings and documentation.
+
+</li>
+
+<li class="list-group-item">
+
+Delete outdated reports to keep the database organized.
+
+</li>
+
+<li class="list-group-item">
+
+Verify report accuracy before sharing with faculty or management.
+
+</li>
+
+</ul>
+
+</div>
+
+<!-- ================= Quick Actions ================= -->
+
+<div class="table-section mt-5">
+
+<h3 class="mb-4">
+
+Quick Actions
+
+</h3>
+
+<div class="row">
+
+<div class="col-lg-3 col-md-6 mb-3">
+
+<a href="manage-students.html" class="btn btn-outline-primary w-100">
+
+<i class="fa-solid fa-users"></i>
+
+Manage Students
+
+</a>
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-3">
+
+<a href="manage-courses.html" class="btn btn-outline-success w-100">
+
+<i class="fa-solid fa-book-open"></i>
+
+Manage Courses
+
+</a>
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-3">
+
+<a href="enrollments.html" class="btn btn-outline-warning w-100">
+
+<i class="fa-solid fa-user-plus"></i>
+
+Enrollments
+
+</a>
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-3">
+
+<a href="admin-dashboard.html" class="btn btn-outline-dark w-100">
+
+<i class="fa-solid fa-gauge"></i>
+
+Dashboard
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= Footer ================= -->
+
+<footer class="footer mt-5">
+
+<p>
+
+© 2026 Student Course Management and Learning Progress Tracking System
 
 </p>
 
@@ -789,95 +961,9 @@ Download PDF
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
+<!-- External JavaScript -->
 
-// ==========================================
-// EXPORT REPORT (Demo)
-// ==========================================
-
-function exportReport(){
-
-alert("Report exported successfully!\n\n(In this HTML project this is a demo action.)");
-
-}
-
-
-// ==========================================
-// PRINT REPORT
-// ==========================================
-
-function printReport(){
-
-window.print();
-
-}
-
-
-// ==========================================
-// DOWNLOAD PDF (Demo)
-// ==========================================
-
-function downloadPDF(){
-
-alert("PDF downloaded successfully!\n\n(This is a demo action in the HTML version.)");
-
-}
-
-
-// ==========================================
-// LOGOUT CONFIRMATION
-// ==========================================
-
-let logout=document.querySelector("a[href='home.html']");
-
-if(logout){
-
-logout.onclick=function(e){
-
-if(!confirm("Are you sure you want to logout?")){
-
-e.preventDefault();
-
-}
-
-};
-
-}
-
-
-// ==========================================
-// COUNT TOTALS FROM TABLE
-// ==========================================
-
-window.onload=function(){
-
-let rows=document.querySelectorAll("tbody tr");
-
-let totalStudents=0;
-
-let totalCompleted=0;
-
-let totalProgress=0;
-
-for(let i=0;i<rows.length;i++){
-
-totalStudents += parseInt(rows[i].cells[1].innerText);
-
-totalCompleted += parseInt(rows[i].cells[2].innerText);
-
-totalProgress += parseInt(rows[i].cells[3].innerText);
-
-}
-
-console.log("Total Students :",totalStudents);
-
-console.log("Completed :",totalCompleted);
-
-console.log("In Progress :",totalProgress);
-
-}
-
-</script>
+<script src="../js/script.js"></script>
 
 </body>
 
