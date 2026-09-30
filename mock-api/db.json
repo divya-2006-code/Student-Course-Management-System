@@ -1,1 +1,103 @@
 
+{
+  "courses": [
+    {
+      "id": "1",
+      "courseName": "HTML & CSS Fundamentals",
+      "courseCode": "WD101",
+      "instructor": "John David",
+      "duration": "4 Weeks",
+      "level": "Beginner",
+      "category": "Web Development",
+      "image": "https://cdn-icons-png.flaticon.com/512/732/732212.png",
+      "status": "Active",
+      "overview": "Learn HTML and CSS to create beautiful and responsive websites.",
+      "learningOutcomes": [
+        "Understand HTML structure",
+        "Create web pages using HTML",
+        "Style websites using CSS",
+        "Build responsive websites"
+      ],
+      "modules": [
+        "Introduction to HTML",
+        "HTML Elements and Forms",
+        "CSS Basics",
+        "Responsive Design"
+      ]
+    },
+    {
+      "id": "2",
+      "courseName": "JavaScript Programming",
+      "courseCode": "JS101",
+      "instructor": "Emily",
+      "duration": "6 Weeks",
+      "level": "Beginner",
+      "category": "Programming",
+      "image": "https://cdn-icons-png.flaticon.com/512/5968/5968292.png",
+      "status": "Active",
+      "overview": "Learn JavaScript fundamentals and interactive web development.",
+      "learningOutcomes": [
+        "Understand JavaScript syntax",
+        "Work with functions and arrays",
+        "Manipulate the DOM",
+        "Build interactive web applications"
+      ],
+      "modules": [
+        "JavaScript Basics",
+        "Functions and Arrays",
+        "DOM Manipulation",
+        "Events and Projects"
+      ]
+    },
+    {
+      "id": "3",
+      "courseName": "Python Programming",
+      "courseCode": "CS101",
+      "instructor": "Robert",
+      "duration": "8 Weeks",
+      "level": "Beginner",
+      "category": "Programming",
+      "image": "https://cdn-icons-png.flaticon.com/512/5968/5968350.png",
+      "status": "Active",
+      "overview": "Learn Python programming from beginner to advanced level.",
+      "learningOutcomes": [
+        "Understand Python basics",
+        "Work with functions",
+        "Use object-oriented programming",
+        "Build Python applications"
+      ],
+      "modules": [
+        "Python Basics",
+        "Control Statements",
+        "Functions",
+        "OOP",
+        "Mini Project"
+      ]
+    },
+    {
+      "id": "4",
+      "courseName": "Artificial Intelligence",
+      "courseCode": "AI101",
+      "instructor": "Dr. Priya",
+      "duration": "12 Weeks",
+      "level": "Advanced",
+      "category": "Artificial Intelligence",
+      "image": "https://cdn-icons-png.flaticon.com/512/4712/4712027.png",
+      "status": "Active",
+      "overview": "Learn the fundamentals of Artificial Intelligence and machine learning.",
+      "learningOutcomes": [
+        "Understand AI concepts",
+        "Explore machine learning",
+        "Understand neural networks",
+        "Build AI applications"
+      ],
+      "modules": [
+        "Introduction to AI",
+        "Machine Learning",
+        "Neural Networks",
+        "Generative AI",
+        "AI Project"
+      ]
+    }
+  ]
+}
