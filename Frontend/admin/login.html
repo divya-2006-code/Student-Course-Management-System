@@ -1,1 +1,721 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login | SCMS</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #eef2ff, #dbeafe, #f5f3ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-wrapper {
+    width: 100%;
+    max-width: 1000px;
+    min-height: 600px;
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    box-shadow: 0 25px 70px rgba(30, 41, 59, 0.15);
+}
+
+.login-left {
+    background: linear-gradient(145deg, #4338ca, #2563eb, #1d4ed8);
+    color: white;
+    padding: 55px 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+}
+
+.circle.one {
+    width: 300px;
+    height: 300px;
+    right: -120px;
+    top: -100px;
+}
+
+.circle.two {
+    width: 250px;
+    height: 250px;
+    left: -120px;
+    bottom: -100px;
+}
+
+.brand {
+    position: relative;
+    z-index: 1;
+}
+
+.brand h3 {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.brand i {
+    margin-right: 10px;
+}
+
+.brand p {
+    font-size: 12px;
+    opacity: 0.8;
+    margin-top: 8px;
+}
+
+.welcome-content {
+    position: relative;
+    z-index: 1;
+}
+
+.welcome-content h1 {
+    font-size: 35px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 20px;
+}
+
+.welcome-content p {
+    font-size: 13px;
+    line-height: 1.9;
+    color: #dbeafe;
+    margin-bottom: 30px;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    font-size: 13px;
+}
+
+.feature-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.left-footer {
+    position: relative;
+    z-index: 1;
+    font-size: 11px;
+    color: #dbeafe;
+}
+
+.login-right {
+    padding: 55px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-heading {
+    margin-bottom: 30px;
+}
+
+.login-heading .admin-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+    background: #eef2ff;
+    color: #4338ca;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    margin-bottom: 25px;
+}
+
+.login-heading h2 {
+    font-size: 27px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 10px;
+}
+
+.login-heading p {
+    font-size: 13px;
+    color: #94a3b8;
+    line-height: 1.7;
+}
+
+.form-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 9px;
+}
+
+.input-group-custom {
+    position: relative;
+    margin-bottom: 22px;
+}
+
+.input-group-custom input {
+    width: 100%;
+    height: 52px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 12px 45px;
+    font-size: 13px;
+    color: #334155;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-group-custom input:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 4px rgba(99,102,241,0.1);
+}
+
+.input-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #94a3b8;
+    cursor: pointer;
+}
+
+.login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    font-size: 11px;
+}
+
+.remember {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #64748b;
+}
+
+.remember input {
+    accent-color: #4338ca;
+    width: 15px;
+    height: 15px;
+}
+
+.forgot-link {
+    text-decoration: none;
+    color: #4338ca;
+    font-weight: 500;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+.login-btn {
+    width: 100%;
+    height: 52px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #4338ca, #2563eb);
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(67,56,202,0.25);
+}
+
+.login-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.error-message {
+    display: none;
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+    padding: 12px 15px;
+    border-radius: 10px;
+    font-size: 12px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.success-message {
+    display: none;
+    background: #f0fdf4;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+    padding: 12px 15px;
+    border-radius: 10px;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.demo-box {
+    margin-top: 25px;
+    padding: 16px;
+    border: 1px dashed #c7d2fe;
+    border-radius: 12px;
+    background: #f8faff;
+}
+
+.demo-box h6 {
+    font-size: 12px;
+    color: #4338ca;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.demo-box p {
+    font-size: 11px;
+    color: #64748b;
+    margin-bottom: 6px;
+    overflow-wrap: anywhere;
+}
+
+.demo-box button {
+    font-size: 11px;
+    color: #4338ca;
+    background: none;
+    border: none;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.bottom-link {
+    text-align: center;
+    font-size: 12px;
+    color: #94a3b8;
+    margin-top: 25px;
+}
+
+.bottom-link a {
+    color: #4338ca;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+@media(max-width: 768px) {
+    .login-wrapper {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+    }
+
+    .login-left {
+        padding: 30px;
+        min-height: 250px;
+    }
+
+    .welcome-content {
+        margin-top: 40px;
+    }
+
+    .welcome-content h1 {
+        font-size: 25px;
+    }
+
+    .welcome-content p {
+        margin-bottom: 20px;
+    }
+
+    .feature {
+        display: none;
+    }
+
+    .left-footer {
+        margin-top: 30px;
+    }
+
+    .login-right {
+        padding: 35px 30px;
+    }
+}
+
+@media(max-width: 400px) {
+    .login-right {
+        padding: 30px 20px;
+    }
+
+    .login-left {
+        padding: 25px 20px;
+    }
+
+    .login-heading h2 {
+        font-size: 23px;
+    }
+
+    .login-options {
+        flex-wrap: wrap;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-wrapper">
+
+    <div class="login-left">
+
+        <div class="circle one"></div>
+        <div class="circle two"></div>
+
+        <div class="brand">
+            <h3>
+                <i class="fas fa-graduation-cap"></i>
+                SCMS
+            </h3>
+
+            <p>Student Course Management System</p>
+        </div>
+
+        <div class="welcome-content">
+
+            <h1>Welcome Back,<br>Administrator!</h1>
+
+            <p>
+                Manage students, courses, enrollments, and learning progress
+                from your centralized administration dashboard.
+            </p>
+
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <span>Manage student accounts and enrollments</span>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <span>Organize courses and learning materials</span>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <span>Track progress and generate reports</span>
+            </div>
+
+        </div>
+
+        <div class="left-footer">
+            © 2026 Student Course Management System
+        </div>
+
+    </div>
+
+    <div class="login-right">
+
+        <div class="login-heading">
+
+            <div class="admin-icon">
+                <i class="fas fa-user-shield"></i>
+            </div>
+
+            <h2>Admin Login</h2>
+
+            <p>
+                Enter your administrator credentials to access
+                the SCMS control panel.
+            </p>
+
+        </div>
+
+        <div class="error-message" id="errorMessage"></div>
+        <div class="success-message" id="successMessage"></div>
+
+        <form id="loginForm">
+
+            <div class="mb-3">
+
+                <label class="form-label" for="email">
+                    Email Address
+                </label>
+
+                <div class="input-group-custom">
+
+                    <i class="fas fa-envelope input-icon"></i>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your admin email"
+                        autocomplete="username"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label" for="password">
+                    Password
+                </label>
+
+                <div class="input-group-custom">
+
+                    <i class="fas fa-lock input-icon"></i>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        onclick="togglePassword()"
+                        aria-label="Show or hide password"
+                    >
+                        <i class="fas fa-eye" id="eyeIcon"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="login-options">
+
+                <label class="remember">
+                    <input type="checkbox" id="rememberMe">
+                    Remember me
+                </label>
+
+                <a href="../forgot-password.html" class="forgot-link">
+                    Forgot Password?
+                </a>
+
+            </div>
+
+            <button type="submit" class="login-btn" id="loginButton">
+                <i class="fas fa-sign-in-alt me-2"></i>
+                Sign In to Dashboard
+            </button>
+
+        </form>
+
+        <div class="demo-box">
+
+            <h6>
+                <i class="fas fa-info-circle me-2"></i>
+                Demo Login Credentials
+            </h6>
+
+            <p>
+                Email: <span id="demoEmail">admin@scms.com</span>
+            </p>
+
+            <p>
+                Password: <span id="demoPassword">Admin@123</span>
+            </p>
+
+            <button type="button" onclick="fillDemoCredentials()">
+                <i class="fas fa-mouse-pointer me-1"></i>
+                Use Demo Credentials
+            </button>
+
+        </div>
+
+        <div class="bottom-link">
+            <a href="../index.html">
+              <i class="fas fa-arrow-left me-1"></i>
+               Back to Home
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+const ADMIN_EMAIL = "admin@scms.com";
+const ADMIN_PASSWORD = "Admin@123";
+
+const ADMIN_PASSWORD_KEY = "adminPassword";
+const ADMIN_PROFILE_KEY = "scmsAdminProfile";
+
+function showError(message) {
+    const error = document.getElementById("errorMessage");
+
+    error.textContent = message;
+    error.style.display = "block";
+
+    document.getElementById("successMessage").style.display = "none";
+}
+
+function showSuccess(message) {
+    const success = document.getElementById("successMessage");
+
+    success.textContent = message;
+    success.style.display = "block";
+
+    document.getElementById("errorMessage").style.display = "none";
+}
+
+function togglePassword() {
+    const password = document.getElementById("password");
+    const eyeIcon = document.getElementById("eyeIcon");
+
+    if (password.type === "password") {
+        password.type = "text";
+        eyeIcon.className = "fas fa-eye-slash";
+    } else {
+        password.type = "password";
+        eyeIcon.className = "fas fa-eye";
+    }
+}
+
+function fillDemoCredentials() {
+    document.getElementById("email").value = ADMIN_EMAIL;
+
+    document.getElementById("password").value =
+        localStorage.getItem(ADMIN_PASSWORD_KEY) || ADMIN_PASSWORD;
+
+    showSuccess("Demo credentials filled. Click Sign In to continue.");
+}
+
+function getAdminProfile() {
+    try {
+        return JSON.parse(
+            localStorage.getItem(ADMIN_PROFILE_KEY) || "{}"
+        );
+    } catch (error) {
+        return {};
+    }
+}
+
+function saveRememberedEmail(email) {
+    if (document.getElementById("rememberMe").checked) {
+        localStorage.setItem("scmsRememberedAdminEmail", email);
+    } else {
+        localStorage.removeItem("scmsRememberedAdminEmail");
+    }
+}
+
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const email = document.getElementById("email")
+        .value.trim().toLowerCase();
+
+    const password = document.getElementById("password").value;
+
+    const loginButton = document.getElementById("loginButton");
+
+    const savedPassword = localStorage.getItem(ADMIN_PASSWORD_KEY);
+
+    const validPassword = savedPassword || ADMIN_PASSWORD;
+
+    if (email !== ADMIN_EMAIL || password !== validPassword) {
+        showError("Invalid admin email or password. Please check your credentials.");
+        return;
+    }
+
+    loginButton.disabled = true;
+    loginButton.innerHTML =
+        '<i class="fas fa-spinner fa-spin me-2"></i> Signing In...';
+
+    const profile = getAdminProfile();
+
+    const adminSession = {
+        name: profile.name || "Administrator",
+        email: ADMIN_EMAIL,
+        role: "admin",
+        loggedInAt: new Date().toISOString()
+    };
+
+    localStorage.setItem(
+        "adminSession",
+        JSON.stringify(adminSession)
+    );
+
+    localStorage.setItem(
+        "loggedInAdmin",
+        JSON.stringify(adminSession)
+    );
+
+    saveRememberedEmail(email);
+
+    showSuccess("Login successful! Opening admin dashboard...");
+
+    setTimeout(function() {
+        window.location.href = "dashboard.html";
+    }, 700);
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    const rememberedEmail =
+        localStorage.getItem("scmsRememberedAdminEmail");
+
+    if (rememberedEmail) {
+        document.getElementById("email").value = rememberedEmail;
+        document.getElementById("rememberMe").checked = true;
+    }
+
+    const savedPassword = localStorage.getItem(ADMIN_PASSWORD_KEY);
+
+    if (savedPassword) {
+        document.getElementById("demoPassword").textContent =
+            "Your updated demo password";
+    }
+});
+</script>
+
+</body>
+</html>

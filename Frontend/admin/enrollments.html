@@ -1,0 +1,1199 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manage Enrollments | SCMS Admin</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f4f6fb;
+    color: #1e293b;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: linear-gradient(180deg, #4338ca, #2563eb);
+    color: white;
+    padding: 25px 15px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.logo i {
+    margin-right: 8px;
+}
+
+.sidebar-subtitle {
+    text-align: center;
+    font-size: 11px;
+    opacity: 0.8;
+    margin-bottom: 35px;
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    text-decoration: none;
+    color: #e0e7ff;
+    padding: 13px 15px;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+    background: rgba(255,255,255,0.2);
+    color: white;
+}
+
+.sidebar a i {
+    width: 20px;
+    text-align: center;
+}
+
+.main {
+    margin-left: 250px;
+    padding: 30px;
+    min-height: 100vh;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.page-title {
+    font-size: 25px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.page-subtitle {
+    color: #64748b;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.admin-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: white;
+    padding: 10px 16px;
+    border-radius: 12px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.04);
+}
+
+.profile-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #e0e7ff;
+    color: #4338ca;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-name {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.profile-role {
+    font-size: 11px;
+    color: #64748b;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: white;
+    padding: 22px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+}
+
+.stat-label {
+    font-size: 12px;
+    color: #64748b;
+    margin-bottom: 10px;
+}
+
+.stat-value {
+    font-size: 27px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.purple {
+    background: #ede9fe;
+    color: #7c3aed;
+}
+
+.blue {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.green {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.orange {
+    background: #ffedd5;
+    color: #ea580c;
+}
+
+.content-card {
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.04);
+}
+
+.card-header-custom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.card-title {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.card-subtitle {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-top: 5px;
+}
+
+.search-box {
+    position: relative;
+    flex: 1;
+    max-width: 330px;
+}
+
+.search-box i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 15px 12px 42px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 12px;
+    outline: none;
+}
+
+.search-box input:focus {
+    border-color: #6366f1;
+}
+
+.filter-select {
+    padding: 12px 15px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 12px;
+    background: white;
+    outline: none;
+    min-width: 150px;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 850px;
+}
+
+thead {
+    background: #f8fafc;
+}
+
+th {
+    font-size: 11px;
+    color: #64748b;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 16px;
+    white-space: nowrap;
+}
+
+td {
+    padding: 17px 16px;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+tbody tr:hover {
+    background: #fafbff;
+}
+
+.student-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.student-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #e0e7ff;
+    color: #4338ca;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.student-name {
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 4px;
+}
+
+.student-email {
+    font-size: 11px;
+    color: #94a3b8;
+    overflow-wrap: anywhere;
+}
+
+.course-name {
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 5px;
+}
+
+.course-id {
+    font-size: 10px;
+    color: #94a3b8;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.status-active {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.status-completed {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.status-cancelled {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.status-pending {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.status-select {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 7px 8px;
+    font-size: 11px;
+    background: white;
+    max-width: 125px;
+}
+
+.action-btn {
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.view-btn {
+    background: #e0e7ff;
+    color: #4338ca;
+}
+
+.delete-btn {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.action-btn:hover {
+    opacity: 0.75;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.empty-state i {
+    font-size: 45px;
+    color: #cbd5e1;
+    margin-bottom: 20px;
+}
+
+.empty-state h5 {
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+.empty-state p {
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.pagination-info {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.pagination {
+    margin: 0;
+}
+
+.pagination .page-link {
+    font-size: 12px;
+    color: #4338ca;
+    border-radius: 8px;
+    margin: 0 3px;
+}
+
+.pagination .active .page-link {
+    background: #4338ca;
+    border-color: #4338ca;
+    color: white;
+}
+
+.mobile-menu {
+    display: none;
+    border: none;
+    background: #4338ca;
+    color: white;
+    padding: 10px 14px;
+    border-radius: 8px;
+}
+
+.modal-content {
+    border: none;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #4338ca, #2563eb);
+    color: white;
+    padding: 20px 25px;
+}
+
+.modal-title {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.modal-body {
+    padding: 25px;
+}
+
+.detail-row {
+    padding: 13px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.detail-label {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-bottom: 5px;
+}
+
+.detail-value {
+    font-size: 13px;
+    font-weight: 500;
+    overflow-wrap: anywhere;
+}
+
+@media(max-width: 1200px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 992px) {
+    .sidebar {
+        transform: translateX(-100%);
+        transition: 0.3s;
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+    .main {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .mobile-menu {
+        display: inline-block;
+    }
+}
+
+@media(max-width: 576px) {
+    .main {
+        padding: 15px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .content-card {
+        padding: 18px;
+    }
+
+    .page-title {
+        font-size: 21px;
+    }
+
+    .search-box {
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+
+    .filter-select {
+        width: 100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<aside class="sidebar" id="sidebar">
+    <div class="logo">
+        <i class="fas fa-graduation-cap"></i> SCMS
+    </div>
+
+    <div class="sidebar-subtitle">Admin Control Panel</div>
+
+    <a href="dashboard.html">
+        <i class="fas fa-chart-pie"></i> Dashboard
+    </a>
+
+    <a href="students.html">
+        <i class="fas fa-users"></i> Manage Students
+    </a>
+
+    <a href="courses.html">
+        <i class="fas fa-book"></i> Manage Courses
+    </a>
+
+    <a href="add-course.html">
+        <i class="fas fa-plus-circle"></i> Add Course
+    </a>
+
+    <a href="enrollments.html" class="active">
+        <i class="fas fa-user-check"></i> Enrollments
+    </a>
+
+    <a href="reports.html">
+        <i class="fas fa-chart-line"></i> Reports
+    </a>
+
+    <a href="notifications.html">
+        <i class="fas fa-bell"></i> Notifications
+    </a>
+
+    <a href="settings.html">
+        <i class="fas fa-cog"></i> Settings
+    </a>
+
+    <a href="#" onclick="logoutAdmin(); return false;">
+        <i class="fas fa-sign-out-alt"></i> Logout
+    </a>
+</aside>
+
+<main class="main">
+
+    <div class="topbar">
+        <div class="d-flex align-items-center gap-3">
+            <button class="mobile-menu" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div>
+                <h1 class="page-title">Manage Enrollments</h1>
+                <p class="page-subtitle">
+                    Track student enrollments and manage course participation.
+                </p>
+            </div>
+        </div>
+
+        <div class="admin-profile">
+            <div class="profile-icon">
+                <i class="fas fa-user-shield"></i>
+            </div>
+            <div>
+                <div class="profile-name" id="adminName">Administrator</div>
+                <div class="profile-role">Admin</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <div>
+                <div class="stat-label">Total Enrollments</div>
+                <div class="stat-value" id="totalEnrollments">0</div>
+            </div>
+            <div class="stat-icon purple">
+                <i class="fas fa-users"></i>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div>
+                <div class="stat-label">Active Enrollments</div>
+                <div class="stat-value" id="activeEnrollments">0</div>
+            </div>
+            <div class="stat-icon green">
+                <i class="fas fa-user-check"></i>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div>
+                <div class="stat-label">Completed Courses</div>
+                <div class="stat-value" id="completedEnrollments">0</div>
+            </div>
+            <div class="stat-icon blue">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div>
+                <div class="stat-label">Cancelled Enrollments</div>
+                <div class="stat-value" id="cancelledEnrollments">0</div>
+            </div>
+            <div class="stat-icon orange">
+                <i class="fas fa-user-times"></i>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="content-card">
+
+        <div class="card-header-custom">
+            <div>
+                <h5 class="card-title">All Enrollments</h5>
+                <p class="card-subtitle">
+                    View, search, and update student enrollment records.
+                </p>
+            </div>
+
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput"
+                       placeholder="Search student or course...">
+            </div>
+
+            <select id="statusFilter" class="filter-select">
+                <option value="all">All Statuses</option>
+                <option value="active">Active</option>
+                <option value="completed">Completed</option>
+                <option value="cancelled">Cancelled</option>
+                <option value="pending">Pending</option>
+            </select>
+        </div>
+
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Course</th>
+                        <th>Enrollment Date</th>
+                        <th>Progress</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="enrollmentTable"></tbody>
+            </table>
+        </div>
+
+        <div id="emptyState" class="empty-state" style="display:none;">
+            <i class="fas fa-folder-open"></i>
+            <h5>No Enrollments Found</h5>
+            <p>Enrollments will appear here when students join courses.</p>
+        </div>
+
+        <div class="pagination-container">
+            <div class="pagination-info" id="paginationInfo">
+                Showing 0 enrollments
+            </div>
+
+            <nav>
+                <ul class="pagination" id="pagination"></ul>
+            </nav>
+        </div>
+
+    </div>
+
+</main>
+
+<div class="modal fade" id="viewModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-user-graduate me-2"></i>
+                    Enrollment Details
+                </h5>
+
+                <button type="button" class="btn-close btn-close-white"
+                        data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body" id="enrollmentDetails"></div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary btn-sm"
+                        data-bs-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+let enrollments = [];
+let filteredEnrollments = [];
+let currentPage = 1;
+const perPage = 8;
+
+function getStudentName(enrollment) {
+    return enrollment.studentName ||
+           enrollment.name ||
+           enrollment.student ||
+           "Unknown Student";
+}
+
+function getStudentEmail(enrollment) {
+    return enrollment.studentEmail ||
+           enrollment.email ||
+           "";
+}
+
+function getCourseName(enrollment) {
+    return enrollment.title ||
+           enrollment.courseTitle ||
+           enrollment.courseName ||
+           enrollment.name ||
+           "Unknown Course";
+}
+
+function getEnrollmentStatus(enrollment) {
+    const status = String(enrollment.status || "Active").toLowerCase();
+
+    if (status === "completed") return "Completed";
+    if (status === "cancelled") return "Cancelled";
+    if (status === "pending") return "Pending";
+
+    return "Active";
+}
+
+function getEnrollmentDate(enrollment) {
+    return enrollment.enrolledDate ||
+           enrollment.enrollmentDate ||
+           enrollment.createdAt ||
+           "";
+}
+
+function formatDate(dateValue) {
+    if (!dateValue) return "Not available";
+
+    const date = new Date(dateValue);
+
+    if (isNaN(date.getTime())) return String(dateValue);
+
+    return date.toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric"
+    });
+}
+
+function getProgress(enrollment) {
+    const value = Number(enrollment.progress ?? enrollment.completion ?? 0);
+
+    if (!Number.isFinite(value)) return 0;
+
+    return Math.max(0, Math.min(100, value));
+}
+
+function loadEnrollments() {
+    try {
+        const stored = JSON.parse(
+            localStorage.getItem("enrolledCourses") || "[]"
+        );
+
+        enrollments = Array.isArray(stored) ? stored : [];
+    } catch (error) {
+        enrollments = [];
+    }
+
+    renderStats();
+    applyFilters();
+}
+
+function renderStats() {
+    document.getElementById("totalEnrollments").textContent =
+        enrollments.length;
+
+    document.getElementById("activeEnrollments").textContent =
+        enrollments.filter(e => getEnrollmentStatus(e) === "Active").length;
+
+    document.getElementById("completedEnrollments").textContent =
+        enrollments.filter(e => getEnrollmentStatus(e) === "Completed").length;
+
+    document.getElementById("cancelledEnrollments").textContent =
+        enrollments.filter(e => getEnrollmentStatus(e) === "Cancelled").length;
+}
+
+function applyFilters() {
+    const search = document.getElementById("searchInput")
+        .value.toLowerCase().trim();
+
+    const status = document.getElementById("statusFilter").value;
+
+    filteredEnrollments = enrollments
+        .map((enrollment, index) => ({
+            ...enrollment,
+            _originalIndex: index
+        }))
+        .filter(enrollment => {
+            const student = getStudentName(enrollment).toLowerCase();
+            const email = getStudentEmail(enrollment).toLowerCase();
+            const course = getCourseName(enrollment).toLowerCase();
+
+            const matchesSearch =
+                student.includes(search) ||
+                email.includes(search) ||
+                course.includes(search);
+
+            const matchesStatus =
+                status === "all" ||
+                getEnrollmentStatus(enrollment).toLowerCase() === status;
+
+            return matchesSearch && matchesStatus;
+        });
+
+    currentPage = 1;
+    renderTable();
+}
+
+function renderTable() {
+    const table = document.getElementById("enrollmentTable");
+    const emptyState = document.getElementById("emptyState");
+    const pagination = document.getElementById("pagination");
+
+    table.innerHTML = "";
+    pagination.innerHTML = "";
+
+    if (filteredEnrollments.length === 0) {
+        emptyState.style.display = "block";
+        document.querySelector(".table-responsive").style.display = "none";
+        document.getElementById("paginationInfo").textContent =
+            "Showing 0 enrollments";
+        return;
+    }
+
+    emptyState.style.display = "none";
+    document.querySelector(".table-responsive").style.display = "block";
+
+    const start = (currentPage - 1) * perPage;
+    const pageItems = filteredEnrollments.slice(start, start + perPage);
+
+    pageItems.forEach(enrollment => {
+        const index = enrollment._originalIndex;
+
+        const studentName = getStudentName(enrollment);
+        const email = getStudentEmail(enrollment);
+        const courseName = getCourseName(enrollment);
+        const status = getEnrollmentStatus(enrollment);
+        const date = formatDate(getEnrollmentDate(enrollment));
+        const progress = getProgress(enrollment);
+
+        const initials = studentName
+            .split(" ")
+            .filter(Boolean)
+            .map(word => word[0])
+            .join("")
+            .substring(0, 2)
+            .toUpperCase();
+
+        const badgeClass = {
+            "Active": "status-active",
+            "Completed": "status-completed",
+            "Cancelled": "status-cancelled",
+            "Pending": "status-pending"
+        }[status];
+
+        const row = document.createElement("tr");
+
+        const studentCell = document.createElement("td");
+        studentCell.innerHTML = `
+            <div class="student-info">
+                <div class="student-avatar">${escapeHTML(initials || "S")}</div>
+                <div>
+                    <div class="student-name">${escapeHTML(studentName)}</div>
+                    <div class="student-email">${escapeHTML(email || "No email")}</div>
+                </div>
+            </div>
+        `;
+
+        const courseCell = document.createElement("td");
+        courseCell.innerHTML = `
+            <div class="course-name">${escapeHTML(courseName)}</div>
+            <div class="course-id">ID: ${escapeHTML(
+                String(enrollment.courseId || "N/A")
+            )}</div>
+        `;
+
+        const dateCell = document.createElement("td");
+        dateCell.textContent = date;
+
+        const progressCell = document.createElement("td");
+        progressCell.innerHTML = `
+            <div style="font-weight:600;margin-bottom:7px;">
+                ${progress}%
+            </div>
+            <div class="progress" style="height:6px;width:100px;">
+                <div class="progress-bar bg-primary"
+                     style="width:${progress}%"></div>
+            </div>
+        `;
+
+        const statusCell = document.createElement("td");
+        statusCell.innerHTML = `
+            <select class="status-select ${badgeClass}"
+                    data-index="${index}">
+                <option value="Active" ${status === "Active" ? "selected" : ""}>Active</option>
+                <option value="Completed" ${status === "Completed" ? "selected" : ""}>Completed</option>
+                <option value="Cancelled" ${status === "Cancelled" ? "selected" : ""}>Cancelled</option>
+                <option value="Pending" ${status === "Pending" ? "selected" : ""}>Pending</option>
+            </select>
+        `;
+
+        statusCell.querySelector("select").addEventListener("change", function() {
+            updateStatus(index, this.value);
+        });
+
+        const actionCell = document.createElement("td");
+
+        const viewButton = document.createElement("button");
+        viewButton.className = "action-btn view-btn";
+        viewButton.innerHTML = '<i class="fas fa-eye"></i>';
+        viewButton.title = "View Details";
+        viewButton.onclick = () => viewEnrollment(index);
+
+        const deleteButton = document.createElement("button");
+        deleteButton.className = "action-btn delete-btn";
+        deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
+        deleteButton.title = "Delete Enrollment";
+        deleteButton.onclick = () => deleteEnrollment(index);
+
+        actionCell.appendChild(viewButton);
+        actionCell.appendChild(deleteButton);
+
+        row.appendChild(studentCell);
+        row.appendChild(courseCell);
+        row.appendChild(dateCell);
+        row.appendChild(progressCell);
+        row.appendChild(statusCell);
+        row.appendChild(actionCell);
+
+        table.appendChild(row);
+    });
+
+    document.getElementById("paginationInfo").textContent =
+        `Showing ${start + 1}-${Math.min(start + perPage, filteredEnrollments.length)} of ${filteredEnrollments.length} enrollments`;
+
+    renderPagination();
+}
+
+function renderPagination() {
+    const totalPages = Math.ceil(filteredEnrollments.length / perPage);
+    const pagination = document.getElementById("pagination");
+
+    if (totalPages <= 1) return;
+
+    function addPage(label, page, disabled, active) {
+        const li = document.createElement("li");
+        li.className = "page-item" +
+            (disabled ? " disabled" : "") +
+            (active ? " active" : "");
+
+        const button = document.createElement("button");
+        button.className = "page-link";
+        button.textContent = label;
+        button.disabled = disabled;
+
+        button.addEventListener("click", () => {
+            currentPage = page;
+            renderTable();
+        });
+
+        li.appendChild(button);
+        pagination.appendChild(li);
+    }
+
+    addPage("‹", currentPage - 1, currentPage === 1, false);
+
+    for (let i = 1; i <= totalPages; i++) {
+        addPage(String(i), i, false, i === currentPage);
+    }
+
+    addPage("›", currentPage + 1, currentPage === totalPages, false);
+}
+
+function updateStatus(index, newStatus) {
+    if (!enrollments[index]) return;
+
+    const previousStatus = getEnrollmentStatus(enrollments[index]);
+
+    enrollments[index].status = newStatus;
+
+    if (newStatus === "Completed") {
+        enrollments[index].progress = 100;
+    } else if (previousStatus === "Completed") {
+        enrollments[index].progress = 0;
+    }
+
+    saveEnrollments();
+    renderStats();
+    applyFilters();
+}
+
+function viewEnrollment(index) {
+    const enrollment = enrollments[index];
+
+    if (!enrollment) return;
+
+    const details = document.getElementById("enrollmentDetails");
+
+    details.innerHTML = "";
+
+    const fields = [
+        ["Student Name", getStudentName(enrollment)],
+        ["Student Email", getStudentEmail(enrollment) || "Not available"],
+        ["Course Name", getCourseName(enrollment)],
+        ["Course ID", enrollment.courseId || "Not available"],
+        ["Enrollment Date", formatDate(getEnrollmentDate(enrollment))],
+        ["Progress", getProgress(enrollment) + "%"],
+        ["Status", getEnrollmentStatus(enrollment)]
+    ];
+
+    fields.forEach(([label, value]) => {
+        const row = document.createElement("div");
+        row.className = "detail-row";
+
+        const labelElement = document.createElement("div");
+        labelElement.className = "detail-label";
+        labelElement.textContent = label;
+
+        const valueElement = document.createElement("div");
+        valueElement.className = "detail-value";
+        valueElement.textContent = value;
+
+        row.appendChild(labelElement);
+        row.appendChild(valueElement);
+
+        details.appendChild(row);
+    });
+
+    const modal = new bootstrap.Modal(
+        document.getElementById("viewModal")
+    );
+
+    modal.show();
+}
+
+function deleteEnrollment(index) {
+    if (!enrollments[index]) return;
+
+    const studentName = getStudentName(enrollments[index]);
+    const courseName = getCourseName(enrollments[index]);
+
+    if (confirm(
+        `Delete the enrollment of ${studentName} in ${courseName}?`
+    )) {
+        enrollments.splice(index, 1);
+
+        saveEnrollments();
+        renderStats();
+        applyFilters();
+    }
+}
+
+function saveEnrollments() {
+    localStorage.setItem(
+        "enrolledCourses",
+        JSON.stringify(enrollments)
+    );
+}
+
+function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, character => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    })[character]);
+}
+
+document.getElementById("searchInput").addEventListener(
+    "input", applyFilters
+);
+
+document.getElementById("statusFilter").addEventListener(
+    "change", applyFilters
+);
+
+function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("show");
+}
+
+function logoutAdmin() {
+    if (confirm("Are you sure you want to logout?")) {
+        localStorage.removeItem("adminSession");
+        localStorage.removeItem("loggedInAdmin");
+        window.location.href = "login.html";
+    }
+}
+
+try {
+    const adminSession = JSON.parse(
+        localStorage.getItem("adminSession") || "null"
+    );
+
+    const loggedInAdmin = JSON.parse(
+        localStorage.getItem("loggedInAdmin") || "null"
+    );
+
+    if (adminSession && typeof adminSession === "object") {
+        document.getElementById("adminName").textContent =
+            adminSession.name || adminSession.username || "Administrator";
+    } else if (loggedInAdmin && typeof loggedInAdmin === "object") {
+        document.getElementById("adminName").textContent =
+            loggedInAdmin.name || loggedInAdmin.username || "Administrator";
+    }
+} catch (error) {
+    document.getElementById("adminName").textContent = "Administrator";
+}
+
+loadEnrollments();
+</script>
+
+</body>
+</html>

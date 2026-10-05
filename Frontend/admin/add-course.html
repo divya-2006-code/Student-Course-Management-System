@@ -1,0 +1,1144 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Course | SCMS Admin</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f6fc;
+    color: #1e293b;
+}
+
+a {
+    text-decoration: none;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    padding: 25px 15px;
+    color: white;
+    background: linear-gradient(180deg, #312e81, #4338ca, #2563eb);
+    overflow-y: auto;
+    z-index: 1000;
+    transition: transform .3s;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 10px 30px;
+}
+
+.logo-icon {
+    width: 45px;
+    height: 45px;
+    background: white;
+    color: #4338ca;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.logo h2 {
+    font-size: 22px;
+}
+
+.logo small {
+    display: block;
+    color: #c7d2fe;
+    margin-top: 4px;
+}
+
+.menu-title {
+    color: #c7d2fe;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 15px 12px 8px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 14px;
+    color: #e0e7ff;
+    border-radius: 9px;
+    font-size: 14px;
+    transition: .2s;
+}
+
+.menu a:hover,
+.menu a.active {
+    background: rgba(255,255,255,.2);
+    color: white;
+}
+
+.menu a.active {
+    font-weight: bold;
+}
+
+.sidebar-footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,.2);
+}
+
+.main {
+    margin-left: 250px;
+    min-height: 100vh;
+}
+
+.topbar {
+    height: 75px;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.topbar h3 {
+    font-size: 20px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #e0e7ff;
+    color: #4338ca;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.profile small {
+    display: block;
+    color: #64748b;
+    margin-top: 4px;
+    font-size: 12px;
+}
+
+.mobile-btn {
+    display: none;
+    border: none;
+    background: #4338ca;
+    color: white;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.content {
+    padding: 30px;
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.page-header h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.page-header p {
+    color: #64748b;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 18px;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.btn-primary {
+    background: #4338ca;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #3730a3;
+    transform: translateY(-2px);
+}
+
+.btn-light {
+    background: white;
+    color: #4338ca;
+    border: 1px solid #e0e7ff;
+}
+
+.btn-light:hover {
+    background: #eef2ff;
+}
+
+.form-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(250px, 1fr);
+    gap: 25px;
+    align-items: start;
+}
+
+.form-panel,
+.preview-panel {
+    background: white;
+    border: 1px solid #e9edf5;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.04);
+}
+
+.form-panel {
+    padding: 28px;
+}
+
+.panel-heading {
+    padding-bottom: 22px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #e9edf5;
+}
+
+.panel-heading h2 {
+    font-size: 20px;
+    margin-bottom: 9px;
+}
+
+.panel-heading p {
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.form-section {
+    margin-bottom: 30px;
+}
+
+.form-section h3 {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #312e81;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 9px;
+    color: #475569;
+}
+
+.required {
+    color: #dc2626;
+}
+
+.form-control {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid #dbe2ea;
+    border-radius: 9px;
+    background: white;
+    font-size: 14px;
+    color: #334155;
+    outline: none;
+    font-family: inherit;
+}
+
+.form-control:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99,102,241,.12);
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 130px;
+    line-height: 1.6;
+}
+
+.form-hint {
+    color: #94a3b8;
+    font-size: 12px;
+    margin-top: 7px;
+    line-height: 1.5;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    flex-wrap: wrap;
+    border-top: 1px solid #e9edf5;
+    padding-top: 25px;
+}
+
+.preview-panel {
+    padding: 24px;
+    position: sticky;
+    top: 20px;
+}
+
+.preview-panel h2 {
+    font-size: 19px;
+    margin-bottom: 20px;
+}
+
+.preview-icon {
+    height: 150px;
+    background: linear-gradient(135deg, #eef2ff, #dbeafe);
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.preview-category {
+    display: inline-block;
+    padding: 6px 10px;
+    background: #ede9fe;
+    color: #4338ca;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.preview-title {
+    font-size: 20px;
+    line-height: 1.4;
+    margin-bottom: 12px;
+    overflow-wrap: anywhere;
+}
+
+.preview-description {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    overflow-wrap: anywhere;
+}
+
+.preview-info {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-top: 18px;
+    border-top: 1px solid #e9edf5;
+}
+
+.preview-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 13px;
+}
+
+.preview-row span {
+    color: #64748b;
+}
+
+.preview-row strong {
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.preview-status {
+    display: inline-block;
+    background: #dcfce7;
+    color: #166534;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.toast {
+    position: fixed;
+    top: 90px;
+    right: 25px;
+    background: #166534;
+    color: white;
+    padding: 15px 22px;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0,0,0,.15);
+    z-index: 3000;
+    display: none;
+}
+
+.toast.show {
+    display: block;
+}
+
+@media(max-width:1200px) {
+    .form-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .preview-panel {
+        position: static;
+    }
+}
+
+@media(max-width:800px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+    .main {
+        margin-left: 0;
+    }
+
+    .mobile-btn {
+        display: block;
+    }
+
+    .topbar {
+        padding: 0 18px;
+    }
+
+    .content {
+        padding: 20px;
+    }
+}
+
+@media(max-width:550px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .page-header h1 {
+        font-size: 23px;
+    }
+
+    .form-panel {
+        padding: 20px;
+    }
+
+    .profile > div:last-child {
+        display: none;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="logo">
+        <div class="logo-icon">S</div>
+        <div>
+            <h2>SCMS</h2>
+            <small>Admin Portal</small>
+        </div>
+    </div>
+
+    <div class="menu-title">Main Menu</div>
+
+    <nav class="menu">
+        <a href="dashboard.html"><span>📊</span> Dashboard</a>
+        <a href="students.html"><span>👥</span> Manage Students</a>
+        <a href="courses.html"><span>📚</span> Manage Courses</a>
+        <a href="add-course.html" class="active"><span>➕</span> Add Course</a>
+        <a href="enrollments.html"><span>📝</span> Enrollments</a>
+    </nav>
+
+    <div class="menu-title">Administration</div>
+
+    <nav class="menu">
+        <a href="reports.html"><span>📈</span> Reports</a>
+        <a href="notifications.html"><span>🔔</span> Notifications</a>
+        <a href="settings.html"><span>⚙️</span> Settings</a>
+    </nav>
+
+    <div class="sidebar-footer">
+        <nav class="menu">
+            <a href="login.html" onclick="logoutAdmin(event)">
+                <span>🚪</span> Logout
+            </a>
+        </nav>
+    </div>
+
+</aside>
+
+<main class="main">
+
+    <header class="topbar">
+        <div class="topbar-left">
+            <button class="mobile-btn" onclick="toggleSidebar()">☰</button>
+            <h3>Add New Course</h3>
+        </div>
+
+        <div class="profile">
+            <div class="avatar">A</div>
+            <div>
+                <strong id="adminName">Administrator</strong>
+                <small>System Admin</small>
+            </div>
+        </div>
+    </header>
+
+    <section class="content">
+
+        <div class="page-header">
+            <div>
+                <h1>Create a New Course 📚</h1>
+                <p>
+                    Add course details, assign an instructor, and make
+                    learning opportunities available to students.
+                </p>
+            </div>
+
+            <a href="courses.html" class="btn btn-light">
+                ← Back to Courses
+            </a>
+        </div>
+
+        <div class="form-layout">
+
+            <div class="form-panel">
+
+                <div class="panel-heading">
+                    <h2>Course Information</h2>
+                    <p>
+                        Complete the required fields below to create
+                        a course in the SCMS platform.
+                    </p>
+                </div>
+
+                <form id="courseForm">
+
+                    <div class="form-section">
+
+                        <h3>Basic Information</h3>
+
+                        <div class="form-group">
+                            <label for="title">
+                                Course Title <span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="title"
+                                class="form-control"
+                                placeholder="Example: Python Programming"
+                                maxlength="100"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+                                <label for="category">
+                                    Category <span class="required">*</span>
+                                </label>
+
+                                <select id="category" class="form-control" required>
+                                    <option value="">Select Category</option>
+                                    <option>Web Development</option>
+                                    <option>Frontend Development</option>
+                                    <option>Programming</option>
+                                    <option>Computer Science</option>
+                                    <option>Database</option>
+                                    <option>Data Analytics</option>
+                                    <option>Artificial Intelligence</option>
+                                    <option>Design</option>
+                                    <option>Developer Tools</option>
+                                    <option>Cloud</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="instructor">
+                                    Instructor <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="instructor"
+                                    class="form-control"
+                                    placeholder="Instructor name"
+                                    maxlength="80"
+                                    required
+                                >
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">
+                                Course Description <span class="required">*</span>
+                            </label>
+
+                            <textarea
+                                id="description"
+                                class="form-control"
+                                placeholder="Describe the course, its objectives, and what students will learn..."
+                                maxlength="2000"
+                                required
+                            ></textarea>
+
+                            <p class="form-hint">
+                                Provide a clear description to help students
+                                understand the course.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="form-section">
+
+                        <h3>Course Details</h3>
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+                                <label for="duration">
+                                    Duration <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="duration"
+                                    class="form-control"
+                                    placeholder="Example: 6 Weeks"
+                                    maxlength="40"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="level">
+                                    Difficulty Level <span class="required">*</span>
+                                </label>
+
+                                <select id="level" class="form-control" required>
+                                    <option value="">Select Level</option>
+                                    <option>Beginner</option>
+                                    <option>Intermediate</option>
+                                    <option>Advanced</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="price">Course Price (₹)</label>
+
+                                <input
+                                    type="number"
+                                    id="price"
+                                    class="form-control"
+                                    min="0"
+                                    step="1"
+                                    placeholder="0"
+                                >
+
+                                <p class="form-hint">
+                                    Enter 0 for a free course.
+                                </p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="status">Course Status</label>
+
+                                <select id="status" class="form-control">
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-section">
+
+                        <h3>Learning Content</h3>
+
+                        <div class="form-group">
+                            <label for="outcomes">
+                                What Students Will Learn
+                            </label>
+
+                            <textarea
+                                id="outcomes"
+                                class="form-control"
+                                placeholder="Enter learning outcomes, one per line..."
+                            ></textarea>
+
+                            <p class="form-hint">
+                                Example: Understand programming fundamentals.
+                                Build practical projects.
+                            </p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="requirements">
+                                Course Requirements
+                            </label>
+
+                            <textarea
+                                id="requirements"
+                                class="form-control"
+                                placeholder="Enter prerequisites or required knowledge..."
+                            ></textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions">
+
+                        <button
+                            type="button"
+                            class="btn btn-light"
+                            onclick="resetForm()">
+                            Clear Form
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary">
+                            + Save Course
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <!-- COURSE PREVIEW -->
+
+            <div class="preview-panel">
+
+                <h2>Course Preview</h2>
+
+                <div class="preview-icon" id="previewIcon">
+                    📚
+                </div>
+
+                <span class="preview-category" id="previewCategory">
+                    Course Category
+                </span>
+
+                <h3 class="preview-title" id="previewTitle">
+                    Your Course Title
+                </h3>
+
+                <p class="preview-description" id="previewDescription">
+                    Your course description will appear here as you fill
+                    in the form.
+                </p>
+
+                <div class="preview-info">
+
+                    <div class="preview-row">
+                        <span>Instructor</span>
+                        <strong id="previewInstructor">Not assigned</strong>
+                    </div>
+
+                    <div class="preview-row">
+                        <span>Duration</span>
+                        <strong id="previewDuration">Not specified</strong>
+                    </div>
+
+                    <div class="preview-row">
+                        <span>Level</span>
+                        <strong id="previewLevel">Not selected</strong>
+                    </div>
+
+                    <div class="preview-row">
+                        <span>Price</span>
+                        <strong id="previewPrice">Free</strong>
+                    </div>
+
+                    <div class="preview-row">
+                        <span>Status</span>
+                        <span class="preview-status" id="previewStatus">
+                            Active
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+
+/* STORAGE */
+
+const COURSE_KEY = "courses";
+
+function readCourses() {
+    try {
+        const data = JSON.parse(localStorage.getItem(COURSE_KEY) || "[]");
+        return Array.isArray(data) ? data : [];
+    } catch (error) {
+        return [];
+    }
+}
+
+function saveCourses(courses) {
+    localStorage.setItem(COURSE_KEY, JSON.stringify(courses));
+}
+
+/* ESCAPE HTML */
+
+function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, function(char) {
+        return {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+        }[char];
+    });
+}
+
+/* COURSE ICON */
+
+function getCourseIcon() {
+    const title = document.getElementById("title").value.toLowerCase();
+
+    if (title.includes("html") || title.includes("css")) return "🌐";
+    if (title.includes("javascript")) return "🟨";
+    if (title.includes("python")) return "🐍";
+    if (title.includes("react")) return "⚛️";
+    if (title.includes("java")) return "☕";
+    if (title.includes("machine learning")) return "🤖";
+    if (title.includes("data")) return "📊";
+    if (title.includes("design")) return "🎨";
+    if (title.includes("cloud")) return "☁️";
+
+    return "📚";
+}
+
+/* LIVE PREVIEW */
+
+function updatePreview() {
+
+    const title = document.getElementById("title").value.trim();
+
+    const category = document.getElementById("category").value;
+
+    const instructor = document.getElementById("instructor").value.trim();
+
+    const description = document.getElementById("description").value.trim();
+
+    const duration = document.getElementById("duration").value.trim();
+
+    const level = document.getElementById("level").value;
+
+    const price = document.getElementById("price").value;
+
+    const status = document.getElementById("status").value;
+
+    document.getElementById("previewTitle").textContent =
+        title || "Your Course Title";
+
+    document.getElementById("previewCategory").textContent =
+        category || "Course Category";
+
+    document.getElementById("previewInstructor").textContent =
+        instructor || "Not assigned";
+
+    document.getElementById("previewDescription").textContent =
+        description || "Your course description will appear here as you fill in the form.";
+
+    document.getElementById("previewDuration").textContent =
+        duration || "Not specified";
+
+    document.getElementById("previewLevel").textContent =
+        level || "Not selected";
+
+    document.getElementById("previewPrice").textContent =
+        price === "" || Number(price) === 0
+            ? "Free"
+            : "₹" + Number(price).toLocaleString("en-IN");
+
+    document.getElementById("previewStatus").textContent = status;
+
+    document.getElementById("previewIcon").textContent = getCourseIcon();
+}
+
+document.querySelectorAll("#courseForm input, #courseForm textarea, #courseForm select")
+    .forEach(function(field) {
+        field.addEventListener("input", updatePreview);
+        field.addEventListener("change", updatePreview);
+    });
+
+/* SAVE COURSE */
+
+document.getElementById("courseForm").addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+        const title = document.getElementById("title").value.trim();
+
+        const category = document.getElementById("category").value;
+
+        const instructor = document.getElementById("instructor").value.trim();
+
+        const description = document.getElementById("description").value.trim();
+
+        const duration = document.getElementById("duration").value.trim();
+
+        const level = document.getElementById("level").value;
+
+        const priceInput = document.getElementById("price").value;
+
+        const price = priceInput === "" ? 0 : Number(priceInput);
+
+        const status = document.getElementById("status").value;
+
+        const outcomes = document.getElementById("outcomes").value
+            .split("\n")
+            .map(function(item) {
+                return item.trim();
+            })
+            .filter(Boolean);
+
+        const requirements = document.getElementById("requirements").value
+            .split("\n")
+            .map(function(item) {
+                return item.trim();
+            })
+            .filter(Boolean);
+
+        if (
+            !title ||
+            !category ||
+            !instructor ||
+            !description ||
+            !duration ||
+            !level
+        ) {
+            showToast("Please complete all required fields.");
+            return;
+        }
+
+        if (price < 0 || !Number.isFinite(price)) {
+            showToast("Please enter a valid course price.");
+            return;
+        }
+
+        const courses = readCourses();
+
+        const duplicate = courses.some(function(course) {
+            const existingTitle = course.title ||
+                                  course.name ||
+                                  course.courseName ||
+                                  "";
+
+            return existingTitle.trim().toLowerCase() === title.toLowerCase();
+        });
+
+        if (duplicate) {
+            showToast("A course with this title already exists.");
+            return;
+        }
+
+        const newCourse = {
+            id: "course-" + Date.now(),
+            title: title,
+            category: category,
+            instructor: instructor,
+            description: description,
+            duration: duration,
+            level: level,
+            price: price,
+            status: status,
+            outcomes: outcomes,
+            requirements: requirements,
+            createdAt: new Date().toISOString()
+        };
+
+        courses.push(newCourse);
+
+        saveCourses(courses);
+
+        showToast("Course added successfully!");
+
+        setTimeout(function() {
+            window.location.href = "courses.html";
+        }, 1000);
+
+    }
+);
+
+/* CLEAR FORM */
+
+function resetForm() {
+
+    const confirmed = confirm(
+        "Are you sure you want to clear all entered course information?"
+    );
+
+    if (!confirmed) return;
+
+    document.getElementById("courseForm").reset();
+
+    updatePreview();
+}
+
+/* ADMIN NAME */
+
+function loadAdmin() {
+
+    let admin = null;
+
+    try {
+        admin = JSON.parse(
+            localStorage.getItem("adminSession") ||
+            localStorage.getItem("loggedInAdmin") ||
+            "null"
+        );
+    } catch (error) {
+        admin = null;
+    }
+
+    if (admin && typeof admin === "object") {
+
+        const name = admin.name ||
+                     admin.fullName ||
+                     admin.username ||
+                     "Administrator";
+
+        document.getElementById("adminName").textContent = name;
+
+        document.querySelector(".avatar").textContent =
+            name.charAt(0).toUpperCase();
+    }
+}
+
+/* TOAST */
+
+function showToast(message) {
+
+    const toast = document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(function() {
+        toast.classList.remove("show");
+    }, 3000);
+}
+
+/* MOBILE SIDEBAR */
+
+function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("show");
+}
+
+/* LOGOUT */
+
+function logoutAdmin(event) {
+
+    if (event) {
+        event.preventDefault();
+    }
+
+    localStorage.removeItem("adminSession");
+    localStorage.removeItem("loggedInAdmin");
+
+    window.location.href = "login.html";
+}
+
+/* INITIALIZE */
+
+loadAdmin();
+
+updatePreview();
+
+</script>
+
+</body>
+</html>
