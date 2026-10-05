@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Progress | SCMS</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f5f7fb;
+    color:#1e293b;
+}
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:250px;
+    height:100vh;
+    background:linear-gradient(180deg,#4338ca,#2563eb);
+    color:white;
+    padding:25px 15px;
+    z-index:1000;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:0 12px 30px;
+}
+
+.logo-icon{
+    width:45px;
+    height:45px;
+    border-radius:12px;
+    background:white;
+    color:#4338ca;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    font-weight:700;
+}
+
+.logo h2{
+    font-size:20px;
+}
+
+.logo span{
+    display:block;
+    font-size:11px;
+    opacity:.8;
+}
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.menu a{
+    text-decoration:none;
+    color:#e0e7ff;
+    padding:13px 15px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:14px;
+    transition:.3s;
+}
+
+.menu a:hover,
+.menu a.active{
+    background:rgba(255,255,255,.18);
+    color:white;
+}
+
+.logout{
+    position:absolute;
+    bottom:25px;
+    left:15px;
+    right:15px;
+}
+
+.main{
+    margin-left:250px;
+    min-height:100vh;
+}
+
+.topbar{
+    height:75px;
+    background:white;
+    border-bottom:1px solid #e5e7eb;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 35px;
+}
+
+.topbar h3{
+    font-family:'Montserrat',sans-serif;
+    font-size:21px;
+}
+
+.profile{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.avatar{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:#e0e7ff;
+    color:#4338ca;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+}
+
+.content{
+    padding:35px;
+}
+
+.welcome{
+    background:linear-gradient(135deg,#4338ca,#2563eb);
+    color:white;
+    padding:30px;
+    border-radius:18px;
+    margin-bottom:25px;
+}
+
+.welcome h1{
+    font-size:27px;
+    margin-bottom:7px;
+}
+
+.welcome p{
+    opacity:.9;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.stat-card{
+    background:white;
+    padding:22px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(15,23,42,.06);
+}
+
+.stat-card small{
+    color:#64748b;
+}
+
+.stat-card h2{
+    margin-top:8px;
+    font-size:28px;
+    color:#4338ca;
+}
+
+.section-title{
+    font-size:20px;
+    margin-bottom:18px;
+    font-family:'Montserrat',sans-serif;
+}
+
+.course-list{
+    display:grid;
+    gap:18px;
+}
+
+.course-card{
+    background:white;
+    padding:22px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(15,23,42,.06);
+}
+
+.course-header{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.course-header h3{
+    font-size:17px;
+    margin-bottom:5px;
+}
+
+.course-header p{
+    color:#64748b;
+    font-size:13px;
+}
+
+.progress-info{
+    margin-top:18px;
+}
+
+.progress-row{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:7px;
+    font-size:13px;
+}
+
+.progress-bar{
+    width:100%;
+    height:10px;
+    background:#e5e7eb;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-fill{
+    height:100%;
+    background:linear-gradient(90deg,#4338ca,#2563eb);
+    border-radius:20px;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:18px;
+    padding:9px 16px;
+    border-radius:8px;
+    background:#4338ca;
+    color:white;
+    text-decoration:none;
+    font-size:13px;
+}
+
+.empty{
+    background:white;
+    padding:45px;
+    text-align:center;
+    border-radius:15px;
+    color:#64748b;
+}
+
+.mobile-btn{
+    display:none;
+}
+
+@media(max-width:1000px){
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:700px){
+    .sidebar{
+        transform:translateX(-100%);
+        transition:.3s;
+    }
+
+    .sidebar.show{
+        transform:translateX(0);
+    }
+
+    .main{
+        margin-left:0;
+    }
+
+    .mobile-btn{
+        display:block;
+        border:0;
+        background:#4338ca;
+        color:white;
+        width:40px;
+        height:40px;
+        border-radius:8px;
+        font-size:20px;
+    }
+
+    .content{
+        padding:20px;
+    }
+
+    .topbar{
+        padding:0 20px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .course-header{
+        flex-direction:column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="logo">
+        <div class="logo-icon">S</div>
+        <div>
+            <h2>SCMS</h2>
+            <span>Learning Portal</span>
+        </div>
+    </div>
+
+    <nav class="menu">
+        <a href="dashboard.html">🏠 Dashboard</a>
+        <a href="courses.html">📚 Browse Courses</a>
+        <a href="my-courses.html">🎓 My Courses</a>
+        <a href="progress.html" class="active">📊 Progress</a>
+        <a href="certificate.html">🏆 Certificates</a>
+        <a href="notifications.html">🔔 Notifications</a>
+        <a href="profile.html">👤 Profile</a>
+        <a href="help.html">❓ Help</a>
+    </nav>
+
+    <div class="logout">
+        <a href="#" onclick="logoutUser()" class="menu">🚪 Logout</a>
+    </div>
+
+</aside>
+
+<main class="main">
+
+    <header class="topbar">
+        <div style="display:flex;align-items:center;gap:15px;">
+            <button class="mobile-btn" onclick="toggleSidebar()">☰</button>
+            <h3>My Learning Progress</h3>
+        </div>
+
+        <div class="profile">
+            <div class="avatar" id="avatar">S</div>
+            <span id="studentName">Student</span>
+        </div>
+    </header>
+
+    <section class="content">
+
+        <div class="welcome">
+            <h1>Track Your Learning Progress 📊</h1>
+            <p>Monitor your course completion and continue your learning journey.</p>
+        </div>
+
+        <div class="stats">
+
+            <div class="stat-card">
+                <small>Enrolled Courses</small>
+                <h2 id="totalCourses">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <small>Completed Courses</small>
+                <h2 id="completedCourses">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <small>In Progress</small>
+                <h2 id="inProgressCourses">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <small>Overall Progress</small>
+                <h2 id="overallProgress">0%</h2>
+            </div>
+
+        </div>
+
+        <h2 class="section-title">Course Progress</h2>
+
+        <div id="courseList" class="course-list"></div>
+
+    </section>
+
+</main>
+
+<script>
+
+const courses = {
+    "html-css":{
+        title:"HTML & CSS Fundamentals",
+        category:"Web Development",
+        lessons:8
+    },
+    "javascript":{
+        title:"JavaScript Essentials",
+        category:"Frontend Development",
+        lessons:10
+    },
+    "react":{
+        title:"React Development",
+        category:"Frontend Development",
+        lessons:10
+    },
+    "python":{
+        title:"Python Programming",
+        category:"Programming",
+        lessons:12
+    },
+    "java":{
+        title:"Java Programming",
+        category:"Programming",
+        lessons:12
+    },
+    "dsa":{
+        title:"Data Structures & Algorithms",
+        category:"Computer Science",
+        lessons:14
+    },
+    "sql":{
+        title:"SQL & Database Management",
+        category:"Database",
+        lessons:9
+    },
+    "data-science":{
+        title:"Data Science Fundamentals",
+        category:"Data Analytics",
+        lessons:12
+    },
+    "machine-learning":{
+        title:"Machine Learning Basics",
+        category:"Artificial Intelligence",
+        lessons:14
+    },
+    "uiux":{
+        title:"UI/UX Design Fundamentals",
+        category:"Design",
+        lessons:8
+    },
+    "git":{
+        title:"Git & GitHub",
+        category:"Developer Tools",
+        lessons:6
+    },
+    "cloud":{
+        title:"Cloud Computing Fundamentals",
+        category:"Cloud",
+        lessons:10
+    }
+};
+
+function getStudent(){
+
+    let student = localStorage.getItem("studentSession");
+
+    if(student){
+        try{
+            return JSON.parse(student);
+        }catch(e){}
+    }
+
+    student = localStorage.getItem("loggedInStudent");
+
+    if(student){
+        try{
+            return JSON.parse(student);
+        }catch(e){}
+    }
+
+    return null;
+}
+
+function getEnrollments(){
+
+    const data = localStorage.getItem("enrolledCourses");
+
+    if(!data){
+        return [];
+    }
+
+    try{
+        return JSON.parse(data);
+    }catch(e){
+        return [];
+    }
+}
+
+function getCourseProgress(courseId, enrollment){
+
+    const saved = localStorage.getItem("courseProgress_" + courseId);
+
+    if(saved){
+
+        try{
+
+            const progressData = JSON.parse(saved);
+
+            if(Array.isArray(progressData.completed)){
+
+                const total = courses[courseId]?.lessons || 1;
+
+                return Math.min(
+                    100,
+                    Math.round((progressData.completed.length / total) * 100)
+                );
+            }
+
+        }catch(e){}
+    }
+
+    if(enrollment && typeof enrollment.progress === "number"){
+        return enrollment.progress;
+    }
+
+    return 0;
+}
+
+function loadProgress(){
+
+    const student = getStudent();
+
+    if(!student){
+
+        window.location.href = "login.html";
+        return;
+    }
+
+    const name = student.name || student.fullName || "Student";
+
+    document.getElementById("studentName").textContent = name;
+    document.getElementById("avatar").textContent = name.charAt(0).toUpperCase();
+
+    let enrollments = getEnrollments();
+
+    const email = student.email;
+
+    if(email){
+
+        enrollments = enrollments.filter(item =>
+            !item.studentEmail ||
+            item.studentEmail === email
+        );
+
+    }
+
+    document.getElementById("totalCourses").textContent = enrollments.length;
+
+    const container = document.getElementById("courseList");
+
+    if(enrollments.length === 0){
+
+        container.innerHTML = `
+            <div class="empty">
+                <h3>No Courses Enrolled</h3>
+                <p>You have not enrolled in any courses yet.</p>
+                <a class="btn" href="courses.html">Browse Courses</a>
+            </div>
+        `;
+
+        updateStats(0,0,0);
+        return;
+    }
+
+    let completed = 0;
+    let inProgress = 0;
+    let totalProgress = 0;
+
+    container.innerHTML = "";
+
+    enrollments.forEach(enrollment => {
+
+        const id = enrollment.courseId || enrollment.id;
+
+        const course = courses[id];
+
+        if(!course){
+            return;
+        }
+
+        const progress = getCourseProgress(id,enrollment);
+
+        totalProgress += progress;
+
+        if(progress >= 100){
+            completed++;
+        }else{
+            inProgress++;
+        }
+
+        container.innerHTML += `
+
+            <div class="course-card">
+
+                <div class="course-header">
+
+                    <div>
+                        <h3>${course.title}</h3>
+                        <p>${course.category}</p>
+                    </div>
+
+                    <strong>${progress}%</strong>
+
+                </div>
+
+                <div class="progress-info">
+
+                    <div class="progress-row">
+                        <span>Course Completion</span>
+                        <span>${progress}%</span>
+                    </div>
+
+                    <div class="progress-bar">
+                        <div class="progress-fill"
+                             style="width:${progress}%"></div>
+                    </div>
+
+                </div>
+
+                <a class="btn"
+                   href="course-content.html?id=${id}">
+                   ${progress >= 100 ? "Review Course" : "Continue Learning"}
+                </a>
+
+            </div>
+        `;
+    });
+
+    const overall = enrollments.length
+        ? Math.round(totalProgress / enrollments.length)
+        : 0;
+
+    updateStats(completed,inProgress,overall);
+}
+
+function updateStats(completed,inProgress,overall){
+
+    document.getElementById("completedCourses").textContent = completed;
+    document.getElementById("inProgressCourses").textContent = inProgress;
+    document.getElementById("overallProgress").textContent = overall + "%";
+}
+
+function toggleSidebar(){
+
+    document
+        .getElementById("sidebar")
+        .classList.toggle("show");
+}
+
+function logoutUser(){
+
+    localStorage.removeItem("studentSession");
+    localStorage.removeItem("loggedInStudent");
+
+    window.location.href = "login.html";
+}
+
+loadProgress();
+
+</script>
+
+</body>
+</html>

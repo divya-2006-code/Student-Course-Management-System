@@ -1,1 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Student Login | SCMS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(79,70,229,.12),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 90%,
+                    rgba(37,99,235,.10),
+                    transparent 30%
+                ),
+                #f7f8fc;
+        }
+
+        .auth-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .auth-navbar {
+            height: 76px;
+            background: rgba(255,255,255,.95);
+            border-bottom: 1px solid #e8ecf2;
+            display: flex;
+            align-items: center;
+        }
+
+        .auth-navbar-inner {
+            width: min(1180px, 92%);
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .back-home {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .back-home:hover {
+            color: #4f46e5;
+        }
+
+        .auth-main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 55px 20px;
+        }
+
+        .auth-wrapper {
+            width: min(960px, 100%);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: white;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 25px 70px rgba(15,23,42,.10);
+            border: 1px solid #e5e9f1;
+        }
+
+        .auth-side {
+            background:
+                linear-gradient(
+                    145deg,
+                    #312e81,
+                    #4338ca,
+                    #2563eb
+                );
+            color: white;
+            padding: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .auth-side::before {
+            content: "";
+            width: 220px;
+            height: 220px;
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,.06);
+            top: -80px;
+            right: -70px;
+        }
+
+        .auth-side::after {
+            content: "";
+            width: 170px;
+            height: 170px;
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,.05);
+            bottom: -60px;
+            left: -60px;
+        }
+
+        .auth-side-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .auth-side-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 15px;
+            background: rgba(255,255,255,.14);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            margin-bottom: 30px;
+        }
+
+        .auth-side h1 {
+            font-size: 34px;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .auth-side > p {
+            color: #dbeafe;
+            font-size: 13px;
+            line-height: 1.8;
+            max-width: 350px;
+        }
+
+        .auth-benefits {
+            margin-top: 35px;
+        }
+
+        .auth-benefit {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            margin-bottom: 17px;
+            font-size: 12px;
+            color: #eef2ff;
+        }
+
+        .auth-benefit i {
+            color: #a7f3d0;
+        }
+
+        .auth-form-area {
+            padding: 50px;
+        }
+
+        .auth-form-header {
+            margin-bottom: 30px;
+        }
+
+        .auth-form-header span {
+            color: #4f46e5;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.3px;
+        }
+
+        .auth-form-header h2 {
+            font-size: 28px;
+            margin: 7px 0;
+        }
+
+        .auth-form-header p {
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 19px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 7px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper > i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        .form-input {
+            width: 100%;
+            height: 46px;
+            border: 1px solid #dbe1ea;
+            border-radius: 9px;
+            padding: 0 42px;
+            outline: none;
+            color: #1e293b;
+            font-size: 13px;
+            background: white;
+            transition: .2s;
+        }
+
+        .form-input:focus {
+            border-color: #818cf8;
+            box-shadow: 0 0 0 3px rgba(99,102,241,.10);
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            color: #94a3b8;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: #64748b;
+            font-size: 11px;
+        }
+
+        .remember input {
+            accent-color: #4f46e5;
+        }
+
+        .forgot-link {
+            color: #4f46e5;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .auth-submit {
+            width: 100%;
+            height: 46px;
+        }
+
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 25px 0;
+            color: #94a3b8;
+            font-size: 10px;
+        }
+
+        .auth-divider::before,
+        .auth-divider::after {
+            content: "";
+            height: 1px;
+            background: #e5e7eb;
+            flex: 1;
+        }
+
+        .register-text {
+            text-align: center;
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        .register-text a {
+            color: #4f46e5;
+            font-weight: 700;
+        }
+
+        .demo-login {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 9px;
+            padding: 11px;
+            margin-top: 20px;
+            font-size: 10px;
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        .demo-login strong {
+            color: #334155;
+        }
+
+        .field-error {
+            display: block;
+            color: #dc2626;
+            font-size: 10px;
+            margin-top: 5px;
+        }
+
+        .input-error {
+            border-color: #ef4444 !important;
+        }
+
+        .login-error {
+            display: none;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #b91c1c;
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 17px;
+            font-size: 11px;
+        }
+
+        @media (max-width: 750px) {
+
+            .auth-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .auth-side {
+                display: none;
+            }
+
+            .auth-form-area {
+                padding: 35px 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="auth-page">
+
+    <header class="auth-navbar">
+
+        <div class="auth-navbar-inner">
+
+            <a href="../index.html" class="logo">
+
+                <div class="logo-icon">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+
+                <div>
+                    <span class="logo-title">SCMS</span>
+                    <small>Learning Platform</small>
+                </div>
+
+            </a>
+
+            <a href="../index.html" class="back-home">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Home
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <main class="auth-main">
+
+        <div class="auth-wrapper">
+
+            <section class="auth-side">
+
+                <div class="auth-side-content">
+
+                    <div class="auth-side-icon">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+
+                    <h1>
+                        Welcome Back!
+                    </h1>
+
+                    <p>
+                        Continue your learning journey with SCMS.
+                        Access your courses, track your progress
+                        and achieve your learning goals.
+                    </p>
+
+                    <div class="auth-benefits">
+
+                        <div class="auth-benefit">
+                            <i class="fa-solid fa-circle-check"></i>
+                            Access your enrolled courses
+                        </div>
+
+                        <div class="auth-benefit">
+                            <i class="fa-solid fa-circle-check"></i>
+                            Track your learning progress
+                        </div>
+
+                        <div class="auth-benefit">
+                            <i class="fa-solid fa-circle-check"></i>
+                            Complete lessons and earn certificates
+                        </div>
+
+                        <div class="auth-benefit">
+                            <i class="fa-solid fa-circle-check"></i>
+                            Manage your learning profile
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <section class="auth-form-area">
+
+                <div class="auth-form-header">
+
+                    <span>STUDENT ACCOUNT</span>
+
+                    <h2>
+                        Sign in to your account
+                    </h2>
+
+                    <p>
+                        Enter your credentials to continue.
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="login-error"
+                    id="loginError"
+                ></div>
+
+
+                <form id="loginForm">
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-regular fa-envelope"></i>
+
+                            <input
+                                type="email"
+                                id="email"
+                                class="form-input"
+                                placeholder="Enter your email"
+                                autocomplete="email"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                type="password"
+                                id="password"
+                                class="form-input"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="togglePassword"
+                            >
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-options">
+
+                        <label class="remember">
+
+                            <input
+                                type="checkbox"
+                                id="remember"
+                            >
+
+                            Remember me
+
+                        </label>
+
+                        <a
+                            href="forgot-password.html"
+                            class="forgot-link"
+                        >
+                            Forgot Password?
+                        </a>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary auth-submit"
+                    >
+                        Sign In
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                </form>
+
+
+                <div class="auth-divider">
+                    OR
+                </div>
+
+
+                <p class="register-text">
+
+                    Don't have an account?
+
+                    <a href="register.html">
+                        Create Account
+                    </a>
+
+                </p>
+
+
+                <div class="demo-login">
+
+                    <strong>Demo Student Login</strong><br>
+
+                    Email:
+                    divyaoct2006@gmail.com
+
+                    <br>
+
+                    Password:
+                    div2006
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script src="../js/data.js"></script>
+<script src="../js/state.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/ui.js"></script>
+<script src="../js/validation.js"></script>
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const form =
+            document.getElementById("loginForm");
+
+        const email =
+            document.getElementById("email");
+
+        const password =
+            document.getElementById("password");
+
+        const errorBox =
+            document.getElementById("loginError");
+
+        const toggle =
+            document.getElementById("togglePassword");
+
+
+        if (isStudentLoggedIn()) {
+
+            window.location.href =
+                "dashboard.html";
+
+            return;
+        }
+
+
+        toggle.addEventListener(
+            "click",
+            function () {
+
+                const isPassword =
+                    password.type === "password";
+
+                password.type =
+                    isPassword
+                        ? "text"
+                        : "password";
+
+                toggle.innerHTML =
+                    isPassword
+                        ? '<i class="fa-regular fa-eye-slash"></i>'
+                        : '<i class="fa-regular fa-eye"></i>';
+
+            }
+        );
+
+
+        form.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+                errorBox.style.display =
+                    "none";
+
+                clearFieldError(email);
+                clearFieldError(password);
+
+
+                if (!validateEmail(email.value)) {
+
+                    showFieldError(
+                        email,
+                        "Please enter a valid email address."
+                    );
+
+                    return;
+                }
+
+
+                if (!validateRequired(password.value)) {
+
+                    showFieldError(
+                        password,
+                        "Please enter your password."
+                    );
+
+                    return;
+                }
+
+
+                const result =
+                    loginStudent(
+                        email.value.trim(),
+                        password.value
+                    );
+
+
+                if (!result.success) {
+
+                    errorBox.textContent =
+                        result.message;
+
+                    errorBox.style.display =
+                        "block";
+
+                    return;
+                }
+
+
+                showToast(
+                    "Login successful!"
+                );
+
+
+                setTimeout(
+                    function () {
+
+                        window.location.href =
+                            "dashboard.html";
+
+                    },
+                    500
+                );
+
+            }
+        );
+
+    }
+);
+
+</script>
+
+</body>
+</html>

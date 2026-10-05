@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Courses - SCMS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            background: #f5f7fb;
+            color: #1e293b;
+        }
+
+        .page-wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 250px;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #4338ca, #2563eb);
+            color: white;
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .sidebar-logo {
+            padding: 25px 22px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .sidebar-logo-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .sidebar-logo h2 {
+            margin: 0;
+            font-size: 19px;
+            font-weight: 700;
+        }
+
+        .sidebar-logo span {
+            display: block;
+            font-size: 11px;
+            opacity: 0.75;
+        }
+
+        .sidebar-menu {
+            padding: 20px 12px;
+        }
+
+        .menu-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.6;
+            padding: 10px 13px;
+            margin-bottom: 5px;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            color: rgba(255,255,255,0.82);
+            text-decoration: none;
+            padding: 13px 14px;
+            border-radius: 10px;
+            margin-bottom: 5px;
+            font-size: 14px;
+            transition: 0.25s;
+        }
+
+        .sidebar-menu a i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            background: rgba(255,255,255,0.16);
+            color: white;
+        }
+
+        .sidebar-menu a.active {
+            box-shadow: inset 3px 0 0 white;
+        }
+
+        .logout-link {
+            margin-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.12);
+            padding-top: 18px !important;
+        }
+
+        /* MAIN */
+        .main-content {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            min-height: 100vh;
+        }
+
+        /* TOPBAR */
+        .topbar {
+            height: 75px;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+            position: sticky;
+            top: 0;
+            z-index: 900;
+        }
+
+        .topbar-left h1 {
+            margin: 0;
+            font-size: 21px;
+            font-family: "Montserrat", sans-serif;
+            color: #172033;
+        }
+
+        .topbar-left p {
+            margin: 3px 0 0;
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .notification-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #475569;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .notification-dot {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #ef4444;
+            border-radius: 50%;
+            top: 8px;
+            right: 8px;
+            border: 2px solid white;
+        }
+
+        .profile-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .profile-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4338ca, #2563eb);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .profile-info strong {
+            display: block;
+            font-size: 13px;
+            color: #1e293b;
+        }
+
+        .profile-info span {
+            display: block;
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            border: none;
+            background: #eef2ff;
+            color: #4338ca;
+            width: 40px;
+            height: 40px;
+            border-radius: 9px;
+            cursor: pointer;
+        }
+
+        /* CONTENT */
+        .content {
+            padding: 32px;
+        }
+
+        .welcome-banner {
+            background: linear-gradient(135deg, #4338ca, #2563eb);
+            color: white;
+            border-radius: 18px;
+            padding: 30px;
+            margin-bottom: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-banner::after {
+            content: "";
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            border: 35px solid rgba(255,255,255,0.08);
+            right: -70px;
+            top: -90px;
+        }
+
+        .welcome-banner h2 {
+            margin: 0 0 7px;
+            font-size: 25px;
+            font-family: "Montserrat", sans-serif;
+            position: relative;
+            z-index: 2;
+        }
+
+        .welcome-banner p {
+            margin: 0;
+            max-width: 650px;
+            color: rgba(255,255,255,0.86);
+            font-size: 14px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* STATS */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 15px;
+            padding: 21px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 5px 18px rgba(15,23,42,0.04);
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+        }
+
+        .icon-blue {
+            background: #e0e7ff;
+            color: #4338ca;
+        }
+
+        .icon-green {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .icon-orange {
+            background: #ffedd5;
+            color: #ea580c;
+        }
+
+        .icon-purple {
+            background: #f3e8ff;
+            color: #9333ea;
+        }
+
+        .stat-info h3 {
+            margin: 0;
+            font-size: 22px;
+            color: #172033;
+        }
+
+        .stat-info p {
+            margin: 2px 0 0;
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        /* SECTION */
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+
+        .section-header h2 {
+            margin: 0;
+            font-family: "Montserrat", sans-serif;
+            font-size: 20px;
+            color: #172033;
+        }
+
+        .section-header p {
+            margin: 4px 0 0;
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .course-count {
+            background: #eef2ff;
+            color: #4338ca;
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* COURSE GRID */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .course-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 17px;
+            overflow: hidden;
+            box-shadow: 0 5px 18px rgba(15,23,42,0.05);
+            transition: 0.25s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 30px rgba(15,23,42,0.09);
+        }
+
+        .course-cover {
+            height: 135px;
+            background: linear-gradient(135deg, #4338ca, #2563eb);
+            color: white;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-cover::before {
+            content: "";
+            width: 130px;
+            height: 130px;
+            position: absolute;
+            right: -40px;
+            bottom: -65px;
+            border-radius: 50%;
+            border: 25px solid rgba(255,255,255,0.08);
+        }
+
+        .course-cover i {
+            font-size: 34px;
+            opacity: 0.9;
+        }
+
+        .course-category {
+            position: absolute;
+            top: 17px;
+            right: 17px;
+            background: rgba(255,255,255,0.18);
+            border: 1px solid rgba(255,255,255,0.25);
+            padding: 5px 9px;
+            border-radius: 20px;
+            font-size: 10px;
+        }
+
+        .course-body {
+            padding: 20px;
+        }
+
+        .course-body h3 {
+            margin: 0 0 8px;
+            font-family: "Montserrat", sans-serif;
+            font-size: 16px;
+            line-height: 1.4;
+            color: #172033;
+        }
+
+        .course-description {
+            color: #64748b;
+            font-size: 12px;
+            line-height: 1.6;
+            min-height: 40px;
+            margin-bottom: 14px;
+        }
+
+        .course-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #edf0f4;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        .meta-item i {
+            color: #4338ca;
+        }
+
+        .instructor {
+            margin: 14px 0;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .instructor-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #eef2ff;
+            color: #4338ca;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .instructor span {
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        .instructor strong {
+            display: block;
+            font-size: 12px;
+            color: #334155;
+        }
+
+        /* PROGRESS */
+        .progress-section {
+            margin-bottom: 16px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 7px;
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        .progress-label strong {
+            color: #4338ca;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 20px;
+            background: linear-gradient(90deg, #4338ca, #2563eb);
+            transition: width 0.5s ease;
+        }
+
+        .progress-fill.completed {
+            background: linear-gradient(90deg, #16a34a, #22c55e);
+        }
+
+        /* BUTTONS */
+        .course-actions {
+            display: flex;
+            gap: 9px;
+        }
+
+        .btn-course {
+            flex: 1;
+            border: none;
+            border-radius: 9px;
+            padding: 10px 12px;
+            cursor: pointer;
+            font-family: "Poppins", sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .btn-primary-course {
+            background: #4338ca;
+            color: white;
+        }
+
+        .btn-primary-course:hover {
+            background: #3730a3;
+        }
+
+        .btn-outline-course {
+            background: #eef2ff;
+            color: #4338ca;
+        }
+
+        .btn-outline-course:hover {
+            background: #e0e7ff;
+        }
+
+        /* EMPTY */
+        .empty-state {
+            background: white;
+            border: 1px dashed #cbd5e1;
+            border-radius: 17px;
+            padding: 65px 25px;
+            text-align: center;
+            display: none;
+        }
+
+        .empty-icon {
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 18px;
+            background: #eef2ff;
+            color: #4338ca;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .empty-state h3 {
+            margin: 0 0 7px;
+            font-size: 18px;
+        }
+
+        .empty-state p {
+            color: #64748b;
+            font-size: 13px;
+            margin: 0 auto 20px;
+            max-width: 450px;
+        }
+
+        .browse-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #4338ca;
+            color: white;
+            padding: 11px 18px;
+            border-radius: 9px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* TOAST */
+        .toast {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            background: #172033;
+            color: white;
+            padding: 13px 18px;
+            border-radius: 10px;
+            font-size: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: translateY(15px);
+            pointer-events: none;
+            transition: 0.3s;
+            z-index: 3000;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .courses-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 800px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: 0.3s;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .topbar {
+                padding: 0 18px;
+            }
+
+            .topbar-left {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .stat-card {
+                padding: 15px;
+            }
+
+            .stat-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .stat-info h3 {
+                font-size: 18px;
+            }
+
+            .profile-info {
+                display: none;
+            }
+
+            .welcome-banner {
+                padding: 23px;
+            }
+
+            .welcome-banner h2 {
+                font-size: 20px;
+            }
+
+            .section-header {
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page-wrapper">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-logo">
+            <div class="sidebar-logo-icon">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+
+            <div>
+                <h2>SCMS</h2>
+                <span>Learning Management</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <div class="menu-title">Main Menu</div>
+
+            <a href="dashboard.html">
+                <i class="fas fa-chart-pie"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="courses.html">
+                <i class="fas fa-book-open"></i>
+                <span>Browse Courses</span>
+            </a>
+
+            <a href="my-courses.html" class="active">
+                <i class="fas fa-layer-group"></i>
+                <span>My Courses</span>
+            </a>
+
+            <a href="progress.html">
+                <i class="fas fa-chart-line"></i>
+                <span>My Progress</span>
+            </a>
+
+            <a href="certificate.html">
+                <i class="fas fa-certificate"></i>
+                <span>Certificates</span>
+            </a>
+
+            <div class="menu-title">Account</div>
+
+            <a href="notifications.html">
+                <i class="fas fa-bell"></i>
+                <span>Notifications</span>
+            </a>
+
+            <a href="profile.html">
+                <i class="fas fa-user"></i>
+                <span>My Profile</span>
+            </a>
+
+            <a href="help.html">
+                <i class="fas fa-circle-question"></i>
+                <span>Help & Support</span>
+            </a>
+
+            <a href="#" class="logout-link" id="logoutBtn">
+                <i class="fas fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+
+        </nav>
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <div>
+                    <h1>My Courses</h1>
+                    <p>Continue your learning journey</p>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <a href="notifications.html" class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-dot"></span>
+                </a>
+
+                <div class="profile-box">
+
+                    <div class="profile-avatar" id="profileAvatar">
+                        D
+                    </div>
+
+                    <div class="profile-info">
+                        <strong id="profileName">Student</strong>
+                        <span>Student</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- PAGE CONTENT -->
+        <section class="content">
+
+            <!-- WELCOME -->
+            <div class="welcome-banner">
+
+                <h2 id="welcomeTitle">
+                    Keep Learning, Keep Growing! 👋
+                </h2>
+
+                <p>
+                    Access your enrolled courses, continue your lessons,
+                    track your progress and complete your learning goals.
+                </p>
+
+            </div>
+
+
+            <!-- STATS -->
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon icon-blue">
+                        <i class="fas fa-book"></i>
+                    </div>
+
+                    <div class="stat-info">
+                        <h3 id="totalCourses">0</h3>
+                        <p>Enrolled Courses</p>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon icon-green">
+                        <i class="fas fa-circle-check"></i>
+                    </div>
+
+                    <div class="stat-info">
+                        <h3 id="completedCourses">0</h3>
+                        <p>Completed Courses</p>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon icon-orange">
+                        <i class="fas fa-spinner"></i>
+                    </div>
+
+                    <div class="stat-info">
+                        <h3 id="activeCourses">0</h3>
+                        <p>Courses In Progress</p>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon icon-purple">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+
+                    <div class="stat-info">
+                        <h3 id="overallProgress">0%</h3>
+                        <p>Overall Progress</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COURSE SECTION -->
+            <div class="section-header">
+
+                <div>
+                    <h2>Your Learning Courses</h2>
+                    <p>Courses you have enrolled in</p>
+                </div>
+
+                <span class="course-count" id="courseCount">
+                    0 Courses
+                </span>
+
+            </div>
+
+
+            <!-- COURSES -->
+            <div class="courses-grid" id="coursesGrid"></div>
+
+
+            <!-- EMPTY STATE -->
+            <div class="empty-state" id="emptyState">
+
+                <div class="empty-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+
+                <h3>No Courses Yet</h3>
+
+                <p>
+                    You have not enrolled in any courses yet.
+                    Explore our available courses and start learning today.
+                </p>
+
+                <a href="courses.html" class="browse-btn">
+                    <i class="fas fa-compass"></i>
+                    Browse Courses
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script src="../js/data.js"></script>
+<script src="../js/state.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/ui.js"></script>
+<script src="../js/validation.js"></script>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* ===============================
+       STUDENT SESSION
+    =============================== */
+
+    let student = null;
+
+    if (typeof getCurrentStudent === "function") {
+        student = getCurrentStudent();
+    }
+
+    if (!student) {
+        try {
+            student = JSON.parse(
+                localStorage.getItem("studentSession")
+            );
+        } catch (error) {
+            student = null;
+        }
+    }
+
+    if (!student) {
+        try {
+            student = JSON.parse(
+                localStorage.getItem("loggedInStudent")
+            );
+        } catch (error) {
+            student = null;
+        }
+    }
+
+
+    /* ===============================
+       DISPLAY STUDENT
+    =============================== */
+
+    const studentName =
+        student && student.name
+            ? student.name
+            : "Student";
+
+    document.getElementById("profileName").textContent = studentName;
+
+    document.getElementById("profileAvatar").textContent =
+        studentName.charAt(0).toUpperCase();
+
+    document.getElementById("welcomeTitle").textContent =
+        "Keep Learning, " + studentName + "! 👋";
+
+
+    /* ===============================
+       GET ENROLLED COURSES
+    =============================== */
+
+    function getEnrolledCourses() {
+
+        let courses = [];
+
+        try {
+            courses = JSON.parse(
+                localStorage.getItem("enrolledCourses")
+            );
+        } catch (error) {
+            courses = [];
+        }
+
+        if (!Array.isArray(courses)) {
+            courses = [];
+        }
+
+        return courses;
+    }
+
+
+    /* ===============================
+       COURSE INFORMATION
+    =============================== */
+
+    const courseInformation = {
+
+        "html-css": {
+            icon: "fa-code",
+            category: "Web Development",
+            description: "Learn the fundamentals of HTML and CSS and build responsive web pages.",
+            instructor: "John David",
+            duration: "4 Weeks",
+            level: "Beginner"
+        },
+
+        "javascript": {
+            icon: "fa-js",
+            category: "Frontend Development",
+            description: "Learn JavaScript fundamentals and create interactive web applications.",
+            instructor: "Emily Johnson",
+            duration: "6 Weeks",
+            level: "Intermediate"
+        },
+
+        "react": {
+            icon: "fa-react",
+            category: "Frontend Development",
+            description: "Build modern and reusable user interfaces using React.",
+            instructor: "Michael Smith",
+            duration: "6 Weeks",
+            level: "Intermediate"
+        },
+
+        "python": {
+            icon: "fa-python",
+            category: "Programming",
+            description: "Learn Python programming from basics to practical applications.",
+            instructor: "Robert Wilson",
+            duration: "8 Weeks",
+            level: "Beginner"
+        },
+
+        "java": {
+            icon: "fa-java",
+            category: "Programming",
+            description: "Understand Java programming and object-oriented programming concepts.",
+            instructor: "David Brown",
+            duration: "8 Weeks",
+            level: "Intermediate"
+        },
+
+        "dsa": {
+            icon: "fa-sitemap",
+            category: "Computer Science",
+            description: "Master important data structures and algorithms for problem solving.",
+            instructor: "Sarah Miller",
+            duration: "8 Weeks",
+            level: "Advanced"
+        },
+
+        "sql": {
+            icon: "fa-database",
+            category: "Database",
+            description: "Learn SQL queries, database design and database management.",
+            instructor: "James Anderson",
+            duration: "5 Weeks",
+            level: "Intermediate"
+        },
+
+        "data-science": {
+            icon: "fa-chart-column",
+            category: "Data Analytics",
+            description: "Learn data analysis, visualization and important data science concepts.",
+            instructor: "Sophia Taylor",
+            duration: "8 Weeks",
+            level: "Intermediate"
+        },
+
+        "machine-learning": {
+            icon: "fa-brain",
+            category: "Artificial Intelligence",
+            description: "Understand machine learning algorithms and build predictive models.",
+            instructor: "Daniel Thomas",
+            duration: "10 Weeks",
+            level: "Advanced"
+        },
+
+        "uiux": {
+            icon: "fa-pen-ruler",
+            category: "Design",
+            description: "Learn UI and UX design principles and create user-friendly interfaces.",
+            instructor: "Olivia Martin",
+            duration: "5 Weeks",
+            level: "Beginner"
+        },
+
+        "git": {
+            icon: "fa-github",
+            category: "Developer Tools",
+            description: "Learn Git and GitHub for version control and collaborative development.",
+            instructor: "William Lee",
+            duration: "3 Weeks",
+            level: "Beginner"
+        },
+
+        "cloud": {
+            icon: "fa-cloud",
+            category: "Cloud",
+            description: "Understand cloud computing concepts, services and deployment.",
+            instructor: "Emma White",
+            duration: "7 Weeks",
+            level: "Intermediate"
+        }
+
+    };
+
+
+    /* ===============================
+       FIND COURSE DETAILS
+    =============================== */
+
+    function getCourseDetails(course) {
+
+        const courseId =
+            course.courseId ||
+            course.id ||
+            course.courseKey;
+
+        if (courseInformation[courseId]) {
+            return courseInformation[courseId];
+        }
+
+        return {
+            icon: "fa-book",
+            category: "Online Course",
+            description:
+                course.description ||
+                "Continue learning and improve your skills with this course.",
+            instructor:
+                course.instructor ||
+                "Course Instructor",
+            duration:
+                course.duration ||
+                "Self Paced",
+            level:
+                course.level ||
+                "All Levels"
+        };
+    }
+
+
+    /* ===============================
+       RENDER COURSES
+    =============================== */
+
+    function renderCourses() {
+
+        const enrolledCourses = getEnrolledCourses();
+
+        const grid =
+            document.getElementById("coursesGrid");
+
+        const emptyState =
+            document.getElementById("emptyState");
+
+        grid.innerHTML = "";
+
+
+        /* FILTER BY CURRENT STUDENT */
+
+        let studentCourses = enrolledCourses;
+
+        if (student && student.email) {
+
+            const filtered =
+                enrolledCourses.filter(function (course) {
+
+                    return (
+                        !course.studentEmail ||
+                        course.studentEmail === student.email
+                    );
+
+                });
+
+            if (filtered.length > 0) {
+                studentCourses = filtered;
+            }
+        }
+
+
+        /* EMPTY */
+
+        if (studentCourses.length === 0) {
+
+            emptyState.style.display = "block";
+
+            updateStats([]);
+
+            return;
+        }
+
+        emptyState.style.display = "none";
+
+
+        studentCourses.forEach(function (course, index) {
+
+            const details =
+                getCourseDetails(course);
+
+            let progress =
+                Number(course.progress);
+
+            if (isNaN(progress)) {
+                progress = 0;
+            }
+
+            progress =
+                Math.max(0, Math.min(100, progress));
+
+
+            let status =
+                course.status || "Active";
+
+            if (progress >= 100) {
+                status = "Completed";
+            }
+
+
+            const courseId =
+                course.courseId ||
+                course.id ||
+                course.courseKey ||
+                ("course-" + index);
+
+
+            const instructorInitial =
+                details.instructor
+                    .charAt(0)
+                    .toUpperCase();
+
+
+            const card =
+                document.createElement("article");
+
+            card.className = "course-card";
+
+
+            card.innerHTML = `
+
+                <div class="course-cover">
+
+                    <i class="fas ${details.icon}"></i>
+
+                    <span class="course-category">
+                        ${details.category}
+                    </span>
+
+                </div>
+
+
+                <div class="course-body">
+
+                    <h3>
+                        ${course.title || "Untitled Course"}
+                    </h3>
+
+                    <div class="course-description">
+                        ${details.description}
+                    </div>
+
+
+                    <div class="course-meta">
+
+                        <span class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            ${details.duration}
+                        </span>
+
+                        <span class="meta-item">
+                            <i class="fas fa-signal"></i>
+                            ${details.level}
+                        </span>
+
+                        <span class="meta-item">
+                            <i class="fas fa-circle-check"></i>
+                            ${status}
+                        </span>
+
+                    </div>
+
+
+                    <div class="instructor">
+
+                        <div class="instructor-avatar">
+                            ${instructorInitial}
+                        </div>
+
+                        <div>
+                            <span>Instructor</span>
+                            <strong>
+                                ${details.instructor}
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="progress-section">
+
+                        <div class="progress-label">
+
+                            <span>
+                                Course Progress
+                            </span>
+
+                            <strong>
+                                ${progress}%
+                            </strong>
+
+                        </div>
+
+                        <div class="progress-bar">
+
+                            <div
+                                class="progress-fill ${progress >= 100 ? "completed" : ""}"
+                                style="width:${progress}%">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="course-actions">
+
+                        <a
+                            href="course-content.html?id=${encodeURIComponent(courseId)}"
+                            class="btn-course btn-primary-course">
+                            <i class="fas fa-play"></i>
+                            ${progress >= 100 ? "Review Course" : "Continue Learning"}
+                        </a>
+
+                        <a
+                            href="course-details.html?id=${encodeURIComponent(courseId)}"
+                            class="btn-course btn-outline-course">
+                            Details
+                        </a>
+
+                    </div>
+
+                </div>
+            `;
+
+
+            grid.appendChild(card);
+
+        });
+
+
+        updateStats(studentCourses);
+
+    }
+
+
+    /* ===============================
+       UPDATE STATISTICS
+    =============================== */
+
+    function updateStats(courses) {
+
+        const total =
+            courses.length;
+
+        let completed = 0;
+        let active = 0;
+        let totalProgress = 0;
+
+
+        courses.forEach(function (course) {
+
+            let progress =
+                Number(course.progress);
+
+            if (isNaN(progress)) {
+                progress = 0;
+            }
+
+            progress =
+                Math.max(0, Math.min(100, progress));
+
+            totalProgress += progress;
+
+            if (progress >= 100) {
+                completed++;
+            } else {
+                active++;
+            }
+
+        });
+
+
+        const overall =
+            total > 0
+                ? Math.round(totalProgress / total)
+                : 0;
+
+
+        document.getElementById("totalCourses").textContent =
+            total;
+
+        document.getElementById("completedCourses").textContent =
+            completed;
+
+        document.getElementById("activeCourses").textContent =
+            active;
+
+        document.getElementById("overallProgress").textContent =
+            overall + "%";
+
+        document.getElementById("courseCount").textContent =
+            total + (total === 1 ? " Course" : " Courses");
+    }
+
+
+    /* ===============================
+       MOBILE SIDEBAR
+    =============================== */
+
+    const mobileMenuBtn =
+        document.getElementById("mobileMenuBtn");
+
+    const sidebar =
+        document.getElementById("sidebar");
+
+
+    mobileMenuBtn.addEventListener("click", function () {
+
+        sidebar.classList.toggle("open");
+
+    });
+
+
+    /* ===============================
+       CLOSE SIDEBAR
+    =============================== */
+
+    document.querySelectorAll(".sidebar-menu a")
+        .forEach(function (link) {
+
+            link.addEventListener("click", function () {
+
+                if (window.innerWidth <= 800) {
+                    sidebar.classList.remove("open");
+                }
+
+            });
+
+        });
+
+
+    /* ===============================
+       LOGOUT
+    =============================== */
+
+    document.getElementById("logoutBtn")
+        .addEventListener("click", function (event) {
+
+            event.preventDefault();
+
+            if (typeof logoutStudent === "function") {
+
+                logoutStudent();
+
+            } else {
+
+                localStorage.removeItem("studentSession");
+                localStorage.removeItem("loggedInStudent");
+
+            }
+
+            window.location.href = "login.html";
+
+        });
+
+
+    /* ===============================
+       INITIAL LOAD
+    =============================== */
+
+    renderCourses();
+
+});
+
+</script>
+
+</body>
+</html>

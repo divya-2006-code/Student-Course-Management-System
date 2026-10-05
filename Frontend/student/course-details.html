@@ -1,0 +1,2753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Course Details | SCMS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            background: #f5f7fb;
+            color: #1f2937;
+        }
+
+        .dashboard-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            width: 260px;
+            background: linear-gradient(180deg, #4338ca, #2563eb);
+            color: white;
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .sidebar-brand {
+            height: 85px;
+            display: flex;
+            align-items: center;
+            padding: 0 22px;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .brand-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+            margin-right: 12px;
+        }
+
+        .brand-text h2 {
+            margin: 0;
+            font-size: 18px;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        .brand-text span {
+            font-size: 10px;
+            opacity: 0.8;
+        }
+
+        .sidebar-menu {
+            padding: 22px 14px;
+        }
+
+        .menu-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.6;
+            padding: 0 14px 10px;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 13px 15px;
+            margin-bottom: 5px;
+            color: rgba(255,255,255,0.82);
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 13px;
+            transition: 0.25s;
+        }
+
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            background: rgba(255,255,255,0.16);
+            color: white;
+        }
+
+        .sidebar-menu a.active {
+            box-shadow: inset 3px 0 0 white;
+        }
+
+        .menu-icon {
+            width: 20px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .sidebar-bottom {
+            padding: 15px 14px 25px;
+        }
+
+        .logout-btn {
+            width: 100%;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.08);
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: "Poppins";
+        }
+
+        /* MAIN */
+
+        .main-content {
+            margin-left: 260px;
+            width: calc(100% - 260px);
+            min-height: 100vh;
+        }
+
+        /* TOPBAR */
+
+        .topbar {
+            height: 85px;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+            position: sticky;
+            top: 0;
+            z-index: 500;
+        }
+
+        .mobile-menu {
+            display: none;
+            border: none;
+            background: #eef2ff;
+            color: #4338ca;
+            width: 40px;
+            height: 40px;
+            border-radius: 9px;
+            cursor: pointer;
+        }
+
+        .page-heading h1 {
+            margin: 0;
+            font-family: "Montserrat";
+            font-size: 21px;
+        }
+
+        .page-heading p {
+            margin: 4px 0 0;
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .notification-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: #f5f3ff;
+            color: #4338ca;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .notification-dot {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #ef4444;
+            border: 2px solid white;
+        }
+
+        .student-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #1f2937;
+        }
+
+        .student-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4338ca, #2563eb);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .student-name {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .student-role {
+            display: block;
+            font-size: 10px;
+            color: #9ca3af;
+            font-weight: 400;
+        }
+
+        /* CONTENT */
+
+        .content-wrapper {
+            padding: 30px 32px 45px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            color: #4338ca;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        /* HERO */
+
+        .course-hero {
+            background: linear-gradient(120deg, #4338ca, #2563eb);
+            color: white;
+            border-radius: 18px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+
+        .course-hero::after {
+            content: "";
+            position: absolute;
+            width: 270px;
+            height: 270px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            right: -70px;
+            top: -100px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 780px;
+        }
+
+        .category-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.16);
+            padding: 7px 11px;
+            border-radius: 7px;
+            font-size: 10px;
+            margin-bottom: 13px;
+        }
+
+        .course-hero h2 {
+            margin: 0 0 10px;
+            font-family: "Montserrat";
+            font-size: 30px;
+            line-height: 1.3;
+        }
+
+        .hero-description {
+            margin: 0 0 18px;
+            font-size: 13px;
+            line-height: 1.8;
+            opacity: 0.88;
+        }
+
+        .hero-rating {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 9px;
+            font-size: 11px;
+        }
+
+        .stars {
+            color: #fbbf24;
+            letter-spacing: 2px;
+        }
+
+        /* COURSE META */
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 22px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .hero-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .hero-meta-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-meta-item span {
+            display: block;
+            font-size: 9px;
+            opacity: 0.7;
+        }
+
+        .hero-meta-item strong {
+            display: block;
+            font-size: 11px;
+        }
+
+        /* MAIN GRID */
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.7fr) minmax(280px, 0.8fr);
+            gap: 23px;
+            align-items: start;
+        }
+
+        .left-column,
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .panel {
+            background: white;
+            border: 1px solid #e7e9ef;
+            border-radius: 15px;
+            padding: 23px;
+        }
+
+        .panel-title {
+            margin: 0 0 18px;
+            font-family: "Montserrat";
+            font-size: 17px;
+            color: #111827;
+        }
+
+        .panel-description {
+            margin: 0;
+            color: #697386;
+            font-size: 11px;
+            line-height: 1.9;
+        }
+
+        /* VIDEO PREVIEW */
+
+        .video-preview {
+            height: 260px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #312e81, #2563eb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-preview::before {
+            content: "";
+            width: 220px;
+            height: 220px;
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.06);
+            left: -70px;
+            bottom: -100px;
+        }
+
+        .play-button {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: white;
+            color: #4338ca;
+            border: none;
+            font-size: 25px;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+            padding-left: 5px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            transition: 0.25s;
+        }
+
+        .play-button:hover {
+            transform: scale(1.08);
+        }
+
+        .preview-text {
+            position: absolute;
+            bottom: 18px;
+            left: 20px;
+            color: white;
+            z-index: 2;
+        }
+
+        .preview-text strong {
+            display: block;
+            font-size: 13px;
+        }
+
+        .preview-text span {
+            font-size: 9px;
+            opacity: 0.75;
+        }
+
+        /* LEARNING */
+
+        .learning-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 11px;
+        }
+
+        .learning-item {
+            display: flex;
+            gap: 9px;
+            align-items: flex-start;
+            padding: 11px;
+            border-radius: 9px;
+            background: #f8fafc;
+        }
+
+        .learning-check {
+            color: #059669;
+            font-weight: 700;
+        }
+
+        .learning-item span:last-child {
+            color: #5f6879;
+            font-size: 10px;
+            line-height: 1.6;
+        }
+
+        /* CURRICULUM */
+
+        .module {
+            border: 1px solid #e7e9ef;
+            border-radius: 11px;
+            margin-bottom: 11px;
+            overflow: hidden;
+        }
+
+        .module:last-child {
+            margin-bottom: 0;
+        }
+
+        .module-header {
+            width: 100%;
+            border: none;
+            background: #fafbff;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-family: "Poppins";
+            text-align: left;
+        }
+
+        .module-title {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .module-number {
+            width: 31px;
+            height: 31px;
+            border-radius: 8px;
+            background: #eef2ff;
+            color: #4338ca;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .module-title strong {
+            display: block;
+            color: #374151;
+            font-size: 11px;
+        }
+
+        .module-title span {
+            display: block;
+            color: #9ca3af;
+            font-size: 9px;
+            margin-top: 2px;
+        }
+
+        .module-arrow {
+            color: #6b7280;
+            transition: 0.25s;
+        }
+
+        .module.open .module-arrow {
+            transform: rotate(180deg);
+        }
+
+        .lessons {
+            display: none;
+            border-top: 1px solid #edf0f4;
+        }
+
+        .module.open .lessons {
+            display: block;
+        }
+
+        .lesson {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f0f2f5;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lesson:last-child {
+            border-bottom: none;
+        }
+
+        .lesson-icon {
+            color: #4338ca;
+            width: 25px;
+        }
+
+        .lesson-info {
+            flex: 1;
+        }
+
+        .lesson-info strong {
+            display: block;
+            font-size: 10px;
+            color: #4b5563;
+        }
+
+        .lesson-info span {
+            display: block;
+            font-size: 8px;
+            color: #9ca3af;
+            margin-top: 2px;
+        }
+
+        .lesson-time {
+            color: #9ca3af;
+            font-size: 9px;
+        }
+
+        /* REQUIREMENTS */
+
+        .requirements {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .requirement {
+            display: flex;
+            gap: 10px;
+            font-size: 10px;
+            color: #687386;
+            line-height: 1.6;
+        }
+
+        .requirement-icon {
+            color: #4338ca;
+        }
+
+        /* ENROLL CARD */
+
+        .enroll-card {
+            position: sticky;
+            top: 105px;
+        }
+
+        .enroll-card h3 {
+            margin: 0 0 6px;
+            font-family: "Montserrat";
+            font-size: 18px;
+        }
+
+        .enroll-card > p {
+            margin: 0 0 18px;
+            color: #8b93a3;
+            font-size: 10px;
+            line-height: 1.6;
+        }
+
+        .price-box {
+            background: #f5f3ff;
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .price-box span {
+            display: block;
+            color: #8b93a3;
+            font-size: 9px;
+        }
+
+        .price-box strong {
+            color: #4338ca;
+            font-family: "Montserrat";
+            font-size: 22px;
+        }
+
+        .enroll-main-btn {
+            width: 100%;
+            height: 46px;
+            border: none;
+            border-radius: 9px;
+            background: #4338ca;
+            color: white;
+            font-family: "Poppins";
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .enroll-main-btn:hover {
+            background: #3730a3;
+            transform: translateY(-2px);
+        }
+
+        .enroll-main-btn.enrolled {
+            background: #059669;
+        }
+
+        .guarantee {
+            text-align: center;
+            color: #9ca3af;
+            font-size: 9px;
+            margin-top: 11px;
+        }
+
+        /* INFO LIST */
+
+        .info-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 11px 0;
+            border-bottom: 1px solid #edf0f4;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-row span {
+            color: #9299a8;
+            font-size: 10px;
+        }
+
+        .info-row strong {
+            color: #374151;
+            font-size: 10px;
+            text-align: right;
+        }
+
+        /* INSTRUCTOR */
+
+        .instructor-card {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .instructor-big-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: #eef2ff;
+            color: #4338ca;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .instructor-card strong {
+            display: block;
+            font-size: 12px;
+        }
+
+        .instructor-card span {
+            display: block;
+            color: #9299a8;
+            font-size: 9px;
+            margin-top: 3px;
+        }
+
+        /* CERTIFICATE */
+
+        .certificate-box {
+            background: linear-gradient(135deg, #faf5ff, #eef2ff);
+            border: 1px solid #ddd6fe;
+            border-radius: 11px;
+            padding: 17px;
+            text-align: center;
+        }
+
+        .certificate-box-icon {
+            font-size: 28px;
+            margin-bottom: 7px;
+        }
+
+        .certificate-box h4 {
+            margin: 0 0 5px;
+            font-family: "Montserrat";
+            font-size: 12px;
+        }
+
+        .certificate-box p {
+            margin: 0;
+            color: #7b8495;
+            font-size: 9px;
+            line-height: 1.6;
+        }
+
+        /* TOAST */
+
+        .toast {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            background: #111827;
+            color: white;
+            padding: 13px 18px;
+            border-radius: 9px;
+            font-size: 11px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: 0.3s;
+            z-index: 3000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* RESPONSIVE */
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15,23,42,0.45);
+            z-index: 900;
+        }
+
+        @media (max-width: 1000px) {
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .enroll-card {
+                position: static;
+            }
+
+        }
+
+        @media (max-width: 850px) {
+
+            .sidebar {
+                transform: translateX(-100%);
+                transition: 0.3s;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .sidebar-overlay.show {
+                display: block;
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .page-heading {
+                display: none;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .content-wrapper {
+                padding: 20px 15px 35px;
+            }
+
+            .topbar {
+                padding: 0 18px;
+            }
+
+            .student-name {
+                display: none;
+            }
+
+            .course-hero {
+                padding: 23px;
+            }
+
+            .course-hero h2 {
+                font-size: 23px;
+            }
+
+            .hero-meta {
+                gap: 15px;
+            }
+
+            .learning-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .video-preview {
+                height: 210px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-icon">
+                🎓
+            </div>
+
+            <div class="brand-text">
+                <h2>SCMS</h2>
+                <span>Learning Portal</span>
+            </div>
+
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <div class="menu-title">
+                Main Menu
+            </div>
+
+            <a href="dashboard.html">
+                <span class="menu-icon">🏠</span>
+                Dashboard
+            </a>
+
+            <a href="courses.html" class="active">
+                <span class="menu-icon">📚</span>
+                Browse Courses
+            </a>
+
+            <a href="my-courses.html">
+                <span class="menu-icon">🎯</span>
+                My Courses
+            </a>
+
+            <a href="progress.html">
+                <span class="menu-icon">📊</span>
+                My Progress
+            </a>
+
+            <a href="certificate.html">
+                <span class="menu-icon">🏆</span>
+                Certificates
+            </a>
+
+            <div class="menu-title" style="margin-top:22px;">
+                Account
+            </div>
+
+            <a href="notifications.html">
+                <span class="menu-icon">🔔</span>
+                Notifications
+            </a>
+
+            <a href="profile.html">
+                <span class="menu-icon">👤</span>
+                My Profile
+            </a>
+
+            <a href="help.html">
+                <span class="menu-icon">❓</span>
+                Help & Support
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <button class="logout-btn" id="logoutBtn">
+                🚪 &nbsp; Logout
+            </button>
+
+        </div>
+
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div style="display:flex;align-items:center;gap:13px;">
+
+                <button class="mobile-menu" id="mobileMenu">
+                    ☰
+                </button>
+
+                <div class="page-heading">
+
+                    <h1>Course Details</h1>
+
+                    <p>
+                        Explore the course before you start learning.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <a href="notifications.html"
+                   class="notification-icon">
+
+                    🔔
+
+                    <span class="notification-dot"></span>
+
+                </a>
+
+                <a href="profile.html"
+                   class="student-profile">
+
+                    <div class="student-avatar"
+                         id="studentAvatar">
+                        DS
+                    </div>
+
+                    <div class="student-name">
+
+                        <span id="studentName">
+                            Student
+                        </span>
+
+                        <span class="student-role">
+                            Learner
+                        </span>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </header>
+
+        <div class="content-wrapper">
+
+            <a href="courses.html" class="back-link">
+                ← Back to Browse Courses
+            </a>
+
+            <!-- COURSE HERO -->
+
+            <section class="course-hero">
+
+                <div class="hero-content">
+
+                    <span class="category-badge"
+                          id="courseCategory">
+                        Web Development
+                    </span>
+
+                    <h2 id="courseTitle">
+                        HTML & CSS Fundamentals
+                    </h2>
+
+                    <p class="hero-description"
+                       id="courseDescription">
+                        Learn how to create modern, responsive and
+                        professional websites using HTML and CSS.
+                    </p>
+
+                    <div class="hero-rating">
+
+                        <span class="stars">
+                            ★★★★★
+                        </span>
+
+                        <strong id="courseRating">
+                            4.8
+                        </strong>
+
+                        <span>
+                            Course Rating
+                        </span>
+
+                        <span>•</span>
+
+                        <span id="studentCount">
+                            1,240 students
+                        </span>
+
+                    </div>
+
+                    <div class="hero-meta">
+
+                        <div class="hero-meta-item">
+
+                            <div class="hero-meta-icon">
+                                ⏱️
+                            </div>
+
+                            <div>
+                                <span>Duration</span>
+                                <strong id="courseDuration">
+                                    4 Weeks
+                                </strong>
+                            </div>
+
+                        </div>
+
+                        <div class="hero-meta-item">
+
+                            <div class="hero-meta-icon">
+                                📖
+                            </div>
+
+                            <div>
+                                <span>Lessons</span>
+                                <strong id="courseLessons">
+                                    25 Lessons
+                                </strong>
+                            </div>
+
+                        </div>
+
+                        <div class="hero-meta-item">
+
+                            <div class="hero-meta-icon">
+                                📈
+                            </div>
+
+                            <div>
+                                <span>Level</span>
+                                <strong id="courseLevel">
+                                    Beginner
+                                </strong>
+                            </div>
+
+                        </div>
+
+                        <div class="hero-meta-item">
+
+                            <div class="hero-meta-icon">
+                                👨‍🏫
+                            </div>
+
+                            <div>
+                                <span>Instructor</span>
+                                <strong id="courseInstructor">
+                                    John David
+                                </strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- DETAILS -->
+
+            <div class="details-grid">
+
+                <div class="left-column">
+
+                    <!-- PREVIEW -->
+
+                    <section class="panel">
+
+                        <h3 class="panel-title">
+                            Course Preview
+                        </h3>
+
+                        <div class="video-preview">
+
+                            <button class="play-button"
+                                    id="previewButton">
+                                ▶
+                            </button>
+
+                            <div class="preview-text">
+
+                                <strong>
+                                    Course Introduction
+                                </strong>
+
+                                <span>
+                                    Preview lesson
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <!-- OVERVIEW -->
+
+                    <section class="panel">
+
+                        <h3 class="panel-title">
+                            About This Course
+                        </h3>
+
+                        <p class="panel-description"
+                           id="aboutCourse">
+                            This course provides a practical introduction
+                            to the fundamental concepts required to create
+                            modern websites. You will learn how to structure
+                            webpages with HTML and style them using CSS.
+                            The course includes practical examples,
+                            exercises and project-based learning.
+                        </p>
+
+                    </section>
+
+                    <!-- LEARNING OUTCOMES -->
+
+                    <section class="panel">
+
+                        <h3 class="panel-title">
+                            What You Will Learn
+                        </h3>
+
+                        <div class="learning-grid"
+                             id="learningList">
+
+                            <div class="learning-item">
+                                <span class="learning-check">✓</span>
+                                <span>Create structured webpages using HTML.</span>
+                            </div>
+
+                            <div class="learning-item">
+                                <span class="learning-check">✓</span>
+                                <span>Design responsive layouts using CSS.</span>
+                            </div>
+
+                            <div class="learning-item">
+                                <span class="learning-check">✓</span>
+                                <span>Use Flexbox and CSS Grid effectively.</span>
+                            </div>
+
+                            <div class="learning-item">
+                                <span class="learning-check">✓</span>
+                                <span>Create mobile-friendly interfaces.</span>
+                            </div>
+
+                            <div class="learning-item">
+                                <span class="learning-check">✓</span>
+                                <span>Build reusable webpage components.</span>
+                            </div>
+
+                            <div class="learning-item">
+                                <span class="learning-check">✓</span>
+                                <span>Complete a practical website project.</span>
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <!-- CURRICULUM -->
+
+                    <section class="panel">
+
+                        <h3 class="panel-title">
+                            Course Curriculum
+                        </h3>
+
+                        <div id="curriculum">
+
+                            <div class="module open">
+
+                                <button class="module-header">
+
+                                    <div class="module-title">
+
+                                        <div class="module-number">
+                                            01
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Introduction to Web Development
+                                            </strong>
+
+                                            <span>
+                                                5 lessons • 45 minutes
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                    <span class="module-arrow">
+                                        ▼
+                                    </span>
+
+                                </button>
+
+                                <div class="lessons">
+
+                                    <div class="lesson">
+
+                                        <div class="lesson-icon">
+                                            ▶
+                                        </div>
+
+                                        <div class="lesson-info">
+
+                                            <strong>
+                                                Introduction to Websites
+                                            </strong>
+
+                                            <span>
+                                                Video Lesson
+                                            </span>
+
+                                        </div>
+
+                                        <span class="lesson-time">
+                                            08:30
+                                        </span>
+
+                                    </div>
+
+                                    <div class="lesson">
+
+                                        <div class="lesson-icon">
+                                            📄
+                                        </div>
+
+                                        <div class="lesson-info">
+
+                                            <strong>
+                                                How the Web Works
+                                            </strong>
+
+                                            <span>
+                                                Reading
+                                            </span>
+
+                                        </div>
+
+                                        <span class="lesson-time">
+                                            07:20
+                                        </span>
+
+                                    </div>
+
+                                    <div class="lesson">
+
+                                        <div class="lesson-icon">
+                                            ▶
+                                        </div>
+
+                                        <div class="lesson-info">
+
+                                            <strong>
+                                                HTML Basics
+                                            </strong>
+
+                                            <span>
+                                                Video Lesson
+                                            </span>
+
+                                        </div>
+
+                                        <span class="lesson-time">
+                                            12:10
+                                        </span>
+
+                                    </div>
+
+                                    <div class="lesson">
+
+                                        <div class="lesson-icon">
+                                            📝
+                                        </div>
+
+                                        <div class="lesson-info">
+
+                                            <strong>
+                                                HTML Practice
+                                            </strong>
+
+                                            <span>
+                                                Exercise
+                                            </span>
+
+                                        </div>
+
+                                        <span class="lesson-time">
+                                            10:00
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="module">
+
+                                <button class="module-header">
+
+                                    <div class="module-title">
+
+                                        <div class="module-number">
+                                            02
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                HTML Structure & Elements
+                                            </strong>
+
+                                            <span>
+                                                5 lessons • 55 minutes
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                    <span class="module-arrow">
+                                        ▼
+                                    </span>
+
+                                </button>
+
+                                <div class="lessons">
+
+                                    <div class="lesson">
+
+                                        <div class="lesson-icon">
+                                            ▶
+                                        </div>
+
+                                        <div class="lesson-info">
+
+                                            <strong>
+                                                HTML Elements
+                                            </strong>
+
+                                            <span>
+                                                Video Lesson
+                                            </span>
+
+                                        </div>
+
+                                        <span class="lesson-time">
+                                            12:30
+                                        </span>
+
+                                    </div>
+
+                                    <div class="lesson">
+
+                                        <div class="lesson-icon">
+                                            ▶
+                                        </div>
+
+                                        <div class="lesson-info">
+
+                                            <strong>
+                                                Forms and Inputs
+                                            </strong>
+
+                                            <span>
+                                                Video Lesson
+                                            </span>
+
+                                        </div>
+
+                                        <span class="lesson-time">
+                                            14:20
+                                        </span>
+
+                                    </div>
+
+                                    <div class="lesson">
+
+                                        <div class="lesson-icon">
+                                            📄
+                                        </div>
+
+                                        <div class="lesson-info">
+
+                                            <strong>
+                                                Semantic HTML
+                                            </strong>
+
+                                            <span>
+                                                Reading
+                                            </span>
+
+                                        </div>
+
+                                        <span class="lesson-time">
+                                            09:00
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="module">
+
+                                <button class="module-header">
+
+                                    <div class="module-title">
+
+                                        <div class="module-number">
+                                            03
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                CSS Fundamentals
+                                            </strong>
+
+                                            <span>
+                                                5 lessons • 60 minutes
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                    <span class="module-arrow">
+                                        ▼
+                                    </span>
+
+                                </button>
+
+                                <div class="lessons">
+
+                                    <div class="lesson">
+
+                                        <div class="lesson-icon">
+                                            ▶
+                                        </div>
+
+                                        <div class="lesson-info">
+
+                                            <strong>
+                                                CSS Selectors
+                                            </strong>
+
+                                            <span>
+                                                Video Lesson
+                                            </span>
+
+                                        </div>
+
+                                        <span class="lesson-time">
+                                            11:30
+                                        </span>
+
+                                    </div>
+
+                                    <div class="lesson">
+
+                                        <div class="lesson-icon">
+                                            ▶
+                                        </div>
+
+                                        <div class="lesson-info">
+
+                                            <strong>
+                                                Colors and Typography
+                                            </strong>
+
+                                            <span>
+                                                Video Lesson
+                                            </span>
+
+                                        </div>
+
+                                        <span class="lesson-time">
+                                            13:20
+                                        </span>
+
+                                    </div>
+
+                                    <div class="lesson">
+
+                                        <div class="lesson-icon">
+                                            📝
+                                        </div>
+
+                                        <div class="lesson-info">
+
+                                            <strong>
+                                                CSS Practice Project
+                                            </strong>
+
+                                            <span>
+                                                Exercise
+                                            </span>
+
+                                        </div>
+
+                                        <span class="lesson-time">
+                                            20:00
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="module">
+
+                                <button class="module-header">
+
+                                    <div class="module-title">
+
+                                        <div class="module-number">
+                                            04
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Responsive Web Design
+                                            </strong>
+
+                                            <span>
+                                                5 lessons • 65 minutes
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                    <span class="module-arrow">
+                                        ▼
+                                    </span>
+
+                                </button>
+
+                                <div class="lessons">
+
+                                    <div class="lesson">
+
+                                        <div class="lesson-icon">
+                                            ▶
+                                        </div>
+
+                                        <div class="lesson-info">
+
+                                            <strong>
+                                                Flexbox
+                                            </strong>
+
+                                            <span>
+                                                Video Lesson
+                                            </span>
+
+                                        </div>
+
+                                        <span class="lesson-time">
+                                            15:00
+                                        </span>
+
+                                    </div>
+
+                                    <div class="lesson">
+
+                                        <div class="lesson-icon">
+                                            ▶
+                                        </div>
+
+                                        <div class="lesson-info">
+
+                                            <strong>
+                                                CSS Grid
+                                            </strong>
+
+                                            <span>
+                                                Video Lesson
+                                            </span>
+
+                                        </div>
+
+                                        <span class="lesson-time">
+                                            16:20
+                                        </span>
+
+                                    </div>
+
+                                    <div class="lesson">
+
+                                        <div class="lesson-icon">
+                                            📝
+                                        </div>
+
+                                        <div class="lesson-info">
+
+                                            <strong>
+                                                Responsive Project
+                                            </strong>
+
+                                            <span>
+                                                Project
+                                            </span>
+
+                                        </div>
+
+                                        <span class="lesson-time">
+                                            25:00
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <!-- REQUIREMENTS -->
+
+                    <section class="panel">
+
+                        <h3 class="panel-title">
+                            Requirements
+                        </h3>
+
+                        <div class="requirements">
+
+                            <div class="requirement">
+                                <span class="requirement-icon">✓</span>
+                                <span>
+                                    Basic computer knowledge.
+                                </span>
+                            </div>
+
+                            <div class="requirement">
+                                <span class="requirement-icon">✓</span>
+                                <span>
+                                    A modern web browser such as Chrome, Edge or Firefox.
+                                </span>
+                            </div>
+
+                            <div class="requirement">
+                                <span class="requirement-icon">✓</span>
+                                <span>
+                                    No previous web development experience is required.
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+                <!-- RIGHT COLUMN -->
+
+                <div class="right-column">
+
+                    <!-- ENROLL -->
+
+                    <section class="panel enroll-card">
+
+                        <h3>
+                            Start Learning Today
+                        </h3>
+
+                        <p>
+                            Enroll in this course and begin your learning
+                            journey with practical lessons and exercises.
+                        </p>
+
+                        <div class="price-box">
+
+                            <span>
+                                Course Access
+                            </span>
+
+                            <strong>
+                                Free
+                            </strong>
+
+                        </div>
+
+                        <button class="enroll-main-btn"
+                                id="enrollMainBtn">
+                            Enroll Now
+                        </button>
+
+                        <div class="guarantee">
+                            ✓ Full course access after enrollment
+                        </div>
+
+                    </section>
+
+                    <!-- COURSE INFORMATION -->
+
+                    <section class="panel">
+
+                        <h3 class="panel-title">
+                            Course Information
+                        </h3>
+
+                        <div class="info-list">
+
+                            <div class="info-row">
+
+                                <span>
+                                    Level
+                                </span>
+
+                                <strong id="infoLevel">
+                                    Beginner
+                                </strong>
+
+                            </div>
+
+                            <div class="info-row">
+
+                                <span>
+                                    Duration
+                                </span>
+
+                                <strong id="infoDuration">
+                                    4 Weeks
+                                </strong>
+
+                            </div>
+
+                            <div class="info-row">
+
+                                <span>
+                                    Lessons
+                                </span>
+
+                                <strong id="infoLessons">
+                                    25
+                                </strong>
+
+                            </div>
+
+                            <div class="info-row">
+
+                                <span>
+                                    Category
+                                </span>
+
+                                <strong id="infoCategory">
+                                    Web Development
+                                </strong>
+
+                            </div>
+
+                            <div class="info-row">
+
+                                <span>
+                                    Language
+                                </span>
+
+                                <strong>
+                                    English
+                                </strong>
+
+                            </div>
+
+                            <div class="info-row">
+
+                                <span>
+                                    Certificate
+                                </span>
+
+                                <strong>
+                                    Yes
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <!-- INSTRUCTOR -->
+
+                    <section class="panel">
+
+                        <h3 class="panel-title">
+                            Instructor
+                        </h3>
+
+                        <div class="instructor-card">
+
+                            <div class="instructor-big-avatar"
+                                 id="instructorAvatar">
+                                JD
+                            </div>
+
+                            <div>
+
+                                <strong id="instructorName">
+                                    John David
+                                </strong>
+
+                                <span>
+                                    Course Instructor
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <!-- CERTIFICATE -->
+
+                    <section class="panel">
+
+                        <div class="certificate-box">
+
+                            <div class="certificate-box-icon">
+                                🏆
+                            </div>
+
+                            <h4>
+                                Certificate of Completion
+                            </h4>
+
+                            <p>
+                                Complete all required lessons and earn
+                                a certificate that you can view and print
+                                from your certificate page.
+                            </p>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="../js/data.js"></script>
+<script src="../js/state.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/ui.js"></script>
+<script src="../js/validation.js"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* LOGIN CHECK */
+
+    if (typeof isStudentLoggedIn === "function") {
+
+        if (!isStudentLoggedIn()) {
+
+            window.location.href = "login.html";
+            return;
+
+        }
+
+    }
+
+    /* STUDENT */
+
+    let student = null;
+
+    try {
+
+        if (typeof getCurrentStudent === "function") {
+
+            student = getCurrentStudent();
+
+        } else {
+
+            student = JSON.parse(
+                localStorage.getItem("studentSession")
+            );
+
+        }
+
+    } catch (error) {
+
+        student = null;
+
+    }
+
+    if (!student) {
+
+        student = {
+            name: "Divya S",
+            email: "divyaoct2006@gmail.com"
+        };
+
+    }
+
+    const fullName =
+        student.name ||
+        student.fullName ||
+        "Student";
+
+    document.getElementById("studentName").textContent =
+        fullName;
+
+    document.getElementById("studentAvatar").textContent =
+        fullName
+            .split(" ")
+            .map(word => word.charAt(0))
+            .join("")
+            .substring(0, 2)
+            .toUpperCase();
+
+    /* COURSE DATA */
+
+    const courses = {
+
+        "html-css": {
+
+            category: "Web Development",
+
+            title: "HTML & CSS Fundamentals",
+
+            description:
+                "Learn how to create modern, responsive and professional websites using HTML and CSS.",
+
+            rating: "4.8",
+
+            students: "1,240 students",
+
+            duration: "4 Weeks",
+
+            lessons: "25 Lessons",
+
+            level: "Beginner",
+
+            instructor: "John David",
+
+            instructorInitials: "JD",
+
+            about:
+                "This course provides a practical introduction to the fundamental concepts required to create modern websites. You will learn how to structure webpages with HTML and style them using CSS. The course includes practical examples, exercises and project-based learning."
+
+        },
+
+        "javascript": {
+
+            category: "Frontend Development",
+
+            title: "JavaScript Essentials",
+
+            description:
+                "Master JavaScript fundamentals and create interactive web applications.",
+
+            rating: "4.7",
+
+            students: "980 students",
+
+            duration: "6 Weeks",
+
+            lessons: "36 Lessons",
+
+            level: "Intermediate",
+
+            instructor: "Emily Smith",
+
+            instructorInitials: "ES",
+
+            about:
+                "Learn the core concepts of JavaScript and use them to build interactive and dynamic web experiences. The course covers variables, functions, objects, arrays, DOM manipulation and modern JavaScript concepts."
+
+        },
+
+        "react": {
+
+            category: "Frontend Development",
+
+            title: "React Development",
+
+            description:
+                "Build modern component-based applications using React.",
+
+            rating: "4.9",
+
+            students: "875 students",
+
+            duration: "6 Weeks",
+
+            lessons: "38 Lessons",
+
+            level: "Intermediate",
+
+            instructor: "Alex Martin",
+
+            instructorInitials: "AM",
+
+            about:
+                "Build modern frontend applications using React components, state management, props, hooks and reusable UI patterns."
+
+        },
+
+        "python": {
+
+            category: "Programming",
+
+            title: "Python Programming",
+
+            description:
+                "Learn Python programming from basic syntax to practical applications.",
+
+            rating: "4.9",
+
+            students: "1,530 students",
+
+            duration: "8 Weeks",
+
+            lessons: "40 Lessons",
+
+            level: "Beginner",
+
+            instructor: "Robert Kumar",
+
+            instructorInitials: "RK",
+
+            about:
+                "Start your programming journey with Python. Learn variables, data types, conditions, loops, functions, collections, file handling and practical programming techniques."
+
+        },
+
+        "java": {
+
+            category: "Programming",
+
+            title: "Java Programming",
+
+            description:
+                "Understand object-oriented programming through practical Java development.",
+
+            rating: "4.6",
+
+            students: "760 students",
+
+            duration: "8 Weeks",
+
+            lessons: "42 Lessons",
+
+            level: "Intermediate",
+
+            instructor: "David Wilson",
+
+            instructorInitials: "DW",
+
+            about:
+                "Learn Java programming with a strong focus on object-oriented programming, classes, objects, inheritance, polymorphism and practical application development."
+
+        },
+
+        "dsa": {
+
+            category: "Computer Science",
+
+            title: "Data Structures & Algorithms",
+
+            description:
+                "Learn efficient data structures and algorithmic problem solving.",
+
+            rating: "4.8",
+
+            students: "920 students",
+
+            duration: "8 Weeks",
+
+            lessons: "45 Lessons",
+
+            level: "Advanced",
+
+            instructor: "Sarah Kumar",
+
+            instructorInitials: "SK",
+
+            about:
+                "Develop strong problem-solving skills through arrays, linked lists, stacks, queues, trees, graphs, searching, sorting and algorithm analysis."
+
+        },
+
+        "sql": {
+
+            category: "Database",
+
+            title: "SQL & Database Management",
+
+            description:
+                "Work with relational databases and write powerful SQL queries.",
+
+            rating: "4.7",
+
+            students: "1,110 students",
+
+            duration: "5 Weeks",
+
+            lessons: "30 Lessons",
+
+            level: "Intermediate",
+
+            instructor: "Michael Nathan",
+
+            instructorInitials: "MN",
+
+            about:
+                "Learn relational database concepts and SQL queries. Practice filtering, joining, grouping, subqueries and database design."
+
+        },
+
+        "data-science": {
+
+            category: "Data Analytics",
+
+            title: "Data Science Fundamentals",
+
+            description:
+                "Learn data analysis, visualization and essential data science concepts.",
+
+            rating: "4.8",
+
+            students: "890 students",
+
+            duration: "8 Weeks",
+
+            lessons: "40 Lessons",
+
+            level: "Intermediate",
+
+            instructor: "Ananya Patel",
+
+            instructorInitials: "AP",
+
+            about:
+                "Explore the fundamentals of data science including data cleaning, analysis, visualization, statistics and practical data projects."
+
+        },
+
+        "machine-learning": {
+
+            category: "Artificial Intelligence",
+
+            title: "Machine Learning Basics",
+
+            description:
+                "Understand machine learning algorithms, model training and evaluation.",
+
+            rating: "4.9",
+
+            students: "1,020 students",
+
+            duration: "10 Weeks",
+
+            lessons: "50 Lessons",
+
+            level: "Advanced",
+
+            instructor: "Rahul Sharma",
+
+            instructorInitials: "RS",
+
+            about:
+                "Understand the basic workflow of machine learning including data preparation, supervised learning, unsupervised learning, model evaluation and practical projects."
+
+        },
+
+        "uiux": {
+
+            category: "Design",
+
+            title: "UI/UX Design Fundamentals",
+
+            description:
+                "Learn user-centered design, wireframing, prototyping and visual design.",
+
+            rating: "4.7",
+
+            students: "650 students",
+
+            duration: "5 Weeks",
+
+            lessons: "28 Lessons",
+
+            level: "Beginner",
+
+            instructor: "Neha Gupta",
+
+            instructorInitials: "NG",
+
+            about:
+                "Learn the fundamentals of user experience and interface design including research, user flows, wireframes, prototypes, typography and visual hierarchy."
+
+        },
+
+        "git": {
+
+            category: "Developer Tools",
+
+            title: "Git & GitHub",
+
+            description:
+                "Learn version control, Git commands, branching and collaborative development.",
+
+            rating: "4.8",
+
+            students: "1,340 students",
+
+            duration: "3 Weeks",
+
+            lessons: "18 Lessons",
+
+            level: "Beginner",
+
+            instructor: "Arun Joseph",
+
+            instructorInitials: "AJ",
+
+            about:
+                "Learn how developers use Git and GitHub to manage source code, create branches, collaborate with teams and maintain project history."
+
+        },
+
+        "cloud": {
+
+            category: "Cloud",
+
+            title: "Cloud Computing Fundamentals",
+
+            description:
+                "Understand cloud concepts, services, deployment models and cloud security.",
+
+            rating: "4.6",
+
+            students: "710 students",
+
+            duration: "7 Weeks",
+
+            lessons: "35 Lessons",
+
+            level: "Intermediate",
+
+            instructor: "Vikram Kumar",
+
+            instructorInitials: "VK",
+
+            about:
+                "Understand cloud computing concepts, service models, deployment models, virtualization, cloud storage and basic cloud security."
+
+        }
+
+    };
+
+    /* GET COURSE ID */
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+    const courseId =
+        params.get("id") || "html-css";
+
+    const course =
+        courses[courseId] || courses["html-css"];
+
+    /* DISPLAY COURSE */
+
+    document.getElementById(
+        "courseCategory"
+    ).textContent =
+        course.category;
+
+    document.getElementById(
+        "courseTitle"
+    ).textContent =
+        course.title;
+
+    document.getElementById(
+        "courseDescription"
+    ).textContent =
+        course.description;
+
+    document.getElementById(
+        "courseRating"
+    ).textContent =
+        course.rating;
+
+    document.getElementById(
+        "studentCount"
+    ).textContent =
+        course.students;
+
+    document.getElementById(
+        "courseDuration"
+    ).textContent =
+        course.duration;
+
+    document.getElementById(
+        "courseLessons"
+    ).textContent =
+        course.lessons;
+
+    document.getElementById(
+        "courseLevel"
+    ).textContent =
+        course.level;
+
+    document.getElementById(
+        "courseInstructor"
+    ).textContent =
+        course.instructor;
+
+    document.getElementById(
+        "aboutCourse"
+    ).textContent =
+        course.about;
+
+    document.getElementById(
+        "infoLevel"
+    ).textContent =
+        course.level;
+
+    document.getElementById(
+        "infoDuration"
+    ).textContent =
+        course.duration;
+
+    document.getElementById(
+        "infoLessons"
+    ).textContent =
+        course.lessons.replace(
+            " Lessons",
+            ""
+        );
+
+    document.getElementById(
+        "infoCategory"
+    ).textContent =
+        course.category;
+
+    document.getElementById(
+        "instructorName"
+    ).textContent =
+        course.instructor;
+
+    document.getElementById(
+        "instructorAvatar"
+    ).textContent =
+        course.instructorInitials;
+
+    document.title =
+        course.title + " | SCMS";
+
+    /* ENROLLMENT */
+
+    const enrollButton =
+        document.getElementById(
+            "enrollMainBtn"
+        );
+
+    function getEnrollments() {
+
+        try {
+
+            const data =
+                localStorage.getItem(
+                    "enrolledCourses"
+                );
+
+            return data
+                ? JSON.parse(data)
+                : [];
+
+        } catch (error) {
+
+            return [];
+
+        }
+
+    }
+
+    function updateEnrollButton() {
+
+        const enrollments =
+            getEnrollments();
+
+        const enrolled =
+            enrollments.some(
+                item =>
+                    item.courseId === courseId
+            );
+
+        if (enrolled) {
+
+            enrollButton.textContent =
+                "✓ Already Enrolled";
+
+            enrollButton.classList.add(
+                "enrolled"
+            );
+
+        }
+
+    }
+
+    enrollButton.addEventListener(
+        "click",
+        function () {
+
+            const enrollments =
+                getEnrollments();
+
+            const alreadyEnrolled =
+                enrollments.some(
+                    item =>
+                        item.courseId === courseId
+                );
+
+            if (alreadyEnrolled) {
+
+                window.location.href =
+                    "my-courses.html";
+
+                return;
+
+            }
+
+            enrollments.push({
+
+                courseId: courseId,
+
+                title: course.title,
+
+                studentName: fullName,
+
+                studentEmail:
+                    student.email ||
+                    "student@example.com",
+
+                progress: 0,
+
+                status: "Active",
+
+                enrolledDate:
+                    new Date().toISOString()
+
+            });
+
+            localStorage.setItem(
+                "enrolledCourses",
+                JSON.stringify(
+                    enrollments
+                )
+            );
+
+            localStorage.setItem(
+                "selectedCourseKey",
+                courseId
+            );
+
+            enrollButton.textContent =
+                "✓ Enrolled Successfully";
+
+            enrollButton.classList.add(
+                "enrolled"
+            );
+
+            showToast(
+                course.title +
+                " enrolled successfully!"
+            );
+
+        }
+    );
+
+    updateEnrollButton();
+
+    /* CURRICULUM ACCORDION */
+
+    document.querySelectorAll(
+        ".module-header"
+    ).forEach(button => {
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                const module =
+                    this.closest(".module");
+
+                module.classList.toggle(
+                    "open"
+                );
+
+            }
+        );
+
+    });
+
+    /* PREVIEW */
+
+    document.getElementById(
+        "previewButton"
+    ).addEventListener(
+        "click",
+        function () {
+
+            showToast(
+                "Course preview will be available soon."
+            );
+
+        }
+    );
+
+    /* TOAST */
+
+    function showToast(message) {
+
+        const toast =
+            document.getElementById(
+                "toast"
+            );
+
+        toast.textContent =
+            message;
+
+        toast.classList.add(
+            "show"
+        );
+
+        setTimeout(
+            function () {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            3000
+        );
+
+    }
+
+    /* MOBILE SIDEBAR */
+
+    const mobileMenu =
+        document.getElementById(
+            "mobileMenu"
+        );
+
+    const sidebar =
+        document.getElementById(
+            "sidebar"
+        );
+
+    const sidebarOverlay =
+        document.getElementById(
+            "sidebarOverlay"
+        );
+
+    mobileMenu.addEventListener(
+        "click",
+        function () {
+
+            sidebar.classList.toggle(
+                "open"
+            );
+
+            sidebarOverlay.classList.toggle(
+                "show"
+            );
+
+        }
+    );
+
+    sidebarOverlay.addEventListener(
+        "click",
+        function () {
+
+            sidebar.classList.remove(
+                "open"
+            );
+
+            sidebarOverlay.classList.remove(
+                "show"
+            );
+
+        }
+    );
+
+    /* LOGOUT */
+
+    document.getElementById(
+        "logoutBtn"
+    ).addEventListener(
+        "click",
+        function () {
+
+            if (
+                typeof logoutStudent ===
+                "function"
+            ) {
+
+                logoutStudent();
+
+            } else {
+
+                localStorage.removeItem(
+                    "studentSession"
+                );
+
+                localStorage.removeItem(
+                    "loggedInStudent"
+                );
+
+            }
+
+            window.location.href =
+                "login.html";
+
+        }
+    );
+
+});
+
+</script>
+
+</body>
+</html>
