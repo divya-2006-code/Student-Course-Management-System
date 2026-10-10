@@ -1,1 +1,19 @@
+const express = require("express");
+const router = express.Router();
+const validateCourse = require("../middleware/courseValidation");
 
+const {
+  getCourses,
+  getCourseById,
+  addCourse,
+  updateCourse,
+  deleteCourse
+} = require("../controllers/courseController");
+
+router.get("/", getCourses);
+router.get("/:id", getCourseById);
+router.post("/", validateCourse, addCourse);
+router.put("/:id", updateCourse);
+router.delete("/:id", deleteCourse);
+
+module.exports = router;
