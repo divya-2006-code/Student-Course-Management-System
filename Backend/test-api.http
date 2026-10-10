@@ -1,0 +1,28 @@
+GET http://localhost:5000/api/courses
+
+###
+POST http://localhost:5000/api/courses
+Content-Type: application/json
+
+{
+  "title": "React Programming",
+  "instructor": "Divya",
+  "duration": "6 Weeks",
+  "description": "Learn React fundamentals.",
+  "price": 0
+}
+
+###
+PUT http://localhost:5000/api/courses/5
+Content-Type: application/json
+
+{
+  "title": "React Programming Fundamentals",
+  "instructor": "Divya",
+  "duration": "8 Weeks",
+  "description": "Learn React from the basics.",
+  "price": 0
+}
+
+###
+DELETE http://localhost:5000/api/courses/5
